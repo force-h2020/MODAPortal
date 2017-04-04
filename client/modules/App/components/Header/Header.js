@@ -12,6 +12,8 @@ export function Header(props, context) {
 
   return (
     <div className={styles.header}>
+    <link rel="stylesheet" id="theme" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
     {/*
       <div className={styles['language-switcher']}>
         <ul>
