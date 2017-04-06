@@ -1,9 +1,28 @@
 import React, { PropTypes } from 'react';
 
+// ES6
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+
 // Import Components
 import ModaListItem from './ModaListItem/ModaListItem';
 
-function ModaList(props) {
+// Create some column definitions
+const columns = [{
+  header: 'Simulation',
+  columns: [{
+    header: 'Title',
+    accessor: 'title'
+  }]
+}, {
+  header: 'Info',
+  columns: [{
+    header: 'User Case',
+    accessor: 'userCase'
+  }]
+}];
+
+function ModaList1(props) {
   return (
     <div className="listView">
       {
@@ -16,6 +35,19 @@ function ModaList(props) {
         ))
       }
     </div>
+  );
+}
+
+function ModaList(props) {
+  console.log(props.modas);
+  return (
+    <ReactTable
+      manual
+      showFilters={false}
+      data={props.modas}
+      columns={columns}
+      defaultPageSize={10}
+    />
   );
 }
 
