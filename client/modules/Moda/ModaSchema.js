@@ -10,6 +10,10 @@ module.exports = {
         items: {
           type: 'object',
           properties: {
+            cuds_type: {
+              type: 'string',
+              title: 'CUDS type',
+            },
             userCaseAspects: {
               type: 'object',
               title: '1. Aspect of the user-case/system to be simulated',
@@ -320,6 +324,10 @@ module.exports = {
       physicsBasedModels: {
         classNames: 'physics-based-models',
         items: {
+          cuds_type: {
+            classNames: 'cuds_type',
+            'ui:widget': 'cudstreeselect',
+          },
           userCaseAspects: {
             classNames: 'user-case-aspects',
             aspectsOfInterest: {

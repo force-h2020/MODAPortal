@@ -8,10 +8,13 @@ router.route('/modas').get(ModaController.getModas);
 // Get one moda by cuid
 router.route('/modas/:cuid').get(ModaController.getModa);
 
-// Add a new Post
+// Update one moda by cuid
+router.route('/modas/:cuid').put(ModaController.putModa);
+
+// Add a new moda
 router.route('/modas').post(ModaController.addModa);
 
-// Delete a post by cuid
+// Delete a moda by cuid
 router.route('/modas/:cuid').delete(ModaController.deleteModa);
 
 export default router;

@@ -35,7 +35,6 @@ import { fetchComponentData } from './util/fetchData';
 import posts from './routes/post.routes';
 import modas from './routes/moda.routes';
 import dummyData from './dummyData';
-import dummyModa from './dummyModas';
 import serverConfig from './config';
 
 // Set native promises as mongoose promise
@@ -145,7 +144,7 @@ app.use((req, res, next) => {
 // start app
 app.listen(serverConfig.port, (error) => {
   if (!error) {
-    console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
+    console.log(`MODA Portal is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
   }
 });
 

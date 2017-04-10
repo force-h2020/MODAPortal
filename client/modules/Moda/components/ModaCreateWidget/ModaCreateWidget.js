@@ -1,15 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+
 import Form from 'react-jsonschema-form';
 import schema from '../../ModaSchema';
+import cudsSchema from '../../CudsSelect';
 
-// Import Style
 import styles from './ModaCreateWidget.css';
+
+import { TreeSelect, TreeNode } from 'antd';
+import 'antd/dist/antd.css';
+
 
 const log = type => console.log.bind(console, type);
 
-function CustomFieldTemplate(props) {
-  
+function CustomFieldTemplate(props) {  
   const { id, classNames, label, help, required, description, errors, children } = props;
   if (classNames.search('panel') > 0) {
     return (
@@ -41,27 +45,31 @@ function CustomFieldTemplate(props) {
   }
 }
 
-/* Using this I have to stop tiles from being rendered,
-   because we already show them in panels.
- */
-const CustomTitleField = ({title, required}) => {
-  const legend = required ? title + '*' : title;
-  return <div id="custom">{/*legend*/}</div>;
+
+const treeData = cudsSchema.cudsSchema;
+
+const CUDSTreeSelect = (props) => {
+  return (
+    <TreeSelect
+      style={{ width: 442 }}
+      dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+      treeData={treeData}
+      placeholder="Please select"
+      treeDefaultExpandAll
+      value={props.value}
+      required={props.required}
+      onChange={(value, node, extra) => props.onChange(value)} />
+  );
 };
 
-const fields = {
-  TitleField: CustomTitleField
+const widgets = {
+  //TitleField: CustomTitleField,
+  'cudstreeselect': CUDSTreeSelect
 };
 
 export class ModaCreateWidget extends Component {
-  addModa = () => {
-    const nameRef = this.refs.name;
-    const titleRef = this.refs.title;
-    const contentRef = this.refs.content;
-    if (nameRef.value && titleRef.value && contentRef.value) {
-      this.props.addModa(nameRef.value, titleRef.value, contentRef.value);
-      nameRef.value = titleRef.value = contentRef.value = '';
-    }
+  addModa = (event) => {
+      this.props.addModa(event.formData);
   };
 
   handleChange(event) {
@@ -70,16 +78,7 @@ export class ModaCreateWidget extends Component {
   }
 
   handleSubmit(event) {
-    console.log(event.formData);
-    return false;
-    alert('A name was submitted: ' + event.formData);//this.refs.modaForm.state.formData);
-    console.log(this.refs.modaForm);
-    this.setState({
-      //newModa: this.refs.modaForm.formData
-    }, function () {
-      //this.props.addModa(this.state.newModa);
-    });
-    return false;
+    this.props.addModa(event.formData);
   }
 
 /*
@@ -106,16 +105,11 @@ export class ModaCreateWidget extends Component {
                 schema={schema.schema}
                 uiSchema={schema.uiSchema}
                 onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
+                onSubmit={this.addModa}
                 onError={log('errors')}
+                widgets={widgets}
+                formData={this.props.moda}
               />
-{/*
-          <h2 className={styles['form-title']}><FormattedMessage id="createNewModa" /></h2>
-          <input placeholder={this.props.intl.messages.authorName} className={styles['form-field']} ref="name" />
-          <input placeholder={this.props.intl.messages.modaTitle} className={styles['form-field']} ref="title" />
-          <textarea placeholder={this.props.intl.messages.modaContent} className={styles['form-field']} ref="content" />
-          <a className={styles['post-submit-button']} href="#" onClick={this.addModa}><FormattedMessage id="submit" /></a>
-*/}
         </div>
       </div>
     );

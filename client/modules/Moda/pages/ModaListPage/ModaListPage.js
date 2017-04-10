@@ -24,9 +24,9 @@ class ModaListPage extends Component {
     }
   };
 
-  handleAddModa = (name, title, content) => {
+  handleAddModa = moda => {
     this.props.dispatch(toggleAddModa());
-    this.props.dispatch(addModaRequest({ name, title, content }));
+    this.props.dispatch(addModaRequest({ moda }));
   };
 
   render() {
@@ -52,9 +52,7 @@ function mapStateToProps(state) {
 
 ModaListPage.propTypes = {
   modas: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    userCase: PropTypes.string.isRequired,
   })).isRequired,
   showAddModa: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,

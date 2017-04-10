@@ -1,28 +1,38 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+
+import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
 
 // Import Style
 import styles from '../../components/ModaListItem/ModaListItem.css';
 
 // Import Actions
-import { fetchModa } from '../../ModaActions';
+import { fetchModa, updateModaRequest } from '../../ModaActions';
 
 // Import Selectors
 import { getModa } from '../../ModaReducer';
 
-export function ModaDetailPage(props) {
-  return (
-    <div>
-      <Helmet title={props.moda.title} />
-      <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-        <h3 className={styles['post-title']}>{props.moda.title}</h3>
-        <p className={styles['author-name']}><FormattedMessage id="by" /> {props.moda.name}</p>
-        <p className={styles['post-desc']}>{props.moda.content}</p>
+class ModaDetailPage extends Component {
+//  componentDidMount() {
+//    this.props.dispatch(fetchModa());
+//  }
+
+  handleUpdateModa = moda => {
+    this.props.dispatch(updateModaRequest({ moda }));
+  };
+
+  render() {
+    return (
+      <div>
+        <Helmet title={this.props.moda.userCase} />
+        <div>
+          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa={true} moda={this.props.moda} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 // Actions required to provide data for this component to render in sever side.
@@ -39,12 +49,15 @@ function mapStateToProps(state, props) {
 
 ModaDetailPage.propTypes = {
   moda: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    userCase: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+ModaDetailPage.contextTypes = {
+  router: React.PropTypes.object,
 };
 
 export default connect(mapStateToProps)(ModaDetailPage);

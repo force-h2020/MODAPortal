@@ -4,6 +4,7 @@ import callApi from '../../util/apiCaller';
 export const ADD_MODA = 'ADD_MODA';
 export const ADD_MODAS = 'ADD_MODAS';
 export const DELETE_MODA = 'DELETE_MODA';
+export const UPDATE_MODA = 'UPDATE_MODA';
 
 // Export Actions
 export function addModa(moda) {
@@ -15,13 +16,7 @@ export function addModa(moda) {
 
 export function addModaRequest(moda) {
   return (dispatch) => {
-    return callApi('modas', 'moda', {
-      moda: {
-        name: moda.name,
-        title: moda.title,
-        content: moda.content,
-      },
-    }).then(res => dispatch(addModa(res.moda)));
+    return callApi('modas', 'post', moda).then(res => dispatch(addModa(res.moda)));
   };
 }
 
@@ -29,6 +24,19 @@ export function addModas(modas) {
   return {
     type: ADD_MODAS,
     modas,
+  };
+}
+
+export function updateModa(moda) {
+  return {
+    type: UPDATE_MODA,
+    moda,
+  };
+}
+
+export function updateModaRequest(moda) {
+  return (dispatch) => {
+    return callApi(`modas/${cuid}`, 'put', moda).then(res => dispatch(updateModa(res.moda)));
   };
 }
 

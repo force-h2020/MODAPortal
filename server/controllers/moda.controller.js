@@ -25,25 +25,45 @@ export function getModas(req, res) {
  * @returns void
  */
 export function addModa(req, res) {
-  if (!req.body.moda.name || !req.body.moda.title || !req.body.moda.content) {
-    res.status(403).end();
-  }
+  //if (!req.body.moda.userCase || !req.body.moda.accessConditions) {
+  //  return res.status(403).end();
+  //}
 
   const newModa = new Moda(req.body.moda);
 
   // Let's sanitize inputs
-  newModa.title = sanitizeHtml(newModa.title);
-  newModa.name = sanitizeHtml(newModa.name);
-  newModa.content = sanitizeHtml(newModa.content);
+  newModa.userCase = sanitizeHtml(newModa.userCase);
 
-  newModa.slug = slug(newModa.title.toLowerCase(), { lowercase: true });
+  newModa.slug = slug(newModa.userCase.toLowerCase(), { lowercase: true });
   newModa.cuid = cuid();
   newModa.save((err, saved) => {
     if (err) {
-      res.status(500).send(err);
+      console.log(err);
+      return res.status(500).send(err);
     }
     res.json({ moda: saved });
   });
+}
+
+/**
+ * Update a moda
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function putModa(req, res) {
+  //if (!req.body.moda.userCase || !req.body.moda.accessConditions) {
+  //  return res.status(403).end();
+  //}
+
+  Moda.update({ cuid: req.body.moda.cuid}, req.body.moda, (err, raw) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      console.log('The raw response from Mongo was ', raw);
+    });
+  //res.json({ req.body.moda });
+  //return res.status(200).end();
 }
 
 /**
@@ -73,7 +93,7 @@ export function deleteModa(req, res) {
       res.status(500).send(err);
     }
 
-    post.remove(() => {
+    moda.remove(() => {
       res.status(200).end();
     });
   });
