@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router';
 
 // ES6
 import ReactTable from 'react-table';
@@ -33,7 +34,9 @@ function ModaList(props) {
     header: 'Info',
     columns: [{
       header: 'ID',
-      accessor: 'cuid'
+      accessor: 'cuid',
+      render: ({value, row}) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>{value}</Link></span>)
+      //render: (props) => {console.log(props); return props.value;}
       }, {
       header: 'User Case',
       accessor: 'userCase'
@@ -47,6 +50,13 @@ function ModaList(props) {
       data={props.modas}
       columns={columns}
       defaultPageSize={10}
+      sorting={[{
+          id: 'cuid',
+          asc: true
+        }, {
+          id: 'userCase',
+          asc: true
+      }]} // the sorting model for the table
       getTdProps={(state, rowInfo, column, instance) => {
         return {
           onClick: e => {
@@ -58,7 +68,13 @@ function ModaList(props) {
           }
         }
       }}
-    />
+    >
+    {(state, Table, instance) => {
+      return (
+        <Table />
+      )
+    }}
+    </ReactTable>
   );
 }
 

@@ -63,7 +63,7 @@ export function putModa(req, res) {
       console.log('The raw response from Mongo was ', raw);
     });
   //res.json({ req.body.moda });
-  //return res.status(200).end();
+  return res.status(200).end();
 }
 
 /**

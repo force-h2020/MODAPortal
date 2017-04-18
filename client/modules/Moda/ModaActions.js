@@ -36,7 +36,7 @@ export function updateModa(moda) {
 
 export function updateModaRequest(moda) {
   return (dispatch) => {
-    return callApi(`modas/${cuid}`, 'put', moda).then(res => dispatch(updateModa(res.moda)));
+    return callApi(`modas/${moda.cuid}`, 'put', moda).then(res => dispatch(updateModa(res.moda)));
   };
 }
 

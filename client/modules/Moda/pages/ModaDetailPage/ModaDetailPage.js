@@ -10,6 +10,7 @@ import styles from '../../components/ModaListItem/ModaListItem.css';
 
 // Import Actions
 import { fetchModa, updateModaRequest } from '../../ModaActions';
+import { toggleAddModa } from '../../../App/AppActions';
 
 // Import Selectors
 import { getModa } from '../../ModaReducer';
@@ -20,6 +21,7 @@ class ModaDetailPage extends Component {
 //  }
 
   handleUpdateModa = moda => {
+    //this.props.dispatch(toggleAddModa());
     this.props.dispatch(updateModaRequest({ moda }));
   };
 
