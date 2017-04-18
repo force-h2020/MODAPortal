@@ -41,6 +41,20 @@ function ModaList(props) {
       header: 'User Case',
       accessor: 'userCase'
       }]
+    }, {
+    header: 'Actions',
+    columns: [{
+      header: 'Edit',
+      width: 100,
+      //accessor: 'cuid',
+      render: ({value, row}) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link></span>)
+      //render: (props) => {console.log(props); return props.value;}
+      }, {
+      header: 'Delete',
+      width: 100,
+      //accessor: 'userCase',
+      render: row => (<span><a onClick={() => props.handleDeleteModa(row.row.cuid)}>Delete</a></span>)
+      }]
     }];
   
   return (
@@ -85,6 +99,7 @@ ModaList.propTypes = {
     cuid: PropTypes.string.isRequired,
   })).isRequired,
   handleDeleteModa: PropTypes.func.isRequired,
+  //handleEditModa: PropTypes.func.isRequired
 };
 
 export default ModaList;

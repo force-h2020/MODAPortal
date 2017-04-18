@@ -18,9 +18,9 @@ class ModaListPage extends Component {
     this.props.dispatch(fetchModas());
   }
 
-  handleDeleteModa = moda => {
-    if (confirm('Do you want to delete this moda')) { // eslint-disable-line
-      this.props.dispatch(deleteModaRequest(moda));
+  handleDeleteModa = cuid => {
+    if (confirm('Do you want to delete moda ' + cuid + '?')) { // eslint-disable-line
+      this.props.dispatch(deleteModaRequest(cuid));
     }
   };
 
@@ -28,6 +28,8 @@ class ModaListPage extends Component {
     this.props.dispatch(toggleAddModa());
     this.props.dispatch(addModaRequest({ moda }));
   };
+
+
 
   render() {
     return (
