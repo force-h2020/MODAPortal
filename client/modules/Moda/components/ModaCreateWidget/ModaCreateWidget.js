@@ -68,26 +68,13 @@ const widgets = {
 };
 
 export class ModaCreateWidget extends Component {
-  addModa = (event) => {
-      this.props.addModa(event.formData);
+  handleSubmit = (event) => {
+    this.props.addModa(event.formData);
   };
 
-  handleChange(event) {
-    //this.setState({value: event.target});
+  handleChange = (event) => {
     console.log(event.formData);
-  }
-
-  handleSubmit(event) {
-    this.props.addModa(event.formData);
-  }
-
-/*
-  componentWillMount() {
-    this.setState({formData: {
-      userCase: 'This is a sample case',
-    }});
-  }
-*/
+  };
 
   render() {
     const formStyle = {
@@ -105,7 +92,7 @@ export class ModaCreateWidget extends Component {
                 schema={schema.schema}
                 uiSchema={schema.uiSchema}
                 onChange={this.handleChange}
-                onSubmit={this.addModa}
+                onSubmit={this.handleSubmit}
                 onError={log('errors')}
                 widgets={widgets}
                 formData={this.props.moda}
