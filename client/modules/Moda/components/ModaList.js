@@ -53,7 +53,8 @@ function ModaList(props) {
       header: 'Delete',
       width: 100,
       //accessor: 'userCase',
-      render: row => (<span><a onClick={() => props.handleDeleteModa(row.row.cuid)}>Delete</a></span>)
+      // row vs {row}: row is everything, {row} is the real ’row’
+      render: ({row}) => (<span><a onClick={() => props.handleDeleteModa(row.cuid)}>Delete</a></span>)
       }]
     }];
   

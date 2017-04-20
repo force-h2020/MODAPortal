@@ -62,7 +62,7 @@ export function deleteModa(cuid) {
 }
 
 export function deleteModaRequest(cuid) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     return callApi(`modas/${cuid}`, 'delete').then(() => dispatch(deleteModa(cuid)));
   };
 }

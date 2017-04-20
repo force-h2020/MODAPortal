@@ -61,9 +61,10 @@ export function putModa(req, res) {
         res.status(500).send(err);
       }
       console.log('The raw response from Mongo was ', raw);
+      return res.json({ moda: req.body.moda });
     });
   //res.json({ req.body.moda });
-  return res.status(200).end();
+  //return res.status(200).end();
 }
 
 /**
@@ -89,11 +90,12 @@ export function getModa(req, res) {
  */
 export function deleteModa(req, res) {
   Moda.findOne({ cuid: req.params.cuid }).exec((err, moda) => {
-    if (err) {
+    if (err || !moda) {
       res.status(500).send(err);
     }
 
     moda.remove(() => {
+      //res.json({ message: 'MODA deleted'});
       res.status(200).end();
     });
   });
