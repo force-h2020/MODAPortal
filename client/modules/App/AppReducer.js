@@ -1,10 +1,11 @@
 // Import Actions
-import { TOGGLE_ADD_POST, TOGGLE_ADD_MODA } from './AppActions';
+import { TOGGLE_ADD_POST, TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA } from './AppActions';
 
 // Initial State
 const initialState = {
   showAddPost: false,
   showAddModa: false,
+  showEditModa: false,
 };
 
 const AppReducer = (state = initialState, action) => {
@@ -19,6 +20,10 @@ const AppReducer = (state = initialState, action) => {
         showAddModa: !state.showAddModa,
       };
 
+    case TOGGLE_EDIT_MODA:
+      return {
+        showEditModa: !state.showEditModa,
+      };
 
     default:
       return state;
@@ -33,6 +38,8 @@ export const getShowAddPost = state => state.app.showAddPost;
 // Get showAddModa
 export const getShowAddModa = state => state.app.showAddModa;
 
+// Get showAddModa
+export const getShowEditModa = state => state.app.showEditModa;
 
 // Export Reducer
 export default AppReducer;

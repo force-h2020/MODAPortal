@@ -33,7 +33,6 @@ export class App extends Component {
     this.props.dispatch(toggleAddModa());
   };
 
-
   render() {
     return (
       <div>
