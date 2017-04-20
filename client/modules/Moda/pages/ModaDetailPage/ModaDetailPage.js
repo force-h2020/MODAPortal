@@ -1,12 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 
 import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
-
-// Import Style
-import styles from '../../components/ModaListItem/ModaListItem.css';
 
 // Import Actions
 import { fetchModa, updateModaRequest } from '../../ModaActions';
@@ -23,6 +21,7 @@ class ModaDetailPage extends Component {
   handleUpdateModa = moda => {
     //this.props.dispatch(toggleAddModa());
     this.props.dispatch(updateModaRequest({ moda }));
+    this.context.router.push('/');
   };
 
   render() {
@@ -46,6 +45,7 @@ ModaDetailPage.need = [params => {
 function mapStateToProps(state, props) {
   return {
     moda: getModa(state, props.params.cuid),
+    type: true,
   };
 }
 
@@ -59,7 +59,7 @@ ModaDetailPage.propTypes = {
 };
 
 ModaDetailPage.contextTypes = {
-  router: React.PropTypes.object,
+  router: PropTypes.object,
 };
 
 export default connect(mapStateToProps)(ModaDetailPage);
