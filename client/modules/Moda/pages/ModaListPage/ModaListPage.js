@@ -6,7 +6,7 @@ import ModaList from '../../components/ModaList';
 import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
 
 // Import Actions
-import { addModaRequest, fetchModas, deleteModaRequest } from '../../ModaActions';
+import { addModaRequest, fetchModas, deleteModaRequest, updateModaRequest } from '../../ModaActions';
 import { toggleAddModa } from '../../../App/AppActions';
 
 // Import Selectors
@@ -29,7 +29,9 @@ class ModaListPage extends Component {
     this.props.dispatch(addModaRequest({ moda }));
   };
 
-
+  handleUpdateModa = moda => {
+    this.props.dispatch(updateModaRequest({ moda }));
+  };
 
   render() {
     return (
