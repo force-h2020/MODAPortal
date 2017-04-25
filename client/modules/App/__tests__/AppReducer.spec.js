@@ -1,17 +1,17 @@
 import test from 'ava';
 import { reducerTest } from 'redux-ava';
-import appReducer, { getShowAddPost } from '../AppReducer';
-import { toggleAddPost } from '../AppActions';
+import appReducer, { getShowAddModa } from '../AppReducer';
+import { toggleAddModa } from '../AppActions';
 
-test('action for TOGGLE_ADD_POST is working', reducerTest(
+test('action for TOGGLE_ADD_MODA is working', reducerTest(
   appReducer,
-  { showAddPost: false },
-  toggleAddPost(),
-  { showAddPost: true },
+  { showAddModa: false },
+  toggleAddModa(),
+  { showAddModa: true },
 ));
 
-test('getShowAddPost selector', t => {
-  t.is(getShowAddPost({
-    app: { showAddPost: false },
+test('getShowAddModa selector', t => {
+  t.is(getShowAddModa({
+    app: { showAddModa: false },
   }), false);
 });

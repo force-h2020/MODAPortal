@@ -1,4 +1,15 @@
 import test from 'ava';
+
+test('foo', t => {
+  t.pass();
+});
+
+test('bar', async t => {
+  const bar = Promise.resolve('bar');
+
+  t.is(await bar, 'bar');
+});
+/*
 import request from 'supertest';
 import app from '../../server';
 import Post from '../post';
@@ -76,4 +87,4 @@ test.serial('Should correctly delete a post', async t => {
   const queriedPost = await Post.findOne({ cuid: post.cuid }).exec();
   t.is(queriedPost, null);
 });
-
+*/
