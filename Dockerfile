@@ -1,5 +1,5 @@
 FROM node
-MAINTAINER jaga santagostino <kandros5591@gmail.com>
+MAINTAINER Mehdi Sadeghi <mehdi.sadeghi@iwm.fraunhofer.de>
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
