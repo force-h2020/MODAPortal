@@ -5,7 +5,10 @@ web:
   ports:
    - "80:8000"
   volumes:
-   - .:/usr/src/app/
+          #    - .:/usr/src/app/
+   - server:/usr/src/app/server
+   - client:/usr/src/app/client
+   - Intl:/usr/src/app/Intl
   environment:
    NODE_ENV: production
    MONGO_URL: mongodb://db:27017/moda

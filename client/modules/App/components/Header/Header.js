@@ -6,21 +6,21 @@ import { FormattedMessage } from 'react-intl';
 import styles from './Header.css';
 
 export function Header(props, context) {
-  const languageNodes = props.intl.enabledLanguages.map(
-    lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
-  );
+  // const languageNodes = props.intl.enabledLanguages.map(
+  //   lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
+  // );
 
   return (
     <div className={styles.header}>
-    <link rel="stylesheet" id="theme" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
-    {/*
-      <div className={styles['language-switcher']}>
-        <ul>
-          <li><FormattedMessage id="switchLanguage" /></li>
-          {languageNodes}
-        </ul>
-      </div>
+      <link rel="stylesheet" id="theme" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
+      {/*
+        <div className={styles['language-switcher']}>
+          <ul>
+            <li><FormattedMessage id="switchLanguage" /></li>
+            {languageNodes}
+          </ul>
+        </div>
     */}
       <div className={styles.content}>
         <h1 className={styles['site-title']}>

@@ -62,7 +62,8 @@ export function deleteModa(cuid) {
 }
 
 export function deleteModaRequest(cuid) {
-  return (dispatch, getState) => {
+  // Can have getState as second parameter
+  return (dispatch) => {
     return callApi(`modas/${cuid}`, 'delete').then(() => dispatch(deleteModa(cuid)));
   };
 }

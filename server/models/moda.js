@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const modaSchema = new Schema({
   userCase: { type: 'String', required: true },
   chainOfModels: {
-  	'physicsBasedModels': [{
+    physicsBasedModels: [{
       cuds_type: String,
       userCaseAspects: {
         aspectsOfInterest: String,
@@ -49,7 +49,7 @@ const modaSchema = new Schema({
         errorMargin: String,
       },
     }],
-  	'databasedModels': [{
+    databasedModels: [{
       userCase: {
         userCaseAspects: String,
         material: String,

@@ -25,10 +25,6 @@ export function getModas(req, res) {
  * @returns void
  */
 export function addModa(req, res) {
-  //if (!req.body.moda.userCase || !req.body.moda.accessConditions) {
-  //  return res.status(403).end();
-  //}
-
   const newModa = new Moda(req.body.moda);
 
   // Let's sanitize inputs
@@ -41,7 +37,7 @@ export function addModa(req, res) {
       console.log(err);
       return res.status(500).send(err);
     }
-    res.json({ moda: saved });
+    return res.json({ moda: saved });
   });
 }
 
@@ -52,19 +48,12 @@ export function addModa(req, res) {
  * @returns void
  */
 export function putModa(req, res) {
-  //if (!req.body.moda.userCase || !req.body.moda.accessConditions) {
-  //  return res.status(403).end();
-  //}
-
-  Moda.update({ cuid: req.body.moda.cuid}, req.body.moda, (err, raw) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      console.log('The raw response from Mongo was ', raw);
-      return res.json({ moda: req.body.moda });
-    });
-  //res.json({ req.body.moda });
-  //return res.status(200).end();
+  Moda.update({ cuid: req.body.moda.cuid }, req.body.moda, (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    return res.json({ moda: req.body.moda });
+  });
 }
 
 /**
@@ -95,7 +84,6 @@ export function deleteModa(req, res) {
     }
 
     moda.remove(() => {
-      //res.json({ message: 'MODA deleted'});
       res.status(200).end();
     });
   });

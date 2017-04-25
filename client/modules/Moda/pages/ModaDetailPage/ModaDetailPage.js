@@ -2,24 +2,17 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 
 import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
 
 // Import Actions
 import { fetchModa, updateModaRequest } from '../../ModaActions';
-import { toggleAddModa } from '../../../App/AppActions';
 
 // Import Selectors
 import { getModa } from '../../ModaReducer';
 
 class ModaDetailPage extends Component {
-//  componentDidMount() {
-//    this.props.dispatch(fetchModa());
-//  }
-
   handleUpdateModa = moda => {
-    //this.props.dispatch(toggleAddModa());
     this.props.dispatch(updateModaRequest({ moda }));
     this.context.router.push('/');
   };
@@ -29,7 +22,7 @@ class ModaDetailPage extends Component {
       <div>
         <Helmet title={this.props.moda.userCase} />
         <div>
-          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa={true} moda={this.props.moda} />
+          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} />
         </div>
       </div>
     );

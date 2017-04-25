@@ -20,16 +20,14 @@ const ModaReducer = (state = initialState, action) => {
         data: state.data.filter(moda => moda.cuid !== action.cuid),
       };
 
-    case UPDATE_MODA :
-      //data = state.data.filter(moda => moda.cuid !== action.moda.cuid);
-      let d1 = state.data.filter(moda => moda.cuid !== action.moda.cuid);
+    case UPDATE_MODA : {
+      const d1 = state.data.filter(moda => moda.cuid !== action.moda.cuid);
       state.data.pop(d1);
       state.data.push(action.moda);
       return {
-        //data: [action.moda, ...data],
-        //data: state.data.filter(moda => moda.cuid !== action.moda.cuid),
         data: state.data,
       };
+    }
 
     default:
       return state;
