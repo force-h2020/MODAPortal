@@ -10,13 +10,19 @@ function ModaList(props) {
   const columns = [{
     header: 'Info',
     columns: [{
-      header: 'ID',
-      accessor: 'cuid',
-      render: ({ value, row }) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>{value}</Link></span>),
+      header: 'Title',
+      accessor: 'title',
+      render: ({ row }) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>{row.title}</Link></span>),
       // render: (props) => {console.log(props); return props.value;}
+    }, {
+      header: 'Project',
+      accessor: 'project',
     }, {
       header: 'User Case',
       accessor: 'userCase',
+    }, {
+      header: 'Access Conditions',
+      accessor: 'accessConditions',
     }],
   }, {
     header: 'Actions',

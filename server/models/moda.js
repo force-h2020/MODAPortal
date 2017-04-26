@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const modaSchema = new Schema({
-  userCase: { type: 'String', required: true },
+  title: { type: String, required: true },
+  project: { type: String, required: true },
+  userCase: { type: String, required: true },
   chainOfModels: {
     physicsBasedModels: [{
       cuds_type: String,
