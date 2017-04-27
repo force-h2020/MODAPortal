@@ -7,43 +7,81 @@ import schema from '../../ModaSchema';
 import cudsSchema from '../../CudsSelect';
 
 import styles from './ModaCreateWidget.css';
-
 import { TreeSelect } from 'antd';
 import 'antd/dist/antd.css';
 
-/*
+import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField";
+
+const CustomSchemaField = function(props) {
+  return (
+    <div className={styles[props.name]}>
+      <SchemaField {...props}/>
+    </div>
+  );
+};
+
 function CustomFieldTemplate(props) {
   const { id, classNames, label, help, required, description, errors, children } = props;
-  if (classNames.search('panel') > 0) {
-    return (
-      <div className={classNames}>
-        <div className={'panel-heading'}>
-          <h6 className={'panel-title'} htmlFor={id}>{label}{required ? '*' : null}</h6>
-          {description}
-        </div>
-        <div className={'panel-body'}>
-          {children}
-        </div>
-        <div className={'panel-footer'}>
-          {errors}
-          {help}
-        </div>
+  console.log(props);
+  return (
+    <div className={classNames}>
+    <div className={styles[props.name]}>
+      <label htmlFor={id} title={props.rawDescription}>{label}{required ? '*' : null}</label>
       </div>
-    );
-  }
-  else {
-    return (
-      <div className={classNames}>
-        <label htmlFor={id}>{label}{required ? '*' : null}</label>
-        {description}
-        {children}
-        {errors}
-        {help}
-      </div>
-    );
-  }
+      {children}
+      {errors}
+      {help}
+    </div>
+  );
 }
-*/
+
+function ArrayFieldTemplate(props) {
+  return (
+    <div className={props.className}>
+
+      {props.items &&
+        props.items.map(element => (
+          <div key={element.index}>
+            <div>{element.children}</div>
+            {element.hasMoveDown &&
+              <button
+                onClick={element.onReorderClick(
+                  element.index,
+                  element.index + 1
+                )}>
+                Down
+              </button>}
+            {element.hasMoveUp &&
+              <button
+                onClick={element.onReorderClick(
+                  element.index,
+                  element.index - 1
+                )}>
+                Up
+              </button>}
+            <button onClick={element.onDropIndexClick(element.index)} className={"btn btn-danger"}>
+              Delete
+            </button>
+            <hr />
+          </div>
+        ))}
+
+      {props.canAdd &&
+        <div className="row">
+          <p className="col-xs-3 col-xs-offset-9 array-item-add text-right">
+            <button onClick={props.onAddClick} type="button" className={"btn btn-info"}>Add +</button>
+          </p>
+        </div>}
+
+    </div>
+  );
+}
+
+const CustomTitleField = (props) => {
+  const { id, title, required } = props;
+  const legend = required ? title + '***' : title;
+  return <legend id={id} >{legend}</legend>;
+};
 
 const treeData = cudsSchema.cudsSchema;
 
@@ -75,16 +113,14 @@ export class ModaCreateWidget extends Component {
   };
 
   render() {
-    const formStyle = {
-      userCaseAspects: {
-        backgroundColor: 'lightorange',
-      },
-    };
     // const log = type => console.log.bind(console, type);
     const cls = `${styles.form} ${(this.props.showAddModa ? styles.appear : '')}`;
     const widgets = {
-      // TitleField: CustomTitleField,
       cudstreeselect: CUDSTreeSelect,
+    };
+
+    const fields = {
+      SchemaField: CustomSchemaField,
     };
 
     return (
@@ -92,12 +128,12 @@ export class ModaCreateWidget extends Component {
         <div className={styles['form-content']}>
           <Form
             ref={'modaForm'}
-            style={formStyle}
             schema={schema.schema}
             uiSchema={schema.uiSchema}
             onSubmit={this.handleSubmit}
             widgets={widgets}
             formData={this.props.moda}
+            fields={fields}
           />
         </div>
       </div>

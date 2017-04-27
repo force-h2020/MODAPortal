@@ -50,3 +50,58 @@ textarea {
 .appear {
   display: block;
 }
+
+.schema {
+  background-color: lightgray;
+  padding: 10px;
+  border-radius: .5em;
+}
+
+.userCaseAspects {
+  background-color: lightgreen;  
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}
+
+.genericPhysics {
+  background-color: #4F81BD;
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}
+
+.solverSpecs {
+  background-color: #339933;
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}
+
+.postProcessing {
+  background-color: #CCFFCC;
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}
+
+.dbUserCase {
+  background-color: #FF8585;
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}
+
+.theDatabasedModel {
+  background-color: #FFFF99;
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}
+
+.computationalDetails {
+  background-color: #38AA3B;
+  padding: 10px;
+  border-radius: .5em;
+  margin-top: 5px;
+}

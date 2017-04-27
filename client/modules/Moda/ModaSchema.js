@@ -1,7 +1,10 @@
 /* eslint-disable */
 module.exports = {
   "schema": {
-    "title": "MODA for a user-case",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://emmc.info/moda.json",
+    "title": "MODA",
+    "description": "Overview of a simulation",
     "type": "object",
     "required": [
       "title",
@@ -10,261 +13,253 @@ module.exports = {
     ],
     "definitions": {
       "physicsBasedModel": {
-        "type": "array",
-        "title": "Physics-based Model",
-        "items": {
-          "type": "object",
-          "properties": {
-            "cuds_type": {
-              "type": "string",
-              "title": "CUDS type"
-            },
-            "userCaseAspects": {
-              "type": "object",
-              "title": "1. Aspect of the user-case/system to be simulated",
-              "properties": {
-                "aspectsOfInterest": {
-                  "type": "string",
-                  "title": "1.1 Aspects of the user case to be simulated"
-                },
-                "material": {
-                  "type": "string",
-                  "title": "1.2 Material"
-                },
-                "geometry": {
-                  "type": "string",
-                  "title": "1.3 Geometry"
-                },
-                "timeLapse": {
-                  "type": "string",
-                  "title": "1.4 Time lapse"
-                },
-                "manufacturingProcessOrConditions": {
-                  "type": "string",
-                  "title": "1.5 Manufacturing process or in-service conditions"
-                },
-                "publications": {
-                  "type": "string",
-                  "title": "1.6 Publication on this data"
-                }
+        "type": "object",
+        "properties": {
+          "cuds_type": {
+            "type": "string",
+            "title": "CUDS type"
+          },
+          "userCaseAspects": {
+            "type": "object",
+            "title": "1. Aspect of the user-case/system to be simulated",
+            "properties": {
+              "aspectsOfInterest": {
+                "type": "string",
+                "title": "1.1 Aspects of the user case to be simulated"
+              },
+              "material": {
+                "type": "string",
+                "title": "1.2 Material"
+              },
+              "geometry": {
+                "type": "string",
+                "title": "1.3 Geometry"
+              },
+              "timeLapse": {
+                "type": "string",
+                "title": "1.4 Time lapse"
+              },
+              "manufacturingProcessOrConditions": {
+                "type": "string",
+                "title": "1.5 Manufacturing process or in-service conditions"
+              },
+              "publications": {
+                "type": "string",
+                "title": "1.6 Publication on this data"
               }
-            },
-            "genericPhysics": {
-              "type": "object",
-              "title": "2. Generic physics of the model equation",
-              "properties": {
-                "modelType": {
-                  "type": "string",
-                  "title": "2.0.1 Model type"
-                },
-                "modelName": {
-                  "type": "string",
-                  "title": "2.0.2 Model name"
-                },
-                "modelEntity": {
-                  "type": "string",
-                  "title": "2.1 Model entity"
-                },
-                "modelPE": {
-                  "type": "object",
-                  "title": "2.2 Model physics/chemistery equation",
-                  "properties": {
-                    "equation": {
-                      "type": "string",
-                      "title": "2.2.1 Equation"
-                    },
-                    "physicalQuantities": {
-                      "type": "array",
-                      "title": "2.2.2 Physical quantities",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string",
-                            "title": "Name/symbol"
-                          },
-                          "description": {
-                            "type": "string",
-                            "title": "Description"
-                          }
-                        }
-                      }
-                    },
-                    "materialRelations": {
+            }
+          },
+          "genericPhysics": {
+            "type": "object",
+            "title": "2. Generic physics of the model equation",
+            "properties": {
+              "modelType": {
+                "type": "string",
+                "title": "2.0.1 Model type"
+              },
+              "modelName": {
+                "type": "string",
+                "title": "2.0.2 Model name"
+              },
+              "modelEntity": {
+                "type": "string",
+                "title": "2.1 Model entity"
+              },
+              "modelPE": {
+                "type": "object",
+                "title": "2.2 Model physics/chemistery equation",
+                "properties": {
+                  "equation": {
+                    "type": "string",
+                    "title": "2.2.1 Equation"
+                  },
+                  "physicalQuantities": {
+                    "type": "array",
+                    "title": "2.2.2 Physical quantities",
+                    "items": {
                       "type": "object",
-                      "title": "2.3 Material relations",
                       "properties": {
-                        "relation": {
+                        "name": {
                           "type": "string",
-                          "title": "2.3.1 Relation"
+                          "title": "Name/symbol"
                         },
-                        "descriptor": {
+                        "description": {
                           "type": "string",
-                          "title": "2.3.2 Physical quantities/descriptors for each MR"
+                          "title": "Description"
                         }
                       }
-                    },
-                    "simulatedInput": {
-                      "type": "string",
-                      "title": "2.4 Simulated input"
                     }
+                  },
+                  "materialRelations": {
+                    "type": "object",
+                    "title": "2.3 Material relations",
+                    "properties": {
+                      "relation": {
+                        "type": "string",
+                        "title": "2.3.1 Relation"
+                      },
+                      "descriptor": {
+                        "type": "string",
+                        "title": "2.3.2 Physical quantities/descriptors for each MR"
+                      }
+                    }
+                  },
+                  "simulatedInput": {
+                    "type": "string",
+                    "title": "2.4 Simulated input"
                   }
                 }
               }
-            },
-            "solverSpecs": {
-              "type": "object",
-              "title": "3. Solver and computational translation of the specifications",
-              "properties": {
-                "numbericalSolver": {
-                  "type": "string",
-                  "title": "3.1 Numberical solver"
-                },
-                "softwareTool": {
-                  "type": "string",
-                  "title": "3.2 Software Tool"
-                },
-                "timeStep": {
-                  "type": "string",
-                  "title": "3.3 Time step"
-                },
-                "computationalRepresentation": {
-                  "type": "object",
-                  "title": "3.4 Computational representation (CR)",
-                  "properties": {
-                    "physicsEquationCR": {
-                      "type": "string",
-                      "title": "3.4.1 Physics equation CR"
-                    },
-                    "materialRelationsCR": {
-                      "type": "string",
-                      "title": "3.4.2 Material relations CR"
-                    },
-                    "materialCR": {
-                      "type": "string",
-                      "title": "3.4.3 Material CR"
-                    }
+            }
+          },
+          "solverSpecs": {
+            "type": "object",
+            "title": "3. Solver and computational translation of the specifications",
+            "properties": {
+              "numbericalSolver": {
+                "type": "string",
+                "title": "3.1 Numberical solver"
+              },
+              "softwareTool": {
+                "type": "string",
+                "title": "3.2 Software Tool"
+              },
+              "timeStep": {
+                "type": "string",
+                "title": "3.3 Time step"
+              },
+              "computationalRepresentation": {
+                "type": "object",
+                "title": "3.4 Computational representation (CR)",
+                "properties": {
+                  "physicsEquationCR": {
+                    "type": "string",
+                    "title": "3.4.1 Physics equation CR"
+                  },
+                  "materialRelationsCR": {
+                    "type": "string",
+                    "title": "3.4.2 Material relations CR"
+                  },
+                  "materialCR": {
+                    "type": "string",
+                    "title": "3.4.3 Material CR"
                   }
-                },
-                "computationalBoundaryConditions": {
-                  "type": "string",
-                  "title": "3.5 Computational boundary conditions"
-                },
-                "additionalSolverParameters": {
-                  "type": "string",
-                  "title": "3.6 Additional solver parameters"
                 }
+              },
+              "computationalBoundaryConditions": {
+                "type": "string",
+                "title": "3.5 Computational boundary conditions"
+              },
+              "additionalSolverParameters": {
+                "type": "string",
+                "title": "3.6 Additional solver parameters"
               }
-            },
-            "postProcessing": {
-              "type": "object",
-              "title": "4. Post processing",
-              "properties": {
-                "processedOutput": {
-                  "type": "string",
-                  "title": "4.1 Processed Output"
-                },
-                "methodologies": {
-                  "type": "string",
-                  "title": "4.2 Methodologies"
-                },
-                "errorMargin": {
-                  "type": "string",
-                  "title": "4.3 Margin of Error"
-                }
+            }
+          },
+          "postProcessing": {
+            "type": "object",
+            "title": "4. Post processing",
+            "properties": {
+              "processedOutput": {
+                "type": "string",
+                "title": "4.1 Processed Output"
+              },
+              "methodologies": {
+                "type": "string",
+                "title": "4.2 Methodologies"
+              },
+              "errorMargin": {
+                "type": "string",
+                "title": "4.3 Margin of Error"
               }
             }
           }
         }
       },
       "databasedModel": {
-        "type": "array",
-        "title": "Databased Model",
-        "items": {
-          "type": "object",
-          "properties": {
-            "userCase": {
-              "type": "object",
-              "title": "1. User case",
-              "properties": {
-                "userCaseAspects": {
-                  "type": "string",
-                  "title": "1.1 Aspects of the user case to be calculated"
-                },
-                "material": {
-                  "type": "string",
-                  "title": "1.2 Material"
-                },
-                "geometry": {
-                  "type": "string",
-                  "title": "1.3 Geometry"
-                },
-                "timeLapse": {
-                  "type": "string",
-                  "title": "1.4 Time lapse"
-                },
-                "manufacturingProcessOrConditions": {
-                  "type": "string",
-                  "title": "1.5 Manufacturing process or in-service conditions"
-                },
-                "publications": {
-                  "type": "string",
-                  "title": "1.6 Publication on this one datamining operation"
-                }
+        "type": "object",
+        "properties": {
+          "dbUserCase": {
+            "type": "object",
+            "title": "1. User case",
+            "properties": {
+              "dbUserCaseAspects": {
+                "type": "string",
+                "title": "1.1 Aspects of the user case to be calculated"
+              },
+              "material": {
+                "type": "string",
+                "title": "1.2 Material"
+              },
+              "geometry": {
+                "type": "string",
+                "title": "1.3 Geometry"
+              },
+              "timeLapse": {
+                "type": "string",
+                "title": "1.4 Time lapse"
+              },
+              "manufacturingProcessOrConditions": {
+                "type": "string",
+                "title": "1.5 Manufacturing process or in-service conditions"
+              },
+              "publications": {
+                "type": "string",
+                "title": "1.6 Publication on this one datamining operation"
               }
-            },
-            "theDatabasedModel": {
-              "type": "object",
-              "title": "2. The databased model",
-              "properties": {
-                "equationType": {
-                  "type": "string",
-                  "title": "2.0.1 Equation type"
-                },
-                "equationName": {
-                  "type": "string",
-                  "title": "2.0.2 Equation name"
-                },
-                "database": {
-                  "type": "string",
-                  "title": "2.1.1 Database"
-                },
-                "databaseType": {
-                  "type": "string",
-                  "title": "2.1.2 Database type"
-                },
-                "equation": {
-                  "type": "object",
-                  "title": "2.2 Equation",
-                  "properties": {
-                    "hypothesis": {
-                      "type": "string",
-                      "title": "2.2.1 Hypothesis"
-                    },
-                    "physicalQuantities": {
-                      "type": "string",
-                      "title": "2.2.2 Physical quantities"
-                    }
+            }
+          },
+          "theDatabasedModel": {
+            "type": "object",
+            "title": "2. The databased model",
+            "properties": {
+              "equationType": {
+                "type": "string",
+                "title": "2.0.1 Equation type"
+              },
+              "equationName": {
+                "type": "string",
+                "title": "2.0.2 Equation name"
+              },
+              "database": {
+                "type": "string",
+                "title": "2.1.1 Database"
+              },
+              "databaseType": {
+                "type": "string",
+                "title": "2.1.2 Database type"
+              },
+              "equation": {
+                "type": "object",
+                "title": "2.2 Equation",
+                "properties": {
+                  "hypothesis": {
+                    "type": "string",
+                    "title": "2.2.1 Hypothesis"
+                  },
+                  "physicalQuantities": {
+                    "type": "string",
+                    "title": "2.2.2 Physical quantities"
                   }
                 }
               }
-            },
-            "computationalDetails": {
-              "type": "object",
-              "title": "3. Computational detail of datamining operation",
-              "properties": {
-                "numericalOperations": {
-                  "type": "string",
-                  "title": "3.1 Numberical operations"
-                },
-                "softwareTool": {
-                  "type": "string",
-                  "title": "3.2 Sofware tool"
-                },
-                "errorMargin": {
-                  "type": "string",
-                  "title": "3.3 Margin of error"
-                }
+            }
+          },
+          "computationalDetails": {
+            "type": "object",
+            "title": "3. Computational detail of datamining operation",
+            "properties": {
+              "numericalOperations": {
+                "type": "string",
+                "title": "3.1 Numberical operations"
+              },
+              "softwareTool": {
+                "type": "string",
+                "title": "3.2 Sofware tool"
+              },
+              "errorMargin": {
+                "type": "string",
+                "title": "3.3 Margin of error"
               }
             }
           }
@@ -278,23 +273,31 @@ module.exports = {
       },
       "title": {
         "type": "string",
-        "title": "Title"
+        "title": "Title",
       },
       "project": {
         "type": "string",
-        "title": "Project"
+        "title": "Project",
+        "default": "",
+        "description": ""
       },
       "chainOfModels": {
         "type": "object",
         "title": "Chain of Models",
         "properties": {
           "physicsBasedModels": {
+            "type": "array",
             "title": "Physics-based Models",
-            "$ref": "#/definitions/physicsBasedModel"
+            "items": {
+              "$ref": "#/definitions/physicsBasedModel"
+            },
           },
           "databasedModels": {
+            "type": "array",
             "title": "Databased Models",
-            "$ref": "#/definitions/databasedModel"
+            "items": {
+              "$ref": "#/definitions/databasedModel"
+            }
           }
         }
       },
@@ -386,7 +389,7 @@ module.exports = {
       "databasedModels": {
         "classNames": "data-based-models",
         "items": {
-          "userCase": {
+          "dbUserCase": {
             "classNames": "user-case",
             "ui:widget": "textarea"
           },
