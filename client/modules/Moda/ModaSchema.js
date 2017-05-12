@@ -15,6 +15,10 @@ module.exports = {
       "physicsBasedModel": {
         "type": "object",
         "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
           "cuds_type": {
             "type": "string",
             "title": "Physics Equation According to the RoMM"

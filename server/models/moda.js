@@ -9,6 +9,7 @@ const modaSchema = new Schema({
   modificationDate: { type: Date },
   chainOfModels: {
     physicsBasedModels: [{
+      title: String,
       cuds_type: String,
       userCaseAspects: {
         aspectsOfInterest: String,
