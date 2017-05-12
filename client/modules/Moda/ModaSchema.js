@@ -9,6 +9,7 @@ module.exports = {
     "required": [
       "title",
       "project",
+      "maintainer",
       "userCase"
     ],
     "definitions": {
@@ -279,6 +280,14 @@ module.exports = {
         "type": "string",
         "title": "Title",
       },
+      "maintainer": {
+        "type": "string",
+        "title": "Maintainer",
+      },
+      "version": {
+        "type": "string",
+        "title": "RoMM Version",
+      },
       "project": {
         "type": "string",
         "title": "Project",
@@ -334,6 +343,8 @@ module.exports = {
     "ui:order": [
       "title",
       "project",
+      "maintainer",
+      "version",
       "userCase",
       "publications",
       "accessConditions",
@@ -351,6 +362,9 @@ module.exports = {
     "title": {
       "classNames": "moda-title",
       "ui:help": ""
+    },
+    "version": {
+      "ui:readonly": "true"
     },
     "project": {
       "classNames": "moda-project",

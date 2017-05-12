@@ -30,6 +30,7 @@ export function addModa(req, res) {
   // Let's sanitize inputs
   newModa.userCase = sanitizeHtml(newModa.userCase);
   newModa.creationDate = Date();
+  newModa.version = "6";
   newModa.slug = slug(newModa.userCase.toLowerCase(), { lowercase: true });
   newModa.cuid = cuid();
   newModa.save((err, saved) => {
