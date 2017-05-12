@@ -17,7 +17,7 @@ module.exports = {
         "properties": {
           "cuds_type": {
             "type": "string",
-            "title": "CUDS type"
+            "title": "Physics Equation According to the RoMM"
           },
           "userCaseAspects": {
             "type": "object",
@@ -394,7 +394,12 @@ module.exports = {
             "classNames": "solver-specs",
             "aspectsOfInterest": {
               "ui:widget": "textarea"
-            }
+            },
+            "computationalRepresentation": {
+              "physicsEquationCR": {
+                "ui:widget": "textarea"
+              }
+            },
           },
           "postProcessing": {
             "classNames": "post-processing",
