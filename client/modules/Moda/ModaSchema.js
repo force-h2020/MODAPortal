@@ -311,7 +311,17 @@ module.exports = {
       },
       "workflowRationale": {
         "type": "string",
-        "title": "Workflow and its rationale"
+        "title": "Textual description of the Workflow and its rationale"
+      },
+      "creationDate": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Creation date"
+      },
+      "modificationDate": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Modification date"
       }
     }
   },
@@ -324,8 +334,16 @@ module.exports = {
       "publications",
       "accessConditions",
       "workflowRationale",
+      "creationDate",
+      "modificationDate",
       "chainOfModels"
     ],
+    "creationDate": {
+      "ui:readonly": "true"
+    },
+    "modificationDate": {
+      "ui:readonly": "true"
+    },
     "title": {
       "classNames": "moda-title",
       "ui:help": ""

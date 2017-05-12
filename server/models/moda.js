@@ -5,6 +5,8 @@ const modaSchema = new Schema({
   title: { type: String, required: true },
   project: { type: String, required: true },
   userCase: { type: String, required: true },
+  creationDate: { type: Date },
+  modificationDate: { type: Date },
   chainOfModels: {
     physicsBasedModels: [{
       cuds_type: String,

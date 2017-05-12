@@ -29,7 +29,7 @@ export function addModa(req, res) {
 
   // Let's sanitize inputs
   newModa.userCase = sanitizeHtml(newModa.userCase);
-
+  newModa.creationDate = Date();
   newModa.slug = slug(newModa.userCase.toLowerCase(), { lowercase: true });
   newModa.cuid = cuid();
   newModa.save((err, saved) => {
@@ -48,6 +48,7 @@ export function addModa(req, res) {
  * @returns void
  */
 export function putModa(req, res) {
+  req.body.moda.modificationDate = Date();
   Moda.update({ cuid: req.body.moda.cuid }, req.body.moda, (err) => {
     if (err) {
       res.status(500).send(err);
