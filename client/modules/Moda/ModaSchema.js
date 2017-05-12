@@ -274,7 +274,7 @@ module.exports = {
     "properties": {
       "userCase": {
         "type": "string",
-        "title": "User Case"
+        "title": "User Case",
       },
       "title": {
         "type": "string",
@@ -297,6 +297,23 @@ module.exports = {
       "chainOfModels": {
         "type": "object",
         "title": "Chain of Models",
+        "description": "Each physics-based model used in this simulation is to be documented in four chapters:\
+1. Aspect of the User Case or system simulated with this model\
+2. Model: Please make sure the notions Physics Equation and Materials Relation are properly\
+understood.\
+Tightly coupled models can be written up collectively in one set of four tables. To\
+solve tightly coupled PE one matrix is set up and solved in one go.\
+For continuum models the PE is often the conservation equations coded up in\
+bought software packages.\
+Often the MR is established by the modeller.\
+3. Computational aspects include also a documentation of how the user case specifications\
+are translated into computer language.\
+4. Post processing documents how the raw output of one simulation is processed into input for\
+the next simulation. This information given under 4.1 in the first model will be the same as\
+the \"simulated input\" information under 2.4 for the next model. This is the essence of\
+model inter-operability!\
+5. Pre-processing before the first model can be depicted in pink as it is considered to be part\
+of the user-case.",
         "properties": {
           "physicsBasedModels": {
             "type": "array",
@@ -308,6 +325,10 @@ module.exports = {
           "databasedModels": {
             "type": "array",
             "title": "Databased Models",
+            "description": "Each data-based model in this simulation is to be documented in three chapters:\
+1. Aspect of the User Case or system simulated with this data-based model\
+2. Data-based Model\
+3. Computational detail of the datamining operation",
             "items": {
               "$ref": "#/definitions/databasedModel"
             }
@@ -316,7 +337,8 @@ module.exports = {
       },
       "publications": {
         "type": "string",
-        "title": "Publication - peer reviewing the data"
+        "title": "Publication - peer reviewing the data",
+        "ui:placeholder": "Information about related pulications"
       },
       "accessConditions": {
         "type": "string",
@@ -361,36 +383,68 @@ module.exports = {
     },
     "title": {
       "classNames": "moda-title",
-      "ui:help": ""
+      "ui:help": "",
+      "ui:placeholder": "An expressive title"
     },
     "version": {
       "ui:readonly": "true"
     },
     "project": {
       "classNames": "moda-project",
-      "ui:help": ""
+      "ui:help": "",
+      "ui:placeholder": "Name of the project"
+    },
+    "maintainer": {
+      "ui:placeholder": "Person maintaining this MODA"
     },
     "userCase": {
       "classNames": "user-case",
       "ui:widget": "textarea",
-      "ui:help": "Explain the user-case"
+      "ui:help": "Explain the user-case",
+      "ui:placeholder": "General description of the User Case \
+Please give the properties and behaviour of the particular material,\
+manufacturing process and/or in-service-behaviour to be simulated.\
+No information on the modelling should appear here. The idea is that this\
+user-case can also be simulated by others with other models and that the\
+results can then be compared."
     },
     "publications": {
       "classNames": "publications",
-      "ui:widget": "textarea"
+      "ui:widget": "textarea",
+      "ui:placeholder": "Please give the publication which documents the data of this ONE simulation.\
+This article should ensure the quality of this data set (and not only the quality\
+of the models)."
     },
     "accessConditions": {
       "classNames": "access-conditions",
-      "ui:widget": "textarea"
+      "ui:widget": "textarea",
+      "ui:placeholder": "Please list whether the model and/or data are free, commercial or open\
+source. Please list the owner and the name of the software or database\
+(include a web link if available)."
     },
     "workflowRationale": {
       "classNames": "workflow-rationale",
-      "ui:widget": "textarea"
+      "ui:widget": "textarea",
+      "ui:placeholder": "Please give a textual rationale of why you as a modeller have chosen these\
+models and this workflow, knowing other modellers would simulate the same\
+end-user case differently.\
+This should include the reason why a particular aspect of the user case is to\
+be simulated with a particular model."
     },
     "chainOfModels": {
       "classNames": "chain-of-models",
       "physicsBasedModels": {
         "classNames": "physics-based-models",
+        "ui:help": "Please identify the model. Note these are assumed to be\
+physics-based models unless it is specified differently.\
+Most modelling projects consist of a chain of models,\
+(workflow). Here only the Physics Equations should be given\
+and only names appearing in the content list of the Review of\
+Materials Modelling VI should be entered. This review is\
+available on\
+http://ec.europa.eu/research/industrial_technologies/e-\
+library.cfm).All models should be identified as electronic,\
+atomistic, mesoscopic or continuum.",
         "items": {
           "cuds_type": {
             "classNames": "cuds_type",
@@ -429,6 +483,7 @@ module.exports = {
       },
       "databasedModels": {
         "classNames": "data-based-models",
+        "ui:help": "If data-based models are used, please specify.",
         "items": {
           "dbUserCase": {
             "classNames": "user-case",
