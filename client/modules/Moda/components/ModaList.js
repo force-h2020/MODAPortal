@@ -21,8 +21,13 @@ function ModaList(props) {
       header: 'User Case',
       accessor: 'userCase',
     }, {
-      header: 'Access Conditions',
-      accessor: 'accessConditions',
+      header: 'Created On',
+      accessor: 'creationDate',
+      render: ({ row }) => row.creationDate ? new Date(row.creationDate).toLocaleDateString() : '',
+    }, {
+      header: 'Modified On',
+      accessor: 'modificationDate',
+      render: ({ row }) => row.modificationDate ? new Date(row.modificationDate).toLocaleDateString() : '',
     }],
   }, {
     header: 'Actions',
