@@ -432,10 +432,12 @@ of the user-case.",
       "chainOfModels"
     ],
     "creationDate": {
-      "ui:readonly": "true"
+      "ui:readonly": "true",
+      "ui:widget": "hidden"
     },
     "modificationDate": {
-      "ui:readonly": "true"
+      "ui:readonly": "true",
+      "ui:widget": "hidden"
     },
     "title": {
       "classNames": "moda-title",
