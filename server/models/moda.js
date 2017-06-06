@@ -7,10 +7,15 @@ const modaSchema = new Schema({
   fundingAgency: { type: String, required: true },
   grantNumberOrInformation: { type: String, required: true },
   projectHomePage: { type: String, required: true },
-  maintainer: { type: String, required: true },
   userCase: { type: String, required: true },
   creationDate: { type: Date },
   modificationDate: { type: Date },
+  author: {
+    firstName: { type: String, required: true },
+    familyName: { type: String, required: true },
+    email: { type: String, required: true },
+    affiliation: { type: String, required: true },
+  },
   chainOfModels: {
     physicsBasedModels: [{
       title: String,

@@ -12,7 +12,6 @@ module.exports = {
       "fundingAgency",
       "grantNumberOrInformation",
       "projectHomePage",
-      "maintainer",
       "userCase"
     ],
     "definitions": {
@@ -283,9 +282,33 @@ module.exports = {
         "type": "string",
         "title": "Title",
       },
-      "maintainer": {
-        "type": "string",
-        "title": "Maintainer",
+      "author": {
+        "type": "object",
+        "title": "Author",
+        "required": [
+          "firstName",
+          "familyName",
+          "email",
+          "affiliation"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "title": "First name"
+          },
+          "familyName": {
+            "type": "string",
+            "title": "Family name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email address"
+          },
+          "affiliation": {
+            "type": "string",
+            "title": "Affiliation"
+          }
+        }
       },
       "version": {
         "type": "string",
@@ -389,7 +412,7 @@ of the user-case.",
       "fundingAgency",
       "grantNumberOrInformation",
       "projectHomePage",
-      "maintainer",
+      "author",
       "version",
       "userCase",
       "publications",
