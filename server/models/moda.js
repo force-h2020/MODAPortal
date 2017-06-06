@@ -10,6 +10,7 @@ const modaSchema = new Schema({
   userCase: { type: String, required: true },
   creationDate: { type: Date },
   modificationDate: { type: Date },
+  version: { type: String, required: true },
   author: {
     firstName: { type: String, required: true },
     familyName: { type: String, required: true },

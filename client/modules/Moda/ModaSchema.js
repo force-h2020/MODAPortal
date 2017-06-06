@@ -12,9 +12,16 @@ module.exports = {
       "fundingAgency",
       "grantNumberOrInformation",
       "projectHomePage",
-      "userCase"
+      "userCase",
+      "version"
     ],
     "definitions": {
+      "RoMMVersion": {
+        "type": "string",
+        "enum": [
+          "Version 2"
+        ]
+      },
       "physicsBasedModel": {
         "type": "object",
         "properties": {
@@ -313,6 +320,8 @@ module.exports = {
       "version": {
         "type": "string",
         "title": "RoMM Version",
+        "enum": ["6"],
+        "enumNames": ["Version 6"]
       },
       "project": {
         "type": "string",
@@ -434,14 +443,14 @@ of the user-case.",
       "ui:placeholder": "An expressive title"
     },
     "version": {
-      "ui:readonly": "true"
+      "ui:emptyValue": "Version 6"
     },
     "project": {
       "classNames": "moda-project",
       "ui:help": "",
       "ui:placeholder": "Name of the project"
     },
-    "maintainer": {
+    "author": {
       "ui:placeholder": "Person maintaining this MODA"
     },
     "userCase": {
