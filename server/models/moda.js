@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 const modaSchema = new Schema({
   title: { type: String, required: true },
   project: { type: String, required: true },
+  fundingAgency: { type: String, required: true },
+  grantNumberOrInformation: { type: String, required: true },
+  projectHomePage: { type: String, required: true },
   maintainer: { type: String, required: true },
   userCase: { type: String, required: true },
   creationDate: { type: Date },

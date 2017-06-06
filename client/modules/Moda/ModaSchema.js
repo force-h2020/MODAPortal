@@ -9,6 +9,9 @@ module.exports = {
     "required": [
       "title",
       "project",
+      "fundingAgency",
+      "grantNumberOrInformation",
+      "projectHomePage",
       "maintainer",
       "userCase"
     ],
@@ -294,6 +297,24 @@ module.exports = {
         "default": "",
         "description": ""
       },
+      "fundingAgency": {
+        "type": "string",
+        "title": "FundingAgency",
+        "default": "",
+        "description": ""
+      },
+      "grantNumberOrInformation": {
+        "type": "string",
+        "title": "Grant number or information",
+        "default": "",
+        "description": ""
+      },
+      "projectHomePage": {
+        "type": "string",
+        "title": "Project home page",
+        "default": "",
+        "description": ""
+      },
       "chainOfModels": {
         "type": "object",
         "title": "Chain of Models",
@@ -365,6 +386,9 @@ of the user-case.",
     "ui:order": [
       "title",
       "project",
+      "fundingAgency",
+      "grantNumberOrInformation",
+      "projectHomePage",
       "maintainer",
       "version",
       "userCase",
