@@ -50,8 +50,8 @@ export default function () {
       return;
     }
 
-    const moda1 = new Moda({ userCase: 'My Case #1', slug: 'hello-user-case', cuid: 'cikqgkv4q01ck7453ualdn3hd' });
-    const moda2 = new Moda({ userCase: 'My Case #2', slug: 'lorem-ipsum-case', cuid: 'cikqgkv4q01ck7453ualdn3hf' });
+    const moda1 = new Moda({ userCase: 'Dummy Case #1', slug: 'hello-user-case', cuid: 'cikqgkv4q01ck7453ualdn3hd' , author: {firstName: 'Jane', familyName: 'Doe', email: 'hi@awesome.com', affiliation: 'Awesome Co.'}});
+    const moda2 = new Moda({ userCase: 'Dummy Case #2', slug: 'lorem-ipsum-case', cuid: 'cikqgkv4q01ck7453ualdn3hf' , author: {firstName: 'Jane', familyName: 'Doe', email: 'hi@awesome.com', affiliation: 'Awesome Co.'} });
 
     Moda.create([moda1, moda2], (error) => {
       if (!error) {
