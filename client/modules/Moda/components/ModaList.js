@@ -7,9 +7,8 @@ import 'react-table/react-table.css';
 
 function ModaList(props) {
   // Create some column definitions
-  const columns = [{
-    header: 'Info',
-    columns: [{
+  const columns = [
+    {
       header: 'Title',
       accessor: 'title',
       render: ({ row }) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>{row.title}</Link></span>),
@@ -23,15 +22,12 @@ function ModaList(props) {
     }, {
       header: 'Created On',
       accessor: 'creationDate',
-      render: ({ row }) => row.creationDate ? new Date(row.creationDate).toLocaleDateString() : '',
+      render: ({ row }) => row.creationDate ? new Date(row.creationDate).toLocaleString() : '',
     }, {
       header: 'Modified On',
       accessor: 'modificationDate',
-      render: ({ row }) => row.modificationDate ? new Date(row.modificationDate).toLocaleDateString() : '',
-    }],
-  }, {
-    header: 'Actions',
-    columns: [{
+      render: ({ row }) => row.modificationDate ? new Date(row.modificationDate).toLocaleString() : '',
+    }, {
       header: 'Edit',
       width: 100,
       // accessor: 'cuid',
@@ -43,8 +39,7 @@ function ModaList(props) {
       // accessor: 'userCase',
       // row vs {row}: row is everything, {row} is the real ’row’
       render: ({ row }) => (<span><a onClick={() => props.handleDeleteModa(row.cuid)}>Delete</a></span>),
-    }],
-  }];
+    }];
 
   return (
     <ReactTable
@@ -55,9 +50,6 @@ function ModaList(props) {
       defaultPageSize={10}
       sorting={[{
         id: 'cuid',
-        asc: true,
-      }, {
-        id: 'userCase',
         asc: true,
       }]}
       getTdProps={(state, rowInfo, column, instance) => {
