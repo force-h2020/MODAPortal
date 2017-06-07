@@ -12,6 +12,137 @@ import 'antd/dist/antd.css';
 
 import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField";
 
+
+function AddButton({ onClick, disabled }) {
+  return (
+    <div className="row">
+      <p className="col-xs-3 col-xs-offset-9 array-item-add text-right">
+        <IconBtn
+          type="info"
+          icon="plus"
+          className="btn-add col-xs-12"
+          tabIndex="0"
+          onClick={onClick}
+          disabled={disabled}
+        />
+      </p>
+    </div>
+  );
+}
+
+function IconBtn(props) {
+  const { type = "default", icon, className, ...otherProps } = props;
+  return (
+    <button
+      type="button"
+      className={`btn btn-${type} ${className}`}
+      {...otherProps}>
+      <i className={`glyphicon glyphicon-${icon}`} />
+    </button>
+  );
+}
+
+function ArrayFieldTitle({ TitleField, idSchema, title, required }) {
+  if (!title) {
+    // See #312: Ensure compatibility with old versions of React.
+    return <div />;
+  }
+  const id = `${idSchema.$id}__title`;
+  return <TitleField id={id} title={title} required={required} />;
+}
+
+// Used in the two templates
+function DefaultArrayItem(props) {
+  const btnStyle = {
+    flex: 1,
+    paddingLeft: 6,
+    paddingRight: 6,
+    fontWeight: "bold",
+  };
+  return (
+    <div key={props.index} className={props.className}>
+      {props.hasToolbar &&
+        <div className="array-item-toolbox" style={{margin: '0 auto',width: '25%',marginRight: '0', paddingRight: '10px'}}>
+          <div
+            className="btn-group"
+            style={{ display: "flex", justifyContent: "space-around" }}>
+
+            {(props.hasMoveUp || props.hasMoveDown) &&
+              <IconBtn
+                icon="arrow-up"
+                className="array-item-move-up"
+                tabIndex="-1"
+                style={btnStyle}
+                disabled={props.disabled || props.readonly || !props.hasMoveUp}
+                onClick={props.onReorderClick(props.index, props.index - 1)}
+              />}
+
+            {(props.hasMoveUp || props.hasMoveDown) &&
+              <IconBtn
+                icon="arrow-down"
+                className="array-item-move-down"
+                tabIndex="-1"
+                style={btnStyle}
+                disabled={
+                  props.disabled || props.readonly || !props.hasMoveDown
+                }
+                onClick={props.onReorderClick(props.index, props.index + 1)}
+              />}
+
+            {props.hasRemove &&
+              <IconBtn
+                type="danger"
+                icon="remove"
+                className="array-item-remove"
+                tabIndex="-1"
+                style={btnStyle}
+                disabled={props.disabled || props.readonly}
+                onClick={props.onDropIndexClick(props.index)}
+              />}
+          </div>
+        </div>}
+        <div style={{paddingLeft: '10px', paddingRight: '10px'}}>
+          {props.children}
+        </div>
+    </div>
+  );
+}
+
+
+function ArrayFieldTemplate(props) {
+  return (
+    <fieldset className={props.className}>
+
+      <ArrayFieldTitle
+        key={`array-field-title-${props.idSchema.$id}`}
+        TitleField={props.TitleField}
+        idSchema={props.idSchema}
+        title={props.title}
+        required={props.required}
+      />
+
+      {props.schema.description &&
+        <div
+          className="field-description"
+          key={`field-description-${props.idSchema.$id}`}>
+          {props.schema.description}
+        </div>}
+
+      <div
+        className="row array-item-list"
+        key={`array-item-list-${props.idSchema.$id}`}>
+        {props.items && props.items.map(DefaultArrayItem)}
+      </div>
+
+      {props.canAdd &&
+        <AddButton
+          onClick={props.onAddClick}
+          disabled={props.disabled || props.readonly}
+        />}
+    </fieldset>
+  );
+}
+
 const CustomSchemaField = function(props) {
   return (
     <div className={styles[props.name]}>
@@ -31,48 +162,6 @@ function CustomFieldTemplate(props) {
       {children}
       {errors}
       {help}
-    </div>
-  );
-}
-
-function ArrayFieldTemplate(props) {
-  return (
-    <div className={props.className}>
-
-      {props.items &&
-        props.items.map(element => (
-          <div key={element.index}>
-            <div>{element.children}</div>
-            {element.hasMoveDown &&
-              <button
-                onClick={element.onReorderClick(
-                  element.index,
-                  element.index + 1
-                )}>
-                Down
-              </button>}
-            {element.hasMoveUp &&
-              <button
-                onClick={element.onReorderClick(
-                  element.index,
-                  element.index - 1
-                )}>
-                Up
-              </button>}
-            <button onClick={element.onDropIndexClick(element.index)} className={"btn btn-danger"}>
-              Delete
-            </button>
-            <hr />
-          </div>
-        ))}
-
-      {props.canAdd &&
-        <div className="row">
-          <p className="col-xs-3 col-xs-offset-9 array-item-add text-right">
-            <button onClick={props.onAddClick} type="button" className={"btn btn-info"}>Add +</button>
-          </p>
-        </div>}
-
     </div>
   );
 }
@@ -134,6 +223,7 @@ export class ModaCreateWidget extends Component {
             widgets={widgets}
             formData={this.props.moda}
             fields={fields}
+            ArrayFieldTemplate={ArrayFieldTemplate}
           />
         </div>
       </div>
