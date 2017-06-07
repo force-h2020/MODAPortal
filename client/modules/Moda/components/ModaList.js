@@ -17,8 +17,9 @@ function ModaList(props) {
       header: 'Project',
       accessor: 'project',
     }, {
-      header: 'User Case',
-      accessor: 'userCase',
+      header: 'Author',
+      accessor: 'author',
+      render: ({ row }) => row.author.firstName + ' ' + row.author.familyName,
     }, {
       header: 'Created On',
       accessor: 'creationDate',
@@ -65,7 +66,6 @@ function ModaList(props) {
 
 ModaList.propTypes = {
   modas: PropTypes.arrayOf(PropTypes.shape({
-    userCase: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   })).isRequired,
