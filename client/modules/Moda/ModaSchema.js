@@ -82,10 +82,24 @@ module.exports = {
               "modelPE": {
                 "type": "object",
                 "title": "2.2 Model physics/chemistery equation",
+                "description": "Enter physics and chemistery equations below.",
                 "properties": {
-                  "equation": {
-                    "type": "string",
-                    "title": "2.2.1 Equation"
+                  "physicsEequations": {
+                    "type": "array",
+                    "title": "2.2.1 Equation",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "equation": {
+                          "type": "string",
+                          "title": "Equation",
+                        },
+                        "description": {
+                          "type": "string",
+                          "title": "Description",
+                        },
+                      }
+                    },
                   },
                   "physicalQuantities": {
                     "type": "array",
@@ -104,25 +118,52 @@ module.exports = {
                       }
                     }
                   },
-                  "materialRelations": {
-                    "type": "object",
-                    "title": "2.3 Material relations",
-                    "properties": {
-                      "relation": {
-                        "type": "string",
-                        "title": "2.3.1 Relation"
-                      },
-                      "descriptor": {
-                        "type": "string",
-                        "title": "2.3.2 Physical quantities/descriptors for each MR"
+                },
+              },
+              "materialRelations": {
+                "type": "object",
+                "title": "2.3 Material relations",
+                "description": "Enter material relations and their descriptors.",
+                "properties": {
+                  "relations": {
+                    "type": "array",
+                    "title": "2.3.1 Relation",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name/symbol"
+                        },
+                        "description": {
+                          "type": "string",
+                          "title": "Description"
+                        }
+                      }
+                    },
+                  },
+                  "descriptors": {
+                    "type": "array",
+                    "title": "2.3.2 Physical quantities/descriptors for each MR",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name/symbol"
+                        },
+                        "description": {
+                          "type": "string",
+                          "title": "Description"
+                        }
                       }
                     }
-                  },
-                  "simulatedInput": {
-                    "type": "string",
-                    "title": "2.4 Simulated input"
                   }
                 }
+              },
+              "simulatedInput": {
+                "type": "string",
+                "title": "2.4 Simulated input"
               }
             }
           },
@@ -518,6 +559,8 @@ atomistic, mesoscopic or continuum.",
             "classNames": "generic-physics",
             "aspectsOfInterest": {
               "ui:widget": "textarea"
+            },
+            "modelPE": {
             }
           },
           "solverSpecs": {

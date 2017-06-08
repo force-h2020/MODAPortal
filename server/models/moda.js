@@ -34,17 +34,26 @@ const modaSchema = new Schema({
         modelName: String,
         modelEntity: String,
         modelPE: {
-          equation: String,
+          physicsEequations: [{
+            equation: String,
+            description: String,
+          }],
           physicalQuantities: [{
             name: String,
             description: String,
           }],
-          materialRelations: {
-            relation: String,
-            descriptor: String,
-          },
-          simulatedInput: String,
         },
+        materialRelations: {
+          relations: [{
+            name: String,
+            description: String,
+          }],
+          descriptors: [{
+            name: String,
+            description: String,
+          }]
+        },
+        simulatedInput: String,
       },
       solverSpecs: {
         numbericalSolver: String,
@@ -65,8 +74,8 @@ const modaSchema = new Schema({
       },
     }],
     databasedModels: [{
-      userCase: {
-        userCaseAspects: String,
+      dbUserCase: {
+        dbUserCaseAspects: String,
         material: String,
         geometry: String,
         timeLapse: String,
