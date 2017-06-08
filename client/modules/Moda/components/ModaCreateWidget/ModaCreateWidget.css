@@ -66,9 +66,14 @@ textarea {
 
 .genericPhysics {
   background-color: #4F81BD;
+  color: white;
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
+}
+
+.genericPhysics legend {
+  color: white;
 }
 
 .solverSpecs {
@@ -77,6 +82,11 @@ textarea {
   border-radius: .5em;
   margin-top: 5px;
 }
+
+.solverSpecs, .solverSpecs legend {
+  color: white;
+}
+
 
 .postProcessing {
   background-color: #CCFFCC;
@@ -104,4 +114,8 @@ textarea {
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
+}
+
+.computationalDetails, .computationalDetails legend {
+  color: white;
 }
