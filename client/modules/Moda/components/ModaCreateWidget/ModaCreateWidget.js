@@ -11,6 +11,7 @@ import { TreeSelect } from 'antd';
 import 'antd/dist/antd.css';
 
 import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField";
+const MathJax = require('../react-mathjax');
 
 
 function AddButton({ onClick, disabled }) {
@@ -175,6 +176,43 @@ CUDSTreeSelect.propTypes = {
   required: PropTypes.bool,
 };
 
+class MathJaxWidget extends Component {
+  render () {
+    console.log(this.props);
+    const { id, classNames, label, help, required, description, errors, children } = this.props;
+    const options = {
+      showProcessingMessages: true,
+      showMathMenu: true,
+      tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
+      jax: ["input/MathML","input/TeX","input/AsciiMath","output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js","AssistiveMML.js", "a11y/accessibility-menu.js"],
+      MathML: {
+        extensions: ["mml3.js", "content-mathml.js"]
+      }
+    };
+
+    return (
+      <div>
+        <textarea className={styles['form-field']}
+          value={this.props.value}
+          required={this.props.required}
+          onChange={(event) => this.props.onChange(event.target.value)} />
+        {children}
+        {errors}
+        {help}
+        <MathJax.Context className={styles['form-field']}
+                         options={options}>
+            <p>
+              <MathJax.Node className={styles['form-field']}>
+                {this.props.value || ""}
+              </MathJax.Node>
+            </p>
+        </MathJax.Context>
+      </div>
+    );
+  }
+}
+
 export class ModaCreateWidget extends Component {
   handleSubmit = (event) => {
     this.props.addModa(event.formData);
@@ -185,6 +223,7 @@ export class ModaCreateWidget extends Component {
     const cls = `${styles.form} ${(this.props.showAddModa ? styles.appear : '')}`;
     const widgets = {
       cudstreeselect: CUDSTreeSelect,
+      mathjax: MathJaxWidget
     };
 
     const fields = {
