@@ -151,27 +151,6 @@ const CustomSchemaField = function(props) {
   );
 };
 
-function CustomFieldTemplate(props) {
-  const { id, classNames, label, help, required, description, errors, children } = props;
-  console.log(props);
-  return (
-    <div className={classNames}>
-    <div className={styles[props.name]}>
-      <label htmlFor={id} title={props.rawDescription}>{label}{required ? '*' : null}</label>
-      </div>
-      {children}
-      {errors}
-      {help}
-    </div>
-  );
-}
-
-const CustomTitleField = (props) => {
-  const { id, title, required } = props;
-  const legend = required ? title + '***' : title;
-  return <legend id={id} >{legend}</legend>;
-};
-
 const treeData = cudsSchema.cudsSchema;
 
 const CUDSTreeSelect = (props) => {
@@ -210,6 +189,7 @@ export class ModaCreateWidget extends Component {
 
     const fields = {
       SchemaField: CustomSchemaField,
+      ArrayFieldTemplate: ArrayFieldTemplate
     };
 
     return (
@@ -223,7 +203,6 @@ export class ModaCreateWidget extends Component {
             widgets={widgets}
             formData={this.props.moda}
             fields={fields}
-            ArrayFieldTemplate={ArrayFieldTemplate}
           />
         </div>
       </div>
