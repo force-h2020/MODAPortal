@@ -84,7 +84,7 @@ module.exports = {
                 "title": "2.2 Model physics/chemistery equation",
                 "description": "Enter physics and chemistery equations below.",
                 "properties": {
-                  "physicsEequations": {
+                  "physicsEquations": {
                     "type": "array",
                     "title": "2.2.1 Equation",
                     "items": {
@@ -561,6 +561,16 @@ atomistic, mesoscopic or continuum.",
               "ui:widget": "textarea"
             },
             "modelPE": {
+              "physicsEquations": {
+                "items": {
+                  "equation": {
+                    "ui:widget": "mathjax"
+                  },
+                }
+              }
+            },
+            "simulatedInput": {
+
             }
           },
           "solverSpecs": {

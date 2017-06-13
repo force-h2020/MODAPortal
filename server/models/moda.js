@@ -34,7 +34,7 @@ const modaSchema = new Schema({
         modelName: String,
         modelEntity: String,
         modelPE: {
-          physicsEequations: [{
+          physicsEquations: [{
             equation: String,
             description: String,
           }],
