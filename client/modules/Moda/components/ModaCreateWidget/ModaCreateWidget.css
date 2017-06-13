@@ -66,13 +66,12 @@ textarea {
 
 .genericPhysics {
   background-color: #4F81BD;
-  color: white;
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
 }
 
-.genericPhysics legend {
+.genericPhysics legend ,.genericPhysics label, .genericPhysics p {
   color: white;
 }
 
@@ -83,10 +82,9 @@ textarea {
   margin-top: 5px;
 }
 
-.solverSpecs, .solverSpecs legend {
+.solverSpecs legend ,.solverSpecs label, .solverSpecs p, .solverSpecs div {
   color: white;
 }
-
 
 .postProcessing {
   background-color: #CCFFCC;
@@ -116,6 +114,6 @@ textarea {
   margin-top: 5px;
 }
 
-.computationalDetails, .computationalDetails legend {
+.computationalDetails legend ,.computationalDetails label, .computationalDetails p, .computationalDetails div {
   color: white;
 }
