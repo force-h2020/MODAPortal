@@ -29,10 +29,6 @@ module.exports = {
             "type": "string",
             "title": "Title"
           },
-          "cuds_type": {
-            "type": "string",
-            "title": "Physics Equation According to the RoMM"
-          },
           "userCaseAspects": {
             "type": "object",
             "title": "1. Aspect of the user-case/system to be simulated",
@@ -67,13 +63,9 @@ module.exports = {
             "type": "object",
             "title": "2. Generic physics of the model equation",
             "properties": {
-              "modelType": {
+              "romm_pe": {
                 "type": "string",
-                "title": "2.0.1 Model type"
-              },
-              "modelName": {
-                "type": "string",
-                "title": "2.0.2 Model name"
+                "title": "Physics Equation According to the RoMM"
               },
               "modelEntity": {
                 "type": "string",
@@ -545,10 +537,6 @@ http://ec.europa.eu/research/industrial_technologies/e-\
 library.cfm).All models should be identified as electronic,\
 atomistic, mesoscopic or continuum.",
         "items": {
-          "cuds_type": {
-            "classNames": "cuds_type",
-            "ui:widget": "cudstreeselect"
-          },
           "userCaseAspects": {
             "classNames": "user-case-aspects",
             "aspectsOfInterest": {
@@ -559,6 +547,10 @@ atomistic, mesoscopic or continuum.",
             "classNames": "generic-physics",
             "aspectsOfInterest": {
               "ui:widget": "textarea"
+            },
+            "romm_pe": {
+              "classNames": "cuds_type",
+              "ui:widget": "cudstreeselect"
             },
             "modelPE": {
               "physicsEquations": {

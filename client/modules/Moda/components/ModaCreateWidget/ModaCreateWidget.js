@@ -158,7 +158,6 @@ const CUDSTreeSelect = (props) => {
   const onChange = props.onChange;
   return (
     <TreeSelect
-      style={{ width: 442 }}
       dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
       treeData={treeData}
       placeholder="Please select"
