@@ -56,7 +56,7 @@ function ModaList(props) {
       getTdProps={(state, rowInfo, column, instance) => {
         return {
           onClick: e => {
-            console.log('it produced this event:', e, rowInfo, column, instance);
+            //console.log('it produced this event:', e, rowInfo, column, instance);
           },
         };
       }}
