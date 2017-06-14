@@ -11,7 +11,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 // Import Actions
-import { toggleAddPost, toggleAddModa } from './AppActions';
+import { toggleAddPost, toggleAddModa, hideForms } from './AppActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 export class App extends Component {
@@ -57,6 +57,7 @@ export class App extends Component {
             intl={this.props.intl}
             toggleAddPost={this.toggleAddPostSection}
             toggleAddModa={this.toggleAddModaSection}
+            hideForms={() => this.props.dispatch(hideForms())}
           />
           <div className={styles.container}>
             {this.props.children}

@@ -1,5 +1,5 @@
 // Import Actions
-import { TOGGLE_ADD_POST, TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA } from './AppActions';
+import { TOGGLE_ADD_POST, TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './AppActions';
 
 // Initial State
 const initialState = {
@@ -23,6 +23,13 @@ const AppReducer = (state = initialState, action) => {
     case TOGGLE_EDIT_MODA:
       return {
         showEditModa: !state.showEditModa,
+      };
+
+    case HIDE_FORMS:
+      return {
+        showEditModa: false,
+        showAddPost: false,
+        showEditModa: false
       };
 
     default:
