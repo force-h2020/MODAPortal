@@ -62,6 +62,10 @@ module.exports = {
           "genericPhysics": {
             "type": "object",
             "title": "2. Generic physics of the model equation",
+            "required": [
+              "romm_pe",
+              "modelEntity"
+            ],
             "properties": {
               "romm_pe": {
                 "type": "string",
@@ -107,7 +111,11 @@ module.exports = {
                       "properties": {
                         "name": {
                           "type": "string",
-                          "title": "Name/symbol"
+                          "title": "Name"
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "title": "Symbol"
                         },
                         "description": {
                           "type": "string",
@@ -131,7 +139,11 @@ module.exports = {
                       "properties": {
                         "name": {
                           "type": "string",
-                          "title": "Name/symbol"
+                          "title": "Name"
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "title": "Symbol"
                         },
                         "description": {
                           "type": "string",
@@ -148,7 +160,11 @@ module.exports = {
                       "properties": {
                         "name": {
                           "type": "string",
-                          "title": "Name/symbol"
+                          "title": "Name"
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "title": "Symbol"
                         },
                         "description": {
                           "type": "string",
@@ -551,17 +567,40 @@ atomistic, mesoscopic or continuum.",
           },
           "genericPhysics": {
             "classNames": "generic-physics",
-            "aspectsOfInterest": {
-              "ui:widget": "textarea"
-            },
             "romm_pe": {
               "classNames": "cuds_type",
               "ui:widget": "cudstreeselect"
+            },
+            "modelEntity": {
+              
             },
             "modelPE": {
               "physicsEquations": {
                 "items": {
                   "equation": {
+                    "ui:widget": "mathjax"
+                  },
+                }
+              },
+              "physicalQuantities": {
+                "items": {
+                  "symbol": {
+                    "ui:widget": "mathjax"
+                  },
+                }
+              }
+            },
+            "materialRelations": {
+              "relations": {
+                "items": {
+                  "symbol": {
+                    "ui:widget": "mathjax"
+                  },
+                }
+              },
+              "descriptors": {
+                "items": {
+                  "symbol": {
                     "ui:widget": "mathjax"
                   },
                 }

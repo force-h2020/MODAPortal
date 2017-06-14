@@ -20,7 +20,6 @@ const modaSchema = new Schema({
   chainOfModels: {
     physicsBasedModels: [{
       title: String,
-      cuds_type: String,
       userCaseAspects: {
         aspectsOfInterest: String,
         material: String,
@@ -31,8 +30,7 @@ const modaSchema = new Schema({
       },
       genericPhysics: {
         modelType: String,
-        modelName: String,
-        modelEntity: String,
+        romm_pe: String,
         modelPE: {
           physicsEquations: [{
             equation: String,
@@ -40,16 +38,19 @@ const modaSchema = new Schema({
           }],
           physicalQuantities: [{
             name: String,
+            symbol: String,
             description: String,
           }],
         },
         materialRelations: {
           relations: [{
             name: String,
+            symbol: String,
             description: String,
           }],
           descriptors: [{
             name: String,
+            symbol: String,
             description: String,
           }]
         },
