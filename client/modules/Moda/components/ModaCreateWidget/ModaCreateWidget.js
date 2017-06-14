@@ -227,7 +227,6 @@ export class ModaCreateWidget extends Component {
 
     const fields = {
       SchemaField: CustomSchemaField,
-      ArrayFieldTemplate: ArrayFieldTemplate
     };
 
     return (
@@ -241,6 +240,7 @@ export class ModaCreateWidget extends Component {
             widgets={widgets}
             formData={this.props.moda}
             fields={fields}
+            ArrayFieldTemplate={ArrayFieldTemplate}
           />
         </div>
       </div>
