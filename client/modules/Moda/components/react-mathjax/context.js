@@ -1,9 +1,11 @@
+/* This file is a modified version of https://github.com/SamyPesse/react-mathjax
+and and released under Apache License 2.0. */
 /* global MathJax */
 const React = require('react');
 const loadScript = require('load-script');
 
 const DEFAULT_SCRIPT =
-    'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+    'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
 
 const DEFAULT_OPTIONS = {
     tex2jax: {
