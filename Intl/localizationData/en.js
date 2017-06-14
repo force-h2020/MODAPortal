@@ -1,7 +1,7 @@
 export default {
   locale: 'en',
   messages: {
-    siteTitle: 'MODA Portal',
+    siteTitle: 'MODA Portal (preview version)',
     addPost: 'Add Post',
     addModa: 'Add MODA',
     switchLanguage: 'Switch Language',
