@@ -178,7 +178,6 @@ CUDSTreeSelect.propTypes = {
 
 class MathJaxWidget extends Component {
   render () {
-    console.log(this.props);
     const { id, classNames, label, help, required, description, errors, children } = this.props;
     const options = {
       showProcessingMessages: true,
