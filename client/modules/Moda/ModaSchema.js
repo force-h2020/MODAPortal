@@ -69,7 +69,13 @@ module.exports = {
               },
               "modelEntity": {
                 "type": "string",
-                "title": "2.1 Model entity"
+                "title": "2.1 Model entity",
+                "enum": [
+                  "Electronic",
+                  "Atoms",
+                  "Grins/beads",
+                  "Continiuum"
+                ]
               },
               "modelPE": {
                 "type": "object",
