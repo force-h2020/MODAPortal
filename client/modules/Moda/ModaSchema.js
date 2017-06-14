@@ -94,7 +94,7 @@ module.exports = {
                       "properties": {
                         "equation": {
                           "type": "string",
-                          "title": "Equation",
+                          "title": "Physics equation",
                         },
                         "description": {
                           "type": "string",
@@ -185,43 +185,65 @@ module.exports = {
             "type": "object",
             "title": "3. Solver and computational translation of the specifications",
             "properties": {
-              "numbericalSolver": {
+              "numericalSolver": {
                 "type": "string",
-                "title": "3.1 Numberical solver"
+                "title": "3.1 Numerical solver"
               },
               "softwareTool": {
+                "type": "object",
+                "title": "3.2 Software Tool",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "Name of the tool"
+                  },
+                  "version": {
+                    "type": "string",
+                    "title": "Version of the tool"
+                  },
+                  "website": {
+                    "type": "string",
+                    "title": "Website of the tool"
+                  }
+                }
+              },
+              "systemOfUnits": {
                 "type": "string",
-                "title": "3.2 Software Tool"
+                "title": "3.3 System of units"
               },
               "timeStep": {
                 "type": "string",
-                "title": "3.3 Time step"
+                "title": "3.4 Time step"
+              },
+              "timeStepUnit": {
+                "type": "string",
+                "title": "3.5 Time step unit"
               },
               "computationalRepresentation": {
                 "type": "object",
-                "title": "3.4 Computational representation (CR)",
+                "title": "3.6 Computational representation (CR)",
                 "properties": {
                   "physicsEquationCR": {
                     "type": "string",
-                    "title": "3.4.1 Physics equation CR"
+                    "title": "3.6.1 Physics equation CR"
                   },
                   "materialRelationsCR": {
                     "type": "string",
-                    "title": "3.4.2 Material relations CR"
+                    "title": "3.6.2 Material relations CR"
                   },
                   "materialCR": {
                     "type": "string",
-                    "title": "3.4.3 Material CR"
+                    "title": "3.6.3 Material CR"
                   }
                 }
               },
               "computationalBoundaryConditions": {
                 "type": "string",
-                "title": "3.5 Computational boundary conditions"
+                "title": "3.7 Computational boundary conditions"
               },
               "additionalSolverParameters": {
                 "type": "string",
-                "title": "3.6 Additional solver parameters"
+                "title": "3.8 Additional solver parameters"
               }
             }
           },
@@ -360,7 +382,7 @@ module.exports = {
           },
           "familyName": {
             "type": "string",
-            "title": "Family name"
+            "title": "Last name"
           },
           "email": {
             "type": "string",
@@ -386,7 +408,7 @@ module.exports = {
       },
       "fundingAgency": {
         "type": "string",
-        "title": "FundingAgency",
+        "title": "Funding agency",
         "default": "",
         "description": ""
       },
@@ -432,7 +454,7 @@ of the user-case.",
           },
           "databasedModels": {
             "type": "array",
-            "title": "Databased Models",
+            "title": "Databased Models [work in progress]",
             "description": "Each data-based model in this simulation is to be documented in three chapters:\
 1. Aspect of the User Case or system simulated with this data-based model\
 2. Data-based Model\
@@ -612,9 +634,6 @@ atomistic, mesoscopic or continuum.",
           },
           "solverSpecs": {
             "classNames": "solver-specs",
-            "aspectsOfInterest": {
-              "ui:widget": "textarea"
-            },
             "computationalRepresentation": {
               "physicsEquationCR": {
                 "ui:widget": "textarea"

@@ -29,8 +29,8 @@ const modaSchema = new Schema({
         publications: String,
       },
       genericPhysics: {
-        modelType: String,
         romm_pe: String,
+        modelEntity: String,
         modelPE: {
           physicsEquations: [{
             equation: String,
@@ -57,8 +57,14 @@ const modaSchema = new Schema({
         simulatedInput: String,
       },
       solverSpecs: {
-        numbericalSolver: String,
-        softwareTool: String,
+        numericalSolver: String,
+        softwareTool: {
+          name: String,
+          version: String,
+          website: String
+        },
+        timeStepUnit: String,
+        systemOfUnits: String,
         timeStep: String,
         computationalRepresentation: {
           physicsEquationCR: String,
