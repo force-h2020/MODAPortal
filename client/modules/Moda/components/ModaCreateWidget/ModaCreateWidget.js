@@ -203,7 +203,7 @@ class MathJaxWidget extends Component {
                          options={options}>
             <p>
               <MathJax.Node className={styles['form-field']}>
-                {this.props.value || ""}
+                {this.props.value || "<math></math>"}
               </MathJax.Node>
             </p>
         </MathJax.Context>
