@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 // Import Style
 import styles from './Header.css';
+import logo from '../../emmc-x250.png';
 
 export function Header(props, context) {
   // const languageNodes = props.intl.enabledLanguages.map(
@@ -24,6 +25,7 @@ export function Header(props, context) {
     */}
       <div className={styles.content}>
         <h1 className={styles['site-title']}>
+          <img src={logo} alt={"logo"} className={styles['site-logo']}/>
           <Link to="/" onClick={props.hideForms}><FormattedMessage id="siteTitle"/></Link>
         </h1>
         {/*

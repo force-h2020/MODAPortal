@@ -23,6 +23,11 @@
   color: #FFF;
 }
 
+.site-logo {
+  margin-right: 10px;
+  height: 2em;
+}
+
 .add-post-button {
   display: inline-block;
   color: #FFF;
