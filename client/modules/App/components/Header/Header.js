@@ -26,7 +26,10 @@ export function Header(props, context) {
       <div className={styles.content}>
         <h1 className={styles['site-title']}>
           <img src={logo} alt={"logo"} className={styles['site-logo']}/>
-          <Link to="/" onClick={props.hideForms}><FormattedMessage id="siteTitle"/></Link>
+          <span>
+            <Link to="/" onClick={props.hideForms}><FormattedMessage id="siteTitle"/></Link>
+            <span className={styles['site-subtitle']}><FormattedMessage id="siteSubTitle"/></span>
+          </span>
         </h1>
         {/*
           context.router.isActive('/', true)

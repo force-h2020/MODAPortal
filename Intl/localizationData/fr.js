@@ -2,6 +2,7 @@ export default {
   locale: 'fr',
   messages: {
     siteTitle: 'MERN blog de démarrage',
+    siteSubTitle: ' (preview version)',
     addPost: 'Ajouter Poster',
     addModa: 'Ajouter MODA',
     switchLanguage: 'Changer de langue',
@@ -11,6 +12,7 @@ export default {
     createNewPost: 'Créer un nouveau message',
     authorName: 'Nom de l\'auteur',
     postTitle: 'Titre de l\'article',
+    modaTitle: 'Titre de l\'MODA',
     postContent: 'Contenu après',
     submit: 'Soumettre',
     comment: `user {name} {value, plural,

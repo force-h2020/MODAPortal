@@ -8,7 +8,8 @@
   width: 100%;
   max-width: 980px;
   margin: auto;
-  padding: 64px 16px;
+  /* padding: 64px 16px; */
+  padding-top: 12px;
   overflow: auto;
 }
 
@@ -16,6 +17,8 @@
   font-weight: 300;
   font-size: 42px;
   float: left;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .site-title a {
@@ -23,9 +26,17 @@
   color: #FFF;
 }
 
+.site-subtitle {
+  display: block;
+  font-size: 21px;
+  color: white;
+}
+
 .site-logo {
   margin-right: 10px;
   height: 2em;
+  /*display: inline;*/
+  float: left;
 }
 
 .add-post-button {
