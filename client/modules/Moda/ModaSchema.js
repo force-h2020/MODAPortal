@@ -675,20 +675,38 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
           },
           "solverSpecs": {
             "classNames": "solver-specs",
+            "softwareTool": {
+              "website": {
+                "ui:widget": "uri"
+              }
+            },
             "computationalRepresentation": {
               "physicsEquationCR": {
                 "ui:widget": "textarea"
               },
-              "softwareTool": {
-                "website": {
-                  "ui:widget": "uri"
-                }
-              }
+              "materialRelationsCR": {
+                "ui:widget": "textarea"
+              },
+              "materialCR": {
+                "ui:widget": "textarea"
+              },
+            },
+            "computationalBoundaryConditions": {
+                "ui:widget": "textarea"
+            },
+            "additionalSolverParameters": {
+              "ui:widget": "textarea"
             },
           },
           "postProcessing": {
             "classNames": "post-processing",
-            "aspectsOfInterest": {
+            "processedOutput": {
+              "ui:widget": "textarea"
+            },
+            "methodologies": {
+              "ui:widget": "textarea"
+            },
+            "errorMargin": {
               "ui:widget": "textarea"
             }
           }
