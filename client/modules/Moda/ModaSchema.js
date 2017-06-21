@@ -529,8 +529,13 @@ of the user-case.",
       "ui:help": "",
       "ui:placeholder": "Name of the project"
     },
+    "projectHomePage": {
+      "ui:widget": "uri"
+    },
     "author": {
-      "ui:placeholder": "Person maintaining this MODA"
+      "email": {
+        "ui:widget": "email"
+      }
     },
     "userCase": {
       "classNames": "user-case",
@@ -640,6 +645,11 @@ atomistic, mesoscopic or continuum.",
             "computationalRepresentation": {
               "physicsEquationCR": {
                 "ui:widget": "textarea"
+              },
+              "softwareTool": {
+                "website": {
+                  "ui:widget": "uri"
+                }
               }
             },
           },
