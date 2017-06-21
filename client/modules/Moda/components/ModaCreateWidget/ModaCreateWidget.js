@@ -113,8 +113,14 @@ function DefaultArrayItem(props) {
 const ArrayFieldTemplate = (props) => {
   if (props.title === "Physics-based Models") {
     var i = 0;
+    var inputs = [""];
     for(i=0; i<props.items.length; i++) {
-      props.items[i].children.props.formData.title = "Model " + i;
+      let title = "Model " + i;
+      props.items[i].children.props.formData.title = title;
+      inputs.push(title);
+    };
+    for(i=0; i<props.items.length; i++) {
+      props.items[i].children.props.schema.properties.genericPhysics.properties.simulatedInput.enum = inputs;
     };
   };
   return (
@@ -225,6 +231,13 @@ const AutoFilledTitle = function(props) {
   );
 };
 
+const CustomEnum = (props) => {
+  return (
+    <select id={props.id} className="form-control" value={props.value} required={props.required} onChange={(event) => props.onChange(event.target.value)}>
+      {props.options.enumOptions.map((element) => <option value={element.value} key={element.value}>{element.label}</option>)}
+    </select>
+  );
+};
 
 export class ModaCreateWidget extends Component {
   handleSubmit = (event) => {
@@ -237,11 +250,12 @@ export class ModaCreateWidget extends Component {
     const widgets = {
       cudstreeselect: CUDSTreeSelect,
       mathjax: MathJaxWidget,
+      CustomEnum: CustomEnum
     };
 
     const fields = {
       SchemaField: CustomSchemaField,
-      autoFilledTitle: AutoFilledTitle
+      autoFilledTitle: AutoFilledTitle,
     };
 
     return (

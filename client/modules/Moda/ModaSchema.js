@@ -177,7 +177,9 @@ module.exports = {
               },
               "simulatedInput": {
                 "type": "string",
-                "title": "2.4 Simulated input"
+                "title": "2.4 Simulated input",
+                "default": "",
+                "enum": []
               }
             }
           },
@@ -670,6 +672,7 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
               }
             },
             "simulatedInput": {
+              "ui:widget": "CustomEnum",
               "ui:help": `If the model responsible for the simulated input is not defined, please define it first then come back here.`
             }
           },
