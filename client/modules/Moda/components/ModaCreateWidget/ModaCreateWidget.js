@@ -219,8 +219,8 @@ class MathJaxWidget extends Component {
 const onError = (errors) => console.log("I have", errors.length, "errors to fix");
 const AutoFilledTitle = function(props) {
   return (
-    <div>
-        Title: {props.formData} <input name={props.name} type="hidden" value={props.formData} />
+    <div style={{ fontSize: '2.0em' }}>
+        {props.formData} <input name={props.name} type="hidden" value={props.formData} />
     </div>
   );
 };
