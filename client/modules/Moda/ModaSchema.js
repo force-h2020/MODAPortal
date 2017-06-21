@@ -606,6 +606,10 @@ atomistic, mesoscopic or continuum.",
             },
             "modelPE": {
               "physicsEquations": {
+                "ui:help": `Equations written with the Equation Tool in Microsoft Word 2010 or later can be extracted as MathML. This is an accessible format that can be read aloud by assistive tools such as STEMReader. To do so you must first change a setting in the Equation Options.
+To access the Equation Options, select the “Insert” tab and then the “Equation” button. Alternatively use the keyboard shortcut: Alt + =.
+Select the small icon in the bottom right of the Tools panel to open the Equation Options. In Word 2016 you can also type Equation Options in the “Tell me what to do” help box above the ribbon tool this window directly.
+More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA_tool_and_curation_system`,
                 "items": {
                   "equation": {
                     "ui:widget": "mathjax"
@@ -613,6 +617,7 @@ atomistic, mesoscopic or continuum.",
                 }
               },
               "physicalQuantities": {
+                "ui:help": `Please use the most common term in your domain for each quantity. (velocity, stress, tensore, etc.)`,
                 "items": {
                   "symbol": {
                     "ui:widget": "mathjax"
@@ -622,6 +627,7 @@ atomistic, mesoscopic or continuum.",
             },
             "materialRelations": {
               "relations": {
+                "ui:help": `Please use the most common term used in your field according to the RoMM and also specify to which equation it completes.`,
                 "items": {
                   "symbol": {
                     "ui:widget": "mathjax"
@@ -637,7 +643,7 @@ atomistic, mesoscopic or continuum.",
               }
             },
             "simulatedInput": {
-
+              "ui:help": `If the model responsible for the simulated input is not defined, please define it first then come back here.`
             }
           },
           "solverSpecs": {
