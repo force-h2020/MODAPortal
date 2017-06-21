@@ -110,10 +110,15 @@ function DefaultArrayItem(props) {
 }
 
 
-function ArrayFieldTemplate(props) {
+const ArrayFieldTemplate = (props) => {
+  if (props.title === "Physics-based Models") {
+    var i = 0;
+    for(i=0; i<props.items.length; i++) {
+      props.items[i].children.props.formData.title = "Model " + i;
+    };
+  };
   return (
     <fieldset className={props.className}>
-
       <ArrayFieldTitle
         key={`array-field-title-${props.idSchema.$id}`}
         TitleField={props.TitleField}
@@ -121,7 +126,6 @@ function ArrayFieldTemplate(props) {
         title={props.title}
         required={props.required}
       />
-
       {props.schema.description &&
         <div
           className="field-description"
@@ -134,7 +138,6 @@ function ArrayFieldTemplate(props) {
         key={`array-item-list-${props.idSchema.$id}`}>
         {props.items && props.items.map(DefaultArrayItem)}
       </div>
-
       {props.canAdd &&
         <AddButton
           onClick={props.onAddClick}
@@ -144,6 +147,7 @@ function ArrayFieldTemplate(props) {
   );
 }
 
+
 const CustomSchemaField = function(props) {
   return (
     <div className={styles[props.name]}>
@@ -152,8 +156,8 @@ const CustomSchemaField = function(props) {
   );
 };
 
-const treeData = cudsSchema.cudsSchema;
 
+const treeData = cudsSchema.cudsSchema;
 const CUDSTreeSelect = (props) => {
   const onChange = props.onChange;
   return (
@@ -168,12 +172,12 @@ const CUDSTreeSelect = (props) => {
     />
   );
 };
-
 CUDSTreeSelect.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
   required: PropTypes.bool,
 };
+
 
 class MathJaxWidget extends Component {
   render () {
@@ -211,6 +215,17 @@ class MathJaxWidget extends Component {
   }
 }
 
+
+const onError = (errors) => console.log("I have", errors.length, "errors to fix");
+const AutoFilledTitle = function(props) {
+  return (
+    <div>
+        Title: {props.formData} <input name={props.name} type="hidden" value={props.formData} />
+    </div>
+  );
+};
+
+
 export class ModaCreateWidget extends Component {
   handleSubmit = (event) => {
     this.props.addModa(event.formData);
@@ -221,11 +236,12 @@ export class ModaCreateWidget extends Component {
     const cls = `${styles.form} ${(this.props.showAddModa ? styles.appear : '')}`;
     const widgets = {
       cudstreeselect: CUDSTreeSelect,
-      mathjax: MathJaxWidget
+      mathjax: MathJaxWidget,
     };
 
     const fields = {
       SchemaField: CustomSchemaField,
+      autoFilledTitle: AutoFilledTitle
     };
 
     return (

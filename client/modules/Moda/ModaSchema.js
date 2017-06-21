@@ -581,6 +581,9 @@ http://ec.europa.eu/research/industrial_technologies/e-\
 library.cfm).All models should be identified as electronic,\
 atomistic, mesoscopic or continuum.",
         "items": {
+          "title": {
+            "ui:field": "autoFilledTitle"
+          },
           "userCaseAspects": {
             "classNames": "user-case-aspects",
             "aspectsOfInterest": {
