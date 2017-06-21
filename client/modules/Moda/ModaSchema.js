@@ -593,6 +593,21 @@ atomistic, mesoscopic or continuum.",
             "classNames": "user-case-aspects",
             "aspectsOfInterest": {
               "ui:widget": "textarea"
+            },
+            "material": {
+              "ui:widget": "textarea"
+            },
+            "geometry": {
+              "ui:widget": "textarea"
+            },
+            "timeLapse": {
+              "ui:widget": "textarea"
+            },
+            "manufacturingProcessOrConditions": {
+              "ui:widget": "textarea"
+            },
+            "publications": {
+              "ui:widget": "textarea"
             }
           },
           "genericPhysics": {
@@ -614,6 +629,9 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
                   "equation": {
                     "ui:widget": "mathjax"
                   },
+                  "description": {
+                    "ui:widget": "textarea"
+                  }
                 }
               },
               "physicalQuantities": {
@@ -622,6 +640,9 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
                   "symbol": {
                     "ui:widget": "mathjax"
                   },
+                  "description": {
+                    "ui:widget": "textarea"
+                  }
                 }
               }
             },
@@ -632,6 +653,9 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
                   "symbol": {
                     "ui:widget": "mathjax"
                   },
+                  "description": {
+                    "ui:widget": "textarea"
+                  }
                 }
               },
               "descriptors": {
@@ -639,6 +663,9 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
                   "symbol": {
                     "ui:widget": "mathjax"
                   },
+                  "description": {
+                    "ui:widget": "textarea"
+                  }
                 }
               }
             },
