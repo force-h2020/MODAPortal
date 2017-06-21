@@ -29,6 +29,7 @@ const AppReducer = (state = initialState, action) => {
       return {
         showEditModa: false,
         showAddPost: false,
+        showAddModa: false,
         showEditModa: false
       };
 
