@@ -33,5 +33,14 @@ MODA Portal is a tool to collect MODA workflow information. This tool is based o
 
 6. `yarn run lint` - runs linter to check for lint errors
 
+## Try with Docker
+In order to run the portal, the fastest way is using docker. You need docker and docker-compose installed on your machine and your user should be member of docker group (in unix-like machines).
+```
+  git clone https://github.com/Fraunhofer-IWM/MODAPortal
+  cd MODAPortal
+  docker-compose -f docker-compose.yml up
+```
+You even don't need to clone the repository, all you need is the `docker-compose.yml` file. After running the above commands the portal should be up and running at `localhost:8000`.
+
 ## License
 MODAPortal is released under the [MIT License](http://www.opensource.org/licenses/MIT).
