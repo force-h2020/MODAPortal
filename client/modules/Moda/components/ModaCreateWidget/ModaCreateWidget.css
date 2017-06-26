@@ -71,7 +71,7 @@ textarea {
   margin-top: 5px;
 }
 
-.genericPhysics legend ,.genericPhysics label, .genericPhysics p {
+.genericPhysics legend ,.genericPhysics label, .genericPhysics p, .genericPhysics div {
   color: white;
 }
 

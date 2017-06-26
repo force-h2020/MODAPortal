@@ -29,7 +29,6 @@ module.exports = {
     "title": {
       "classNames": "moda-title",
       "ui:help": "",
-      "ui:placeholder": "An expressive title"
     },
     "version": {
       "ui:emptyValue": "Version 6"
@@ -37,7 +36,6 @@ module.exports = {
     "project": {
       "classNames": "moda-project",
       "ui:help": "",
-      "ui:placeholder": "Name of the project"
     },
     "projectHomePage": {
       "ui:widget": "uri"
@@ -51,35 +49,18 @@ module.exports = {
       "classNames": "user-case",
       "ui:widget": "textarea",
       "ui:help": "Explain the user-case",
-      "ui:placeholder": "General description of the User Case \
-Please give the properties and behaviour of the particular material,\
-manufacturing process and/or in-service-behaviour to be simulated.\
-No information on the modelling should appear here. The idea is that this\
-user-case can also be simulated by others with other models and that the\
-results can then be compared."
     },
     "publications": {
       "classNames": "publications",
       "ui:widget": "textarea",
-      "ui:placeholder": "Please give the publication which documents the data of this ONE simulation.\
-This article should ensure the quality of this data set (and not only the quality\
-of the models)."
     },
     "accessConditions": {
       "classNames": "access-conditions",
       "ui:widget": "textarea",
-      "ui:placeholder": "Please list whether the model and/or data are free, commercial or open\
-source. Please list the owner and the name of the software or database\
-(include a web link if available)."
     },
     "workflowRationale": {
       "classNames": "workflow-rationale",
       "ui:widget": "textarea",
-      "ui:placeholder": "Please give a textual rationale of why you as a modeller have chosen these\
-models and this workflow, knowing other modellers would simulate the same\
-end-user case differently.\
-This should include the reason why a particular aspect of the user case is to\
-be simulated with a particular model."
     },
     "chainOfModels": {
       "classNames": "chain-of-models",
@@ -131,13 +112,13 @@ atomistic, mesoscopic or continuum.",
             },
             "modelPE": {
               "physicsEquations": {
-                "ui:help": `Equations written with the Equation Tool in Microsoft Word 2010 or later can be extracted as MathML. This is an accessible format that can be read aloud by assistive tools such as STEMReader. To do so you must first change a setting in the Equation Options.
+                "items": {
+                  "equation": {
+                    "ui:widget": "mathjax",
+                    "ui:help": `Equations written with the Equation Tool in Microsoft Word 2010 or later can be extracted as MathML. This is an accessible format that can be read aloud by assistive tools such as STEMReader. To do so you must first change a setting in the Equation Options.
 To access the Equation Options, select the “Insert” tab and then the “Equation” button. Alternatively use the keyboard shortcut: Alt + =.
 Select the small icon in the bottom right of the Tools panel to open the Equation Options. In Word 2016 you can also type Equation Options in the “Tell me what to do” help box above the ribbon tool this window directly.
 More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA_tool_and_curation_system`,
-                "items": {
-                  "equation": {
-                    "ui:widget": "mathjax"
                   },
                   "description": {
                     "ui:widget": "textarea"
