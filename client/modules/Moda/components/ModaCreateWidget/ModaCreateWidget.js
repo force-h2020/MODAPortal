@@ -4,6 +4,7 @@ import { injectIntl, intlShape } from 'react-intl';
 
 import Form from 'react-jsonschema-form';
 import schema from '../../ModaSchema';
+import uiSchema from '../../ModaUISchema';
 import cudsSchema from '../../CudsSelect';
 
 import styles from './ModaCreateWidget.css';
@@ -264,7 +265,7 @@ export class ModaCreateWidget extends Component {
           <Form
             ref={'modaForm'}
             schema={schema.schema}
-            uiSchema={schema.uiSchema}
+            uiSchema={uiSchema.uiSchema}
             onSubmit={this.handleSubmit}
             widgets={widgets}
             formData={this.props.moda}
