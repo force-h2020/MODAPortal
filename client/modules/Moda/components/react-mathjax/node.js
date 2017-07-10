@@ -1,6 +1,7 @@
 /* This file is part of https://github.com/SamyPesse/react-mathjax 
 and and released under Apache License 2.0. */
 const React = require('react');
+import { PropTypes } from 'prop-types';
 const process = require('./process');
 
 /**
@@ -9,13 +10,13 @@ const process = require('./process');
  */
 const MathJaxNode = React.createClass({
     propTypes: {
-        inline:   React.PropTypes.bool,
-        children: React.PropTypes.node.isRequired,
-        onRender: React.PropTypes.func
+        inline:   PropTypes.bool,
+        children: PropTypes.node.isRequired,
+        onRender: PropTypes.func
     },
 
     contextTypes: {
-        MathJax: React.PropTypes.object
+        MathJax: PropTypes.object
     },
 
     getDefaultProps() {

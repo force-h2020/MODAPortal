@@ -2,6 +2,7 @@
 and and released under Apache License 2.0. */
 /* global MathJax */
 const React = require('react');
+import { PropTypes } from 'prop-types';
 const loadScript = require('load-script');
 
 const DEFAULT_SCRIPT =
@@ -21,16 +22,16 @@ const DEFAULT_OPTIONS = {
  */
 const MathJaxContext = React.createClass({
     propTypes: {
-        children: React.PropTypes.node.isRequired,
-        script:   React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.oneOf([false])
+        children: PropTypes.node.isRequired,
+        script:   PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.oneOf([false])
         ]),
-        options:  React.PropTypes.object
+        options:  PropTypes.object
     },
 
     childContextTypes: {
-        MathJax: React.PropTypes.object
+        MathJax: PropTypes.object
     },
 
     getDefaultProps() {
