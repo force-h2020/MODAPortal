@@ -2,8 +2,9 @@
 and and released under Apache License 2.0. */
 /* global MathJax */
 const React = require('react');
-import { PropTypes } from 'prop-types';
 const loadScript = require('load-script');
+
+import { PropTypes } from 'prop-types';
 
 const DEFAULT_SCRIPT =
     'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
@@ -70,6 +71,7 @@ const MathJaxContext = React.createClass({
         this.setState({
             loaded: true
         });
+        if (err) console.log(err)
     },
 
     render() {

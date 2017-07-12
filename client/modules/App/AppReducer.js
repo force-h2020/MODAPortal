@@ -23,7 +23,6 @@ const AppReducer = (state = initialState, action) => {
       return {
         showEditModa: false,
         showAddModa: false,
-        showEditModa: false
       };
 
     default:

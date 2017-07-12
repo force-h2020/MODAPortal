@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
 
-const modaSchema = new Schema({
+const modaSchema = new mongoose.Schema({
   title: { type: String, required: true },
   project: { type: String, required: true },
   fundingAgency: { type: String, required: true },
@@ -52,7 +51,7 @@ const modaSchema = new Schema({
             name: String,
             symbol: String,
             description: String,
-          }]
+          }],
         },
         simulatedInput: String,
       },
@@ -61,7 +60,7 @@ const modaSchema = new Schema({
         softwareTool: {
           name: String,
           version: String,
-          website: String
+          website: String,
         },
         timeStepUnit: String,
         systemOfUnits: String,

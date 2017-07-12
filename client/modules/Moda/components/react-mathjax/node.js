@@ -1,8 +1,9 @@
 /* This file is part of https://github.com/SamyPesse/react-mathjax 
 and and released under Apache License 2.0. */
 const React = require('react');
-import { PropTypes } from 'prop-types';
 const process = require('./process');
+
+import { PropTypes } from 'prop-types';
 
 /**
  * React component to render maths using mathjax
@@ -34,14 +35,6 @@ const MathJaxNode = React.createClass({
     },
 
     /**
-     * Update the jax, force update if the display mode changed
-     */
-    componentDidUpdate(prevProps) {
-        const forceUpdate = prevProps.inline != this.props.inline;
-        this.typeset(forceUpdate);
-    },
-
-    /**
      * Prevent update when the tex has not changed
      */
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -53,6 +46,15 @@ const MathJaxNode = React.createClass({
     },
 
     /**
+     * Update the jax, force update if the display mode changed
+     */
+    componentDidUpdate(prevProps) {
+        const forceUpdate = prevProps.inline != this.props.inline;
+        this.typeset(forceUpdate);
+    },
+
+
+    /**
      * Clear the math when unmounting the node
      */
     componentWillUnmount() {
@@ -60,19 +62,27 @@ const MathJaxNode = React.createClass({
     },
 
     /**
-     * Clear the jax
+     * Create a script
+     * @param  {String} text
+     * @return {DOMNode} script
      */
-    clear() {
-        const { MathJax } = this.context;
+    setScriptText(text) {
+        const { inline } = this.props;
 
-        if (!this.script || !MathJax) {
-            return;
+        if (!this.script) {
+            this.script = document.createElement('script');
+            this.script.type = 'math/mml; ' + (inline ? '' : 'mode=display');
+            this.refs.node.appendChild(this.script);
         }
 
-        const jax = MathJax.Hub.getJaxFor(this.script);
-        if (jax) {
-            jax.Remove();
+        if ('text' in this.script) {
+            // IE8, etc
+            this.script.text = text;
+        } else {
+            this.script.textContent = text;
         }
+
+        return this.script;
     },
 
     /**
@@ -112,27 +122,19 @@ const MathJaxNode = React.createClass({
     },
 
     /**
-     * Create a script
-     * @param  {String} text
-     * @return {DOMNode} script
+     * Clear the jax
      */
-    setScriptText(text) {
-        const { inline } = this.props;
+    clear() {
+        const { MathJax } = this.context;
 
-        if (!this.script) {
-            this.script = document.createElement('script');
-            this.script.type = 'math/mml; ' + (inline ? '' : 'mode=display');
-            this.refs.node.appendChild(this.script);
+        if (!this.script || !MathJax) {
+            return;
         }
 
-        if ('text' in this.script) {
-            // IE8, etc
-            this.script.text = text;
-        } else {
-            this.script.textContent = text;
+        const jax = MathJax.Hub.getJaxFor(this.script);
+        if (jax) {
+            jax.Remove();
         }
-
-        return this.script;
     },
 
     render() {

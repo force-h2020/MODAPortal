@@ -15,7 +15,7 @@ export function Header(props, context) {
   return (
     <div className={styles.header}>
       <link rel="stylesheet" id="theme" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-      <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
+      <script src="//cdn.polyfill.io/v2/polyfill.min.js" />
       {/*
         <div className={styles['language-switcher']}>
           <ul>
@@ -26,15 +26,15 @@ export function Header(props, context) {
     */}
       <div className={styles.content}>
         <h1 className={styles['site-title']}>
-          <img src={logo} alt={"logo"} className={styles['site-logo']}/>
+          <img src={logo} alt={"logo"} className={styles['site-logo']} />
           <span>
-            <Link to="/" onClick={props.hideForms}><FormattedMessage id="siteTitle"/></Link>
-            <span className={styles['site-subtitle']}><FormattedMessage id="siteSubTitle"/></span>
+            <Link to="/" onClick={props.hideForms}><FormattedMessage id="siteTitle" /></Link>
+            <span className={styles['site-subtitle']}><FormattedMessage id="siteSubTitle" /></span>
           </span>
         </h1>
         {
           context.router.isActive('/', true)
-            ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddModa}><FormattedMessage id="addModa" /></a>
+            ? <button className={styles['add-post-button']} onClick={props.toggleAddModa}><FormattedMessage id="addModa" /></button>
             : null
         }
       </div>
@@ -43,13 +43,13 @@ export function Header(props, context) {
 }
 
 Header.contextTypes = {
-  router: React.PropTypes.object,
+  router: PropTypes.object,
 };
 
 Header.propTypes = {
-  toggleAddPost: PropTypes.func.isRequired,
   toggleAddModa: PropTypes.func.isRequired,
   switchLanguage: PropTypes.func.isRequired,
+  hideForms: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
 

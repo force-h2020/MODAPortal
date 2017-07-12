@@ -32,12 +32,12 @@ function ModaList(props) {
       Header: 'Edit',
       id: 'edit',
       width: 100,
-      accessor:  row => { return (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link></span>) },
+      accessor:  row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link> },
     }, {
       Header: 'Delete',
       id: 'delete',
       width: 100,
-      accessor: row => { return (<span><a onClick={() => props.handleDeleteModa(row.cuid)}>Delete</a></span>) },
+      accessor: row => { return <Link onClick={() => props.handleDeleteModa(row.cuid)}>Delete</Link> },
     }];
 
   return (
@@ -51,13 +51,6 @@ function ModaList(props) {
         id: 'cuid',
         asc: true,
       }]}
-      getTdProps={(state, rowInfo, column, instance) => {
-        return {
-          onClick: e => {
-            //console.log('it produced this event:', e, rowInfo, column, instance);
-          },
-        };
-      }}
     />
   );
 }
@@ -68,8 +61,6 @@ ModaList.propTypes = {
     cuid: PropTypes.string.isRequired,
   })).isRequired,
   handleDeleteModa: PropTypes.func.isRequired,
-  value: PropTypes.any,
-  row: PropTypes.any,
 };
 
 export default ModaList;
