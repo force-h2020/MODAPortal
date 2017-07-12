@@ -32,11 +32,6 @@ export function Header(props, context) {
             <span className={styles['site-subtitle']}><FormattedMessage id="siteSubTitle"/></span>
           </span>
         </h1>
-        {/*
-          context.router.isActive('/', true)
-            ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddPost}><FormattedMessage id="addPost" /></a>
-            : null
-        */}
         {
           context.router.isActive('/', true)
             ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddModa}><FormattedMessage id="addModa" /></a>

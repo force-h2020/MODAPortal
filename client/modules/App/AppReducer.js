@@ -1,20 +1,14 @@
 // Import Actions
-import { TOGGLE_ADD_POST, TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './AppActions';
+import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './AppActions';
 
 // Initial State
 const initialState = {
-  showAddPost: false,
   showAddModa: false,
   showEditModa: false,
 };
 
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_ADD_POST:
-      return {
-        showAddPost: !state.showAddPost,
-      };
-
     case TOGGLE_ADD_MODA:
       return {
         showAddModa: !state.showAddModa,
@@ -28,7 +22,6 @@ const AppReducer = (state = initialState, action) => {
     case HIDE_FORMS:
       return {
         showEditModa: false,
-        showAddPost: false,
         showAddModa: false,
         showEditModa: false
       };
@@ -39,9 +32,6 @@ const AppReducer = (state = initialState, action) => {
 };
 
 /* Selectors */
-
-// Get showAddPost
-export const getShowAddPost = state => state.app.showAddPost;
 
 // Get showAddModa
 export const getShowAddModa = state => state.app.showAddModa;
