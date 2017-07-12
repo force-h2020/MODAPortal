@@ -10,37 +10,34 @@ function ModaList(props) {
   // Create some column definitions
   const columns = [
     {
-      header: 'Title',
-      accessor: 'title',
-      render: ({ row }) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>{row.title}</Link></span>),
-      // render: (props) => {console.log(props); return props.value;}
+      Header: 'Title',
+      id: 'title',
+      accessor: row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>{row.title}</Link>},
     }, {
-      header: 'Project',
+      Header: 'Project',
       accessor: 'project',
     }, {
-      header: 'Author',
-      accessor: 'author',
-      render: ({ row }) => row.author.firstName + ' ' + row.author.familyName,
+      Header: 'Author',
+      id: 'author',
+      accessor: row => { return row.author.firstName + ' ' + row.author.familyName },
     }, {
-      header: 'Created On',
-      accessor: 'creationDate',
-      render: ({ row }) => row.creationDate ? new Date(row.creationDate).toLocaleString() : '',
+      Header: 'Created On',
+      id: 'createdOn',
+      accessor:  row => { return row.creationDate ? new Date(row.creationDate).toLocaleString() : '' },
     }, {
-      header: 'Modified On',
-      accessor: 'modificationDate',
-      render: ({ row }) => row.modificationDate ? new Date(row.modificationDate).toLocaleString() : '',
+      Header: 'Modified On',
+      id: 'modifiedOn',
+      accessor: row => { return row.modificationDate ? new Date(row.modificationDate).toLocaleString() : '' },
     }, {
-      header: 'Edit',
+      Header: 'Edit',
+      id: 'edit',
       width: 100,
-      // accessor: 'cuid',
-      render: ({ row }) => (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link></span>),
-      // render: (props) => {console.log(props); return props.value;}
+      accessor:  row => { return (<span><Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link></span>) },
     }, {
-      header: 'Delete',
+      Header: 'Delete',
+      id: 'delete',
       width: 100,
-      // accessor: 'userCase',
-      // row vs {row}: row is everything, {row} is the real ’row’
-      render: ({ row }) => (<span><a onClick={() => props.handleDeleteModa(row.cuid)}>Delete</a></span>),
+      accessor: row => { return (<span><a onClick={() => props.handleDeleteModa(row.cuid)}>Delete</a></span>) },
     }];
 
   return (
