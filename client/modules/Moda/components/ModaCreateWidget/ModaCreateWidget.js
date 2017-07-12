@@ -155,15 +155,6 @@ const ArrayFieldTemplate = (props) => {
 }
 
 
-const CustomSchemaField = function(props) {
-  return (
-    <div className={styles[props.name]}>
-      <SchemaField {...props}/>
-    </div>
-  );
-};
-
-
 const treeData = cudsSchema.cudsSchema;
 const CUDSTreeSelect = (props) => {
   const onChange = props.onChange;
@@ -255,7 +246,6 @@ export class ModaCreateWidget extends Component {
     };
 
     const fields = {
-      SchemaField: CustomSchemaField,
       autoFilledTitle: AutoFilledTitle,
     };
 
