@@ -25,13 +25,13 @@
      "react/jsx-no-bind": [0],
      "no-console": 0,
      "space-before-function-paren": ["error", "never"],
-     "react/jsx-filename-extension": [1],
-     "import/no-extraneous-dependencies": [1],
-     "import/no-named-as-default": [1],
+     "import/no-extraneous-dependencies": [0],
+     "import/no-named-as-default": [0],
      "import/first": [0],
      "react/forbid-prop-types": [0],
      "react/no-string-refs": [0],
      "react/prop-types": [0],
-     "react/no-unused-prop-types": [0]
+     "react/no-unused-prop-types": [0],
+     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   }
 }
