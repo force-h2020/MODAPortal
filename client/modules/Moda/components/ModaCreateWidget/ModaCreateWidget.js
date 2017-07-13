@@ -3,15 +3,24 @@ import { PropTypes } from 'prop-types';
 import { injectIntl } from 'react-intl';
 
 import Form from 'react-jsonschema-form';
+import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField";
+
 import schema from '../../ModaSchema';
 import uiSchema from '../../ModaUISchema';
 import cudsSchema from '../../CudsSelect';
 import ArrayFieldTemplate from './ArrayFieldTemplate';
 import styles from './ModaCreateWidget.css';
+import MathJax from '../react-mathjax';
 import { TreeSelect } from 'antd';
 import 'antd/dist/antd.css';
 
-const MathJax = require('../react-mathjax');
+const CustomSchemaField = function(props) {
+  return (
+    <div className={styles[props.name]}>
+      <SchemaField {...props} />
+    </div>
+  );
+};
 
 const CUDSTreeSelect = (props) => {
   const onChange = props.onChange;
@@ -27,14 +36,20 @@ const CUDSTreeSelect = (props) => {
     />
   );
 };
+
 CUDSTreeSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   required: PropTypes.bool,
 };
 
+CUDSTreeSelect.defaultProps = {
+  value: '',
+  required: false,
+};
+
 const MathJaxWidget = (props) => {
-  const { id, classNames, help, required, errors, children, onChange, value } = props;
+  const { id, help, required, errors, children, onChange, value } = props;
   const options = {
     showProcessingMessages: true,
     showMathMenu: true,
@@ -49,7 +64,7 @@ const MathJaxWidget = (props) => {
   return (
     <div>
       <textarea
-        className={classNames}
+        className={styles['form-field']}
         id={id}
         value={value}
         required={required}
@@ -103,6 +118,7 @@ export class ModaCreateWidget extends Component {
     };
 
     const fields = {
+      SchemaField: CustomSchemaField,
       autoFilledTitle: AutoFilledTitle,
     };
 
