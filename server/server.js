@@ -42,7 +42,7 @@ mongoose.connect(serverConfig.mongoURL, {useMongoClient: true}, (error) => {
   }
 
   // feed some dummy data in DB.
-  //dummyData();
+  //if (process.env.NODE_ENV === 'development') dummyData();
 });
 
 // Apply body Parser and server public assets and routes
