@@ -1,4 +1,4 @@
-import Express from 'express';
+import express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
@@ -22,8 +22,7 @@ import modas from './routes/moda.routes';
 import serverConfig from './config';
 import fetchComponentData from './util/fetchData';
 
-// Initialize the Express App
-const app = new Express();
+const app = express();
 
 // Run Webpack dev server in development mode
 if (process.env.NODE_ENV === 'development') {
@@ -50,7 +49,7 @@ mongoose.connect(serverConfig.mongoURL, {useMongoClient: true}, (error) => {
 app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-app.use(Express.static(path.resolve(__dirname, '../dist')));
+app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use('/api', modas);
 
 // Render Initial HTML
