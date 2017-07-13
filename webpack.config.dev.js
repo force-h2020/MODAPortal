@@ -3,6 +3,20 @@ var cssnext = require('postcss-cssnext');
 var postcssFocus = require('postcss-focus');
 var postcssReporter = require('postcss-reporter');
 
+const path = require('path');
+
+var cssloaders = [
+  'style-loader',
+  { loader: 'css-loader', 
+    options: { localIdentName: '[name]__[local]__[hash:base64:5]', 
+      modules: true, 
+      importLoaders: 1, 
+      sourceMap: true
+    }
+  },
+  { loader: 'postcss-loader' }
+]
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
 
@@ -27,7 +41,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     modules: [
       'client',
       'node_modules',
@@ -35,26 +49,26 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: 'style-loader!css-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
+        use: cssloaders,
       }, {
         test: /\.css$/,
         include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader'],
       }, {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],
-        loader: 'babel',
+        use: 'babel-loader',
       }, {
         test: /\.(jpe?g|gif|png|svg)$/i,
-        loader: 'url-loader?limit=10000',
+        use: 'url-loader?limit=10000',
       }, {
         test: /\.json$/,
-        loader: 'json-loader',
-      },
+        use: 'json-loader',
+      }
     ],
   },
 
@@ -71,15 +85,15 @@ module.exports = {
         'NODE_ENV': JSON.stringify('development'),
       }
     }),
-  ],
-
-  postcss: () => [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    postcssReporter({
-      clearMessages: true,
-    }),
-  ],
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: __dirname,
+        postcss: () => [
+          postcssFocus(),
+          cssnext({ browsers: ['last 2 versions', 'IE > 10'], }),
+          postcssReporter({ clearMessages: true, })
+        ]
+      }
+    })
+  ]
 };
