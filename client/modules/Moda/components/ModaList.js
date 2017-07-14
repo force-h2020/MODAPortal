@@ -13,6 +13,9 @@ function ModaList(props) {
       Header: 'Title',
       id: 'title',
       accessor: row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>{row.title}</Link>},
+      filterMethod: (filter, row) => {
+              return row.title.props.children[0].startsWith(filter.value)
+            }
     }, {
       Header: 'Project',
       accessor: 'project',
@@ -32,18 +35,18 @@ function ModaList(props) {
       Header: 'Edit',
       id: 'edit',
       width: 100,
+      filterable: false,
       accessor:  row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link> },
     }, {
       Header: 'Delete',
       id: 'delete',
       width: 100,
+      filterable: false,
       accessor: row => { return <Link onClick={() => props.handleDeleteModa(row.cuid)}>Delete</Link> },
     }];
 
   return (
     <ReactTable
-      manual
-      showFilters={false}
       data={props.modas}
       columns={columns}
       defaultPageSize={10}
@@ -51,6 +54,8 @@ function ModaList(props) {
         id: 'cuid',
         asc: true,
       }]}
+      filterable={true}
+      sortable={true}
     />
   );
 }
