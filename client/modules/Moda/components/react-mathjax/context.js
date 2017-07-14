@@ -21,38 +21,34 @@ const DEFAULT_OPTIONS = {
  * Context for loading mathjax
  * @type {[type]}
  */
-const MathJaxContext = React.createClass({
-    propTypes: {
+class MathJaxContext extends React.Component {
+    static propTypes = {
         children: PropTypes.node.isRequired,
         script:   PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.oneOf([false])
         ]),
         options:  PropTypes.object
-    },
+    };
 
-    childContextTypes: {
+    static childContextTypes = {
         MathJax: PropTypes.object
-    },
+    };
 
-    getDefaultProps() {
-        return {
-            script: DEFAULT_SCRIPT,
-            options: DEFAULT_OPTIONS
-        };
-    },
+    static defaultProps = {
+        script: DEFAULT_SCRIPT,
+        options: DEFAULT_OPTIONS
+    };
 
-    getInitialState() {
-        return {
-            loaded: false
-        };
-    },
+    state = {
+        loaded: false
+    };
 
     getChildContext() {
         return {
             MathJax: typeof MathJax == 'undefined' ? undefined : MathJax
         };
-    },
+    }
 
     componentDidMount() {
         const { script } = this.props;
@@ -62,9 +58,9 @@ const MathJaxContext = React.createClass({
         }
 
         loadScript(script, this.onLoad);
-    },
+    }
 
-    onLoad(err) {
+    onLoad = (err) => {
         const { options } = this.props;
         MathJax.Hub.Config(options);
 
@@ -72,12 +68,12 @@ const MathJaxContext = React.createClass({
             loaded: true
         });
         if (err) console.log(err)
-    },
+    };
 
     render() {
         const { children } = this.props;
         return React.Children.only(children);
     }
-});
+}
 
 module.exports = MathJaxContext;
