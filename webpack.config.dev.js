@@ -83,16 +83,6 @@ module.exports = {
         CLIENT: JSON.stringify(true),
         'NODE_ENV': JSON.stringify('development'),
       }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: __dirname,
-        postcss: () => [
-          postcssFocus(),
-          cssnext({ browsers: ['last 2 versions', 'IE > 10'], }),
-          postcssReporter({ clearMessages: true, })
-        ]
-      }
     })
   ]
 };
