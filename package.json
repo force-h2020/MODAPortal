@@ -110,7 +110,7 @@
     "rimraf": "^2.5.2",
     "sinon": "^2.3.8",
     "style-loader": "^0.18.2",
-    "supertest": "^1.2.0",
+    "supertest": "^3.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.1",
