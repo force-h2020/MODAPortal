@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // To get normal classnames instead of CSS Modules classnames for testing
 const jsdom = require("jsdom")
+
 const { JSDOM } = jsdom
 
 require('mock-css-modules')
