@@ -17,9 +17,7 @@ export default function App(props) {
   return (
     <Provider store={props.store}>
       <IntlWrapper>
-        <Router key={Math.random()} history={browserHistory}>
-          {routes}
-        </Router>
+        <Router key={Math.random()} history={browserHistory} routes={routes} />
       </IntlWrapper>
     </Provider>
   );
