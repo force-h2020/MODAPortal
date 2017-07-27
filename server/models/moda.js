@@ -113,4 +113,6 @@ const modaSchema = new mongoose.Schema({
   dateAdded: { type: 'Date', default: Date.now, required: false },
 });
 
+modaSchema.index({ "$**": "text" })
+
 export default mongoose.model('Moda', modaSchema);

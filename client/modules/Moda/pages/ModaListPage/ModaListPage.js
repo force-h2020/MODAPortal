@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // Import Components
 import ModaList from '../../components/ModaList';
 import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
+import ModaSearchWidget from '../../components/ModaSearchWidget'
 
 // Import Actions
 import { addModaRequest, fetchModas, deleteModaRequest, updateModaRequest } from '../../ModaActions';
@@ -14,6 +15,7 @@ import { toggleAddModa } from '../../../App/AppActions';
 import { getShowAddModa } from '../../../App/AppReducer';
 import { getModas } from '../../ModaReducer';
 
+
 class ModaListPage extends Component {
   componentDidMount() {
     this.props.dispatch(fetchModas());
@@ -21,23 +23,32 @@ class ModaListPage extends Component {
 
   handleDeleteModa = cuid => {
     if (confirm('Do you want to delete moda ' + cuid + '?')) { // eslint-disable-line
-      this.props.dispatch(deleteModaRequest(cuid));
+      this.props.dispatch(deleteModaRequest(cuid))
     }
-  };
+  }
 
   handleAddModa = moda => {
-    this.props.dispatch(toggleAddModa());
-    this.props.dispatch(addModaRequest({ moda }));
-  };
+    this.props.dispatch(toggleAddModa())
+    this.props.dispatch(addModaRequest({ moda }))
+  }
 
   handleUpdateModa = moda => {
-    this.props.dispatch(updateModaRequest({ moda }));
-  };
+    this.props.dispatch(updateModaRequest({ moda }))
+  }
+
+  handleSearchModa = query => {
+    if (query !== null && query !== undefined && query !== '') {
+      this.props.dispatch(fetchModas({ query }))
+    } else {
+      this.props.dispatch(fetchModas())
+    }
+  }
 
   render() {
     return (
       <div>
         <ModaCreateWidget addModa={this.handleAddModa} showAddModa={this.props.showAddModa} />
+        <ModaSearchWidget searchModa={this.handleSearchModa} />
         <ModaList handleDeleteModa={this.handleDeleteModa} modas={this.props.modas} />
       </div>
     );

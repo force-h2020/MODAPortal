@@ -40,9 +40,13 @@ export function updateModaRequest(moda) {
   };
 }
 
-export function fetchModas() {
+export function fetchModas(query) {
+  var endpoint = 'modas'
+  if (query) {
+    endpoint = 'modas?query=' + query['query']
+  }
   return (dispatch) => {
-    return callApi('modas').then(res => {
+    return callApi(endpoint).then(res => {
       dispatch(addModas(res.modas));
     });
   };
