@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import styles from './Header.css';
 import logo from '../../emmc-x250.png';
 
+
 export function Header(props, context) {
   // const languageNodes = props.intl.enabledLanguages.map(
   //   lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
@@ -14,7 +15,7 @@ export function Header(props, context) {
 
   return (
     <div className={styles.header}>
-      <link rel="stylesheet" id="theme" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
       <script src="//cdn.polyfill.io/v2/polyfill.min.js" />
       {/*
         <div className={styles['language-switcher']}>
