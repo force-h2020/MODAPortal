@@ -36,12 +36,14 @@ function ModaList(props) {
       id: 'edit',
       width: 100,
       filterable: false,
+      sortable: false,
       accessor:  row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link> },
     }, {
       Header: 'Delete',
       id: 'delete',
       width: 100,
       filterable: false,
+      sortable: false,
       accessor: row => { return <Link onClick={() => props.handleDeleteModa(row.cuid)}>Delete</Link> },
     }];
 
@@ -54,8 +56,8 @@ function ModaList(props) {
         id: 'cuid',
         asc: true,
       }]}
-      filterable
       sortable
+      filterable
     />
   );
 }
