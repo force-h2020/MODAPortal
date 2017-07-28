@@ -22,41 +22,64 @@ import modas from './routes/moda.routes';
 import serverConfig from './config';
 import fetchComponentData from './util/fetchData';
 
-const app = express();
+import passport from "passport"
+import auth from './auth/routes'
+import configurePassport from "./auth/passport"
+import connectMongo from "connect-mongo"
+import secrets from "./auth/secrets"
+import session from "express-session"
 
-// Run Webpack dev server in development mode
+const app = express();
+const MongoStore = connectMongo(session)
+const sess = {
+  resave: true,
+  saveUninitialized: true,
+  secret: secrets.sessionSecret,
+  proxy: false,
+  name: "sessionId",
+  cookie: {
+    httpOnly: true,
+    secure: false
+  },
+  store: new MongoStore({
+    url: secrets.db,
+    autoReconnect: true
+  })
+}
+
+app.disable("x-powered-by")
+configurePassport(app, passport)
+
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
+  sess.cookie.secure = true
 }
 
-// Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
-
-// MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, {useMongoClient: true}, (error) => {
   if (error) {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
   }
-
-  // feed some dummy data in DB.
   //if (process.env.NODE_ENV === 'development') dummyData();
 });
 
-// Apply body Parser and server public assets and routes
-app.use(compression());
-app.use(bodyParser.json({ limit: '20mb' }));
-app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-app.use(express.static(path.resolve(__dirname, '../dist')));
-app.use('/api', modas);
+app.use(session(sess))
+app.use(passport.initialize())
+app.use(passport.session())
 
-// Render Initial HTML
+app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.resolve(__dirname, '../dist')));
+app.use('/api', modas)
+app.use('/auth', auth)
+
 const renderFullPage = (html, initialState) => {
   const head = Helmet.rewind();
 
-  // Import Manifests
   const assetsManifest = process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
   const chunkManifest = process.env.webpackChunkAssets && JSON.parse(process.env.webpackChunkAssets);
 
@@ -97,7 +120,6 @@ const renderError = err => {
   return renderFullPage(`Server Error${errTrace}`, {});
 };
 
-// Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
@@ -134,7 +156,6 @@ app.use((req, res, next) => {
   });
 });
 
-// start app
 app.listen(serverConfig.port, (error) => {
   if (!error) {
     console.log(`MODA Portal is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
