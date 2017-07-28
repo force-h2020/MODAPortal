@@ -9,3 +9,5 @@ dist
 coverage/
 .nyc_output/
 moda.sublime-workspace
+build
+src/client/modules/App/components/DevTools.js

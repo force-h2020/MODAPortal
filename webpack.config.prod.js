@@ -23,7 +23,7 @@ module.exports = {
 
   entry: {
     app: [
-      './client/index.js',
+      './src/client/index.js',
     ],
     vendor: [
       'react',
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   output: {
-    path: __dirname + '/dist/',
+    path: __dirname + '/build/',
     filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
