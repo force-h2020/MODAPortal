@@ -1,12 +1,10 @@
 import callApi from '../../util/apiCaller';
 
-// Export Constants
 export const ADD_MODA = 'ADD_MODA';
 export const ADD_MODAS = 'ADD_MODAS';
 export const DELETE_MODA = 'DELETE_MODA';
 export const UPDATE_MODA = 'UPDATE_MODA';
 
-// Export Actions
 export function addModa(moda) {
   return {
     type: ADD_MODA,
@@ -66,7 +64,6 @@ export function deleteModa(cuid) {
 }
 
 export function deleteModaRequest(cuid) {
-  // Can have getState as second parameter
   return (dispatch) => {
     return callApi(`modas/${cuid}`, 'delete').then(() => dispatch(deleteModa(cuid)));
   };

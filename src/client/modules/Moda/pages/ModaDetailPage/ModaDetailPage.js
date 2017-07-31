@@ -5,10 +5,8 @@ import Helmet from 'react-helmet';
 
 import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
 
-// Import Actions
 import { fetchModa, updateModaRequest } from '../../ModaActions';
 
-// Import Selectors
 import { getModa } from '../../ModaReducer';
 
 class ModaDetailPage extends Component {
@@ -29,12 +27,10 @@ class ModaDetailPage extends Component {
   }
 }
 
-// Actions required to provide data for this component to render in sever side.
 ModaDetailPage.need = [params => {
   return fetchModa(params.cuid);
 }];
 
-// Retrieve data from store as props
 function mapStateToProps(state, props) {
   return {
     moda: getModa(state, props.params.cuid),

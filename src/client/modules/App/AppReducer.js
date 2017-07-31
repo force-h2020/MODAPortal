@@ -1,7 +1,5 @@
-// Import Actions
 import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './AppActions';
 
-// Initial State
 const initialState = {
   showAddModa: false,
   showEditModa: false,
@@ -30,13 +28,6 @@ const AppReducer = (state = initialState, action) => {
   }
 };
 
-/* Selectors */
-
-// Get showAddModa
 export const getShowAddModa = state => state.app.showAddModa;
-
-// Get showAddModa
 export const getShowEditModa = state => state.app.showEditModa;
-
-// Export Reducer
 export default AppReducer;

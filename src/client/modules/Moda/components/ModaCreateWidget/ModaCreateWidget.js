@@ -115,7 +115,6 @@ export class ModaCreateWidget extends Component {
   };
 
   render() {
-    // const log = type => console.log.bind(console, type);
     const cls = `${styles.form} ${(this.props.showAddModa ? styles.appear : '')}`;
     const widgets = {
       cudstreeselect: CUDSTreeSelect,

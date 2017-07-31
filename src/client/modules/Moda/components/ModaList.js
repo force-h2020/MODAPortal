@@ -2,12 +2,10 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router';
 
-// ES6
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 function ModaList(props) {
-  // Create some column definitions
   const columns = [
     {
       Header: 'Title',

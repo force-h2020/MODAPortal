@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-// Import Style
 import styles from './App.css';
 
-// Import Components
 import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
-// Import Actions
 import { toggleAddPost, toggleAddModa, hideForms } from './AppActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
@@ -76,7 +73,6 @@ App.propTypes = {
   intl: PropTypes.object.isRequired,
 };
 
-// Retrieve data from store as props
 function mapStateToProps(store) {
   return {
     intl: store.intl,

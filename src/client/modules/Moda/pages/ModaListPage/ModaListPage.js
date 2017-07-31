@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-// Import Components
 import ModaList from '../../components/ModaList';
 import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
 import ModaSearchWidget from '../../components/ModaSearchWidget'
 
-// Import Actions
 import { addModaRequest, fetchModas, deleteModaRequest, updateModaRequest } from '../../ModaActions';
 import { toggleAddModa } from '../../../App/AppActions';
 
-// Import Selectors
 import { getShowAddModa } from '../../../App/AppReducer';
 import { getModas } from '../../ModaReducer';
 
@@ -55,10 +52,8 @@ class ModaListPage extends Component {
   }
 }
 
-// Actions required to provide data for this component to render in sever side.
 ModaListPage.need = [() => { return fetchModas(); }];
 
-// Retrieve data from store as props
 function mapStateToProps(state) {
   return {
     showAddModa: getShowAddModa(state),

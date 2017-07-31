@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 
-// Import Style
 import styles from './Header.css';
 import logo from '../../emmc-x250.png';
 
