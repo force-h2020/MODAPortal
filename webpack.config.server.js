@@ -4,7 +4,7 @@ var ExternalsPlugin = require('webpack2-externals-plugin');
 
 module.exports = {
 
-  entry: path.resolve(__dirname, 'server/server.js'),
+  entry: path.resolve(__dirname, 'src/server/server.js'),
 
   output: {
     path: __dirname + '/build/',
