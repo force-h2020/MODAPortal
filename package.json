@@ -1,12 +1,9 @@
 {
   "name": "moda",
   "version": "1.0.0",
-  "description": "MODA user portal using React and Redux",
+  "description": "MODA user portal",
   "scripts": {
     "test": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/moda node_modules/.bin/nyc node node_modules/.bin/ava",
-    "test:watch": "npm run test -- --watch",
-    "cover": "nyc npm run test",
-    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon src/index.js",
     "start:prod": "cross-env NODE_ENV=production node src/index.js",
     "bs": "npm run clean && npm run build && npm run build:server && npm run start:prod",
@@ -14,8 +11,7 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "clean": "rimraf build",
-    "lint": "eslint src",
-    "lint:fix": "npm run lint -- --fix"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -125,7 +121,7 @@
     "webpack2-externals-plugin": "^1.0.0"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "ava": {
     "files": [
