@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as ModaController from '../controllers/moda.controller';
+import * as ModaController from './controller';
 
 const router = new Router();
 
