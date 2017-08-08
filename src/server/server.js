@@ -1,33 +1,34 @@
-import express from 'express';
-import compression from 'compression';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import path from 'path';
-import IntlWrapper from '../client/modules/Intl/IntlWrapper';
+import express from 'express'
+import session from 'express-session'
 
-import webpack from 'webpack';
-import config from '../../webpack.config.dev';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+import compression from 'compression'
+import mongoose from 'mongoose'
+import connectMongo from 'connect-mongo'
+import bodyParser from 'body-parser'
+import path from 'path'
+import passport from 'passport'
 
-import React from 'react';
-import Helmet from 'react-helmet';
-import configureStore from '../client/store';
-import { Provider } from 'react-redux';
-import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
+import React from 'react'
+import Helmet from 'react-helmet'
+import { Provider } from 'react-redux'
+import { renderToString } from 'react-dom/server'
+import { match, RouterContext } from 'react-router'
 
-import routes from '../client/routes';
-import modas from './routes/moda.routes';
-import serverConfig from './config';
-import fetchComponentData from './util/fetchData';
+import webpack from 'webpack'
+import config from '../../webpack/webpack.config.dev'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
 
-import passport from "passport"
+import modas from './moda/routes'
 import auth from './auth/routes'
-import configurePassport from "./auth/passport"
-import connectMongo from "connect-mongo"
-import secrets from "./auth/secrets"
-import session from "express-session"
+import configurePassport from './auth/passport'
+import secrets from './auth/secrets'
+import fetchComponentData from './util/fetchData'
+
+import configureStore from '../client/store'
+import { createRoutes } from '../client/routes'
+import serverConfig from './config'
+
 
 const app = express();
 const MongoStore = connectMongo(session)
@@ -73,7 +74,7 @@ app.use(passport.session())
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.resolve(__dirname, '../dist')));
+app.use(express.static(path.resolve(__dirname, '../build')));
 app.use('/api', modas)
 app.use('/auth', auth)
 
@@ -120,6 +121,9 @@ const renderError = err => {
   return renderFullPage(`Server Error${errTrace}`, {});
 };
 
+const store = configureStore()
+const routes = createRoutes(store)
+
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
@@ -140,9 +144,7 @@ app.use((req, res, next) => {
       .then(() => {
         const initialView = renderToString(
           <Provider store={store}>
-            <IntlWrapper>
-              <RouterContext {...renderProps} />
-            </IntlWrapper>
+            <RouterContext {...renderProps} />
           </Provider>
         );
         const finalState = store.getState();
@@ -158,7 +160,7 @@ app.use((req, res, next) => {
 
 app.listen(serverConfig.port, (error) => {
   if (!error) {
-    console.log(`MODA Portal is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
+    console.log(`MODA Portal is running on port ${serverConfig.port}`); // eslint-disable-line
   }
 });
 

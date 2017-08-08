@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
+import { PropTypes } from 'prop-types';
 
 import styles from './App.css';
-
-import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
-import { toggleAddPost, toggleAddModa, hideForms } from './AppActions';
-import { switchLanguage } from '../../modules/Intl/IntlActions';
+import * as appActions from "./AppActions"
+import * as authActions from '../Auth/AuthActions'
 
 export class App extends Component {
   constructor(props) {
@@ -21,14 +20,6 @@ export class App extends Component {
   componentDidMount() {
     this.setState({isMounted: true}); // eslint-disable-line
   }
-
-  toggleAddPostSection = () => {
-    this.props.dispatch(toggleAddPost());
-  };
-
-  toggleAddModaSection = () => {
-    this.props.dispatch(toggleAddModa());
-  };
 
   render() {
     return (
@@ -51,11 +42,8 @@ export class App extends Component {
             ]}
           />
           <Header
-            switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-            intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
-            toggleAddModa={this.toggleAddModaSection}
-            hideForms={() => this.props.dispatch(hideForms())}
+            toggleAddModa={this.props.toggleAddModa}
+            hideForms={this.props.hideForms}
           />
           <div className={styles.container}>
             {this.props.children}
@@ -69,14 +57,17 @@ export class App extends Component {
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
+  toggleAddModa: PropTypes.func.isRequired,
+  hideForms: PropTypes.func.isRequired
 };
 
-function mapStateToProps(store) {
+function mapStateToProps(state) {
   return {
-    intl: store.intl,
+    user: state.user
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  Object.assign(appActions, authActions)
+)(App);

@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
       [
         "babel-plugin-webpack-loaders",
         {
-          "config": "./webpack.config.babel.js",
+          "config": "./webpack/webpack.config.babel.js",
           "verbose": true
         }
       ]
@@ -20,15 +20,3 @@ if (process.env.NODE_ENV === 'production') {
 
   require('./server/server');
 }
-
-// import { createServer } from 'http';
-
-// const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-// const port = process.env.PORT || 3000;
-
-// createServer(async (req, res) => {
-//   await delay(500);
-//   console.log('Request!');
-//   res.end('hi!');
-// })
-// .listen(port, () => console.log(`Server running on port ${port}`));

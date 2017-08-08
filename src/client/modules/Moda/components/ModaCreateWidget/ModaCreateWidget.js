@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { injectIntl } from 'react-intl';
 
 import Form from 'react-jsonschema-form';
 import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField";
@@ -152,4 +151,4 @@ ModaCreateWidget.propTypes = {
   moda: PropTypes.object,
 };
 
-export default injectIntl(ModaCreateWidget);
+export default ModaCreateWidget

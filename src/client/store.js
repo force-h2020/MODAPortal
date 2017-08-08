@@ -1,7 +1,8 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import DevTools from './modules/App/components/DevTools';
-import rootReducer from './reducers';
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+
+import DevTools from './modules/App/components/DevTools'
+import rootReducer from './reducers'
 
 export default function configureStore(initialState = {}) {
   const enhancers = [
