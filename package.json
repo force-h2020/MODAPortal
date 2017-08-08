@@ -4,11 +4,11 @@
   "description": "MODA user portal",
   "scripts": {
     "test": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/moda node_modules/.bin/nyc node node_modules/.bin/ava",
-    "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon src/index.js",
+    "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon devStart.js",
     "start:prod": "cross-env NODE_ENV=production node src/index.js",
     "bs": "npm run clean && npm run build && npm run build:server && npm run start:prod",
     "bs:yrn": "yarn run clean && yarn run build && yarn run build:server && yarn run start:prod",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack/webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.server.js",
     "clean": "rimraf build",
     "lint": "eslint src"
