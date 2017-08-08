@@ -6,6 +6,7 @@ var cssnext = require('postcss-cssnext');
 var postcssFocus = require('postcss-focus');
 var postcssReporter = require('postcss-reporter');
 var cssnano = require('cssnano');
+var path = require('path')
 
 var cssloaders = [
   { loader: 'css-loader', 
@@ -23,7 +24,7 @@ module.exports = {
 
   entry: {
     app: [
-      './src/client/index.js',
+      path.resolve(__dirname, 'src/client/index.js'),
     ],
     vendor: [
       'react',
@@ -32,15 +33,17 @@ module.exports = {
   },
 
   output: {
-    path: __dirname + '/build/',
+    path: path.resolve(__dirname, 'build'),// __dirname + '/build/',
     filename: '[name].[chunkhash].js',
-    publicPath: '/',
+    publicPath: 'http://localhost:8000/',
   },
 
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
-      'client',
+      path.resolve(__dirname, "src"),
+      path.resolve(__dirname, "src", "client"),
+      'src/client',
       'node_modules',
     ],
   },
@@ -81,7 +84,7 @@ module.exports = {
     }),
    new webpack.LoaderOptionsPlugin({
       options: {
-        context  : __dirname,
+        context  : path.resolve(__dirname, 'src'),
         postcss: [
           postcssFocus(),
           cssnext({ browsers: ['last 2 versions', 'IE > 10'], }),

@@ -21,7 +21,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
-      'client',
+      'src/client',
       'node_modules',
     ],
   },

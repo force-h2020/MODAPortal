@@ -8,8 +8,8 @@
     "start:prod": "cross-env NODE_ENV=production node src/index.js",
     "bs": "npm run clean && npm run build && npm run build:server && npm run start:prod",
     "bs:yrn": "yarn run clean && yarn run build && yarn run build:server && yarn run start:prod",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.server.js",
     "clean": "rimraf build",
     "lint": "eslint src"
   },
@@ -26,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "antd": "^2.12.1",
+    "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.2",
