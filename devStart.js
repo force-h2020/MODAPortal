@@ -4,7 +4,7 @@ require('babel-core/register')({
 	  [
 	    "babel-plugin-webpack-loaders",
 	    {
-	      "config": "./webpack/webpack.config.babel.js",
+	      "config": "./webpack/webpack.config.dev.js",
 	      "verbose": true
 	    }
 	  ]

@@ -16,8 +16,6 @@ import { match, RouterContext } from 'react-router'
 
 import webpack from 'webpack'
 import config from '../../webpack/webpack.config.dev'
-import webpackDevMiddleware from 'webpack-dev-middleware'
-import webpackHotMiddleware from 'webpack-hot-middleware'
 
 import modas from './moda/routes'
 import auth from './auth/routes'
@@ -48,14 +46,33 @@ const sess = {
   })
 }
 
-app.disable("x-powered-by")
 configurePassport(app, passport)
 
 if (process.env.NODE_ENV === 'development') {
-  const compiler = webpack(config);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-  app.use(webpackHotMiddleware(compiler));
-  sess.cookie.secure = true
+  config['entry'] = {
+    app: [
+      'react-hot-loader/patch',
+      './src/client/index.js',
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+    ],
+  }
+  config['output'] = {
+    path: path.resolve(__dirname, '../../build'),
+    filename: 'app.js',
+    publicPath: 'http://localhost:8000/',
+  }
+
+  const compiler = webpack(config)
+
+  app.use(require("webpack-dev-middleware")(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  }))
+
+  app.use(require("webpack-hot-middleware")(compiler))
 }
 
 mongoose.Promise = global.Promise;
