@@ -1,6 +1,4 @@
-![](http://res.cloudinary.com/hashnode/image/upload/w_200/v1466495663/static_imgs/mern/v2/mernio-logo.png)
-
-# MODA Management Portal
+# MODA Portal
 
 MODA Portal is a tool to collect MODA workflow information.
 
@@ -37,4 +35,4 @@ You even don't need to clone the repository, all you need is the `docker-compose
 ## License
 MODAPortal is released under the [MIT License](http://www.opensource.org/licenses/MIT).
 
-This tool was initially based on [MERN](https://github.com/Hashnode/mern-starter) scaffolding app.
+This tool was initially based on [MERN](https://github.com/Hashnode/mern-starter) scaffolding app. Use [`create-react-app`](https://github.com/facebookincubator/create-react-app) instead.
