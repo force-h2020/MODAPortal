@@ -12,11 +12,9 @@ import styles from './ModaCreateWidget.css';
 import MathJax from '../react-mathjax';
 
 import TreeSelect from 'antd/lib/tree-select';
-//import 'antd/lib/style/index.css'
 import 'antd/lib/tree-select/style/index.css'
-//import 'antd/lib/input/style/index.css'
 import 'antd/lib/select/style/index.css'
-//import 'antd/lib/checkbox/style/index.css'
+
 
 const CustomSchemaField = function(props) {
   return (
