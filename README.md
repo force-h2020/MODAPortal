@@ -3,15 +3,26 @@
 MODA Portal is a tool to collect MODA workflow information.
 
 ## Quickstart
+**Note : Please make sure your MongoDB is running.**
+First thing is to clone the repo and start the API server:
 
 ```
-  git clone https://github.com/Fraunhofer-IWM/MODAPortal
+  git clone https://github.com/force-h2020/MODAPortal
   cd MODAPortal
   yarn install
   yarn start
 ```
 
-**Note : Please make sure your MongoDB is running.** For MongoDB installation guide see [this](https://docs.mongodb.org/v3.0/installation/). Also `npm3` is required to install dependencies properly.
+Then start the react client:
+
+```
+  cd MODAPortal/client
+  yarn install
+  yarn start
+```
+
+Then open [http://localhost:3000](http://localhost:3000) to see the app.
+
 
 ## Try with Docker
 In order to run the portal, the fastest way is using docker. You need docker and docker-compose installed on your machine and your user should be member of docker group (in unix-like machines).
