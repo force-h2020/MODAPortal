@@ -1,4 +1,5 @@
-import uuidv1 from 'uuid/v1'
+import slug from 'slug'
+import shortid from 'shortid'
 import validator from 'validator'
 
 import Moda from './models'
@@ -29,8 +30,8 @@ export function addModa(req, res) {
   newModa.userCase = validator.escape(newModa.userCase)
   newModa.creationDate = Date()
   newModa.version = "6"
-  newModa.slug = 'slug' //slug(newModa.userCase.toLowerCase(), { lowercase: true });
-  newModa.cuid = uuidv1()
+  newModa.slug = slug(newModa.title.toLowerCase())
+  newModa.cuid = shortid.generate()
   newModa.save((err, saved) => {
     if (err) {
       console.log(err)
