@@ -24,50 +24,50 @@ export function getModas(req, res) {
 }
 
 export function addModa(req, res) {
-  const newModa = new Moda(req.body.moda);
+  const newModa = new Moda(req.body.moda)
 
-  newModa.userCase = validator.escape(newModa.userCase);
-  newModa.creationDate = Date();
-  newModa.version = "6";
+  newModa.userCase = validator.escape(newModa.userCase)
+  newModa.creationDate = Date()
+  newModa.version = "6"
   newModa.slug = 'slug' //slug(newModa.userCase.toLowerCase(), { lowercase: true });
-  newModa.cuid = uuidv1();
+  newModa.cuid = uuidv1()
   newModa.save((err, saved) => {
     if (err) {
-      console.log(err);
-      return res.status(500).send(err);
+      console.log(err)
+      return res.status(500).send(err)
     }
-    return res.json({ moda: saved });
-  });
+    return res.json({ moda: saved })
+  })
 }
 
 export function putModa(req, res) {
   const moda = req.body
-  moda.modificationDate = Date();
+  moda.modificationDate = Date()
   Moda.update({ cuid: moda.cuid }, moda, (err) => {
     if (err) {
-      res.status(500).send(err);
+      res.status(500).send(err)
     }
-    return res.json({ moda: moda });
-  });
+    return res.json({ moda: moda })
+  })
 }
 
 export function getModa(req, res) {
   Moda.findOne({ cuid: req.params.cuid }).exec((err, moda) => {
     if (err) {
-      res.status(500).send(err);
+      res.status(500).send(err)
     }
-    res.json({ moda });
-  });
+    res.json({ moda })
+  })
 }
 
 export function deleteModa(req, res) {
   Moda.findOne({ cuid: req.params.cuid }).exec((err, moda) => {
     if (err || !moda) {
-      res.status(500).send(err);
+      res.status(500).send(err)
     }
 
     moda.remove(() => {
-      res.status(200).end();
-    });
-  });
+      res.status(200).end()
+    })
+  })
 }

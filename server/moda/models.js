@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const modaSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -111,8 +111,8 @@ const modaSchema = new mongoose.Schema({
   slug: { type: 'String', required: true },
   cuid: { type: 'String', required: true },
   dateAdded: { type: 'Date', default: Date.now, required: false },
-});
+})
 
 modaSchema.index({ "$**": "text" })
 
-export default mongoose.model('Moda', modaSchema);
+export default mongoose.model('Moda', modaSchema)
