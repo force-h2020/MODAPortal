@@ -78,7 +78,7 @@ export function manualLogin(
 			.catch(function (response) {
 			    if (response instanceof Error) {
 			      // Something happened in setting up the request that triggered an Error
-			      console.log('Error', response.message);
+			      console.log('Error', response.message)
 			    }
 		    })					
 	}
@@ -104,7 +104,7 @@ export function manualLogout() {
 			.catch(response => {
 			    if (response instanceof Error) {
 			      // Something happened during logout that triggered an Error
-			      console.log('Error', response.message);
+			      console.log('Error', response.message)
 			    }
 			})
 	}			
@@ -129,7 +129,7 @@ export function manualRegister(data) {
 			.catch(response => {
 			    if (response instanceof Error) {
 			      // Something happened in setting up the request that triggered an Error
-			      console.log('Error', response.message);
+			      console.log('Error', response.message)
 			    }
 		    })
 	}

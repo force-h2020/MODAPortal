@@ -1,9 +1,9 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Link } from 'react-router';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { Link } from 'react-router'
 
 import './Header.css'
-import logo from '../../emmc-x250.png'
+import logo from './emmc-x250.png'
 
 
 export function Header(props, context) {
@@ -25,16 +25,16 @@ export function Header(props, context) {
         }
       </div>
     </div>
-  );
+  )
 }
 
 Header.contextTypes = {
   router: PropTypes.object,
-};
+}
 
 Header.propTypes = {
   toggleAddModa: PropTypes.func.isRequired,
   hideForms: PropTypes.func.isRequired,
-};
+}
 
-export default Header;
+export default Header

@@ -12,9 +12,9 @@ export default function App(props) {
     <Provider store={props.store}>
       <Router key={Math.random()} history={browserHistory} routes={rts} />
     </Provider>
-  );
+  )
 }
 
 App.propTypes = {
   store: PropTypes.object.isRequired,
-};
+}

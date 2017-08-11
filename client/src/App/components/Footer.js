@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-import bg from '../../header-bk.png'
+import bg from './header-bk.png'
 
 
 export function Footer() {

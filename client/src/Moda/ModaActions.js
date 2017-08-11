@@ -7,28 +7,28 @@ export function addModa(moda) {
   return {
     type: types.ADD_MODA,
     moda,
-  };
+  }
 }
 
 export function addModas(modas) {
   return {
     type: types.ADD_MODAS,
     modas,
-  };
+  }
 }
 
 export function updateModa(moda) {
   return {
     type: types.UPDATE_MODA,
     moda,
-  };
+  }
 }
 
 export function deleteModa(cuid) {
   return {
     type: types.DELETE_MODA,
     cuid,
-  };
+  }
 }
 
 // function makeUserRequest(method, data, api="/login") {
@@ -42,15 +42,15 @@ export function deleteModa(cuid) {
 
 export function addModaRequest(moda) {
   return (dispatch) => {
-    return callApi('modas', 'post', moda).then(res => dispatch(addModa(res.moda)));
-  };
+    return callApi('modas', 'post', moda).then(res => dispatch(addModa(res.moda)))
+  }
 }
 
 export function updateModaRequest(moda) {
   return (dispatch) => {
     return callApi(`modas/${moda.cuid}`, 'put', moda)
-    .then(res => dispatch(updateModa(res.moda)));
-  };
+    .then(res => dispatch(updateModa(res.moda)))
+  }
   // return (dispatch) => {
   //   return makeUserRequest("put", moda, `/api/modas/${moda.cuid}`) 
   //     .then(response => {
@@ -72,19 +72,19 @@ export function fetchModas(query) {
   }
   return (dispatch) => {
     return callApi(endpoint).then(res => {
-      dispatch(addModas(res.modas));
-    });
-  };
+      dispatch(addModas(res.modas))
+    })
+  }
 }
 
 export function fetchModa(cuid) {
   return (dispatch) => {
-    return callApi(`modas/${cuid}`).then(res => dispatch(addModa(res.moda)));
-  };
+    return callApi(`modas/${cuid}`).then(res => dispatch(addModa(res.moda)))
+  }
 }
 
 export function deleteModaRequest(cuid) {
   return (dispatch) => {
-    return callApi(`modas/${cuid}`, 'delete').then(() => dispatch(deleteModa(cuid)));
-  };
+    return callApi(`modas/${cuid}`, 'delete').then(() => dispatch(deleteModa(cuid)))
+  }
 }

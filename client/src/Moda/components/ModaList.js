@@ -1,9 +1,9 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Link } from 'react-router';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { Link } from 'react-router'
 
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import ReactTable from 'react-table'
+import 'react-table/react-table.css'
 
 function ModaList(props) {
   const columns = [
@@ -43,7 +43,7 @@ function ModaList(props) {
       filterable: false,
       sortable: false,
       accessor: row => { return <Link onClick={() => props.handleDeleteModa(row.cuid)}>Delete</Link> },
-    }];
+    }]
 
   return (
     <ReactTable
@@ -57,7 +57,7 @@ function ModaList(props) {
       sortable
       filterable
     />
-  );
+  )
 }
 
 ModaList.propTypes = {
@@ -66,6 +66,6 @@ ModaList.propTypes = {
     cuid: PropTypes.string.isRequired,
   })).isRequired,
   handleDeleteModa: PropTypes.func.isRequired,
-};
+}
 
-export default ModaList;
+export default ModaList
