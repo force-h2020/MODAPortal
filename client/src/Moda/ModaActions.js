@@ -1,7 +1,6 @@
 import * as types from './constants'
-import callApi from '../../util/apiCaller';
+import callApi from '../api'
 //import axios from 'axios'
-
 
 
 export function addModa(moda) {

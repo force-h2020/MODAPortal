@@ -1,6 +1,6 @@
 import { ADD_MODA, ADD_MODAS, DELETE_MODA, UPDATE_MODA } from './constants'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 const ModaReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,8 +31,8 @@ const ModaReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
 
-export const getModas = state => state.modas.data;
-export const getModa = (state, cuid) => state.modas.data.filter(moda => moda.cuid === cuid)[0];
-export default ModaReducer;
+export const getModa = (state, cuid) => state.modas.data.filter(moda => moda.cuid === cuid)[0]
+
+export default ModaReducer

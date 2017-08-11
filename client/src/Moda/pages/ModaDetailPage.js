@@ -3,11 +3,9 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import ModaCreateWidget from '../../components/ModaCreateWidget/ModaCreateWidget';
+import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget';
+import { fetchModa, updateModaRequest } from '../ModaActions';
 
-import { fetchModa, updateModaRequest } from '../../ModaActions';
-
-import { getModa } from '../../ModaReducer';
 
 class ModaDetailPage extends Component {
   handleUpdateModa = moda => {
@@ -34,7 +32,7 @@ ModaDetailPage.need = [params => {
 
 function mapStateToProps(state, props) {
   return {
-    moda: getModa(state, props.params.cuid),
+    moda: state.modas.data.filter(moda => moda.cuid === props.params.cuid)[0],
     type: true,
   };
 }

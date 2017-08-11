@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-import App from './modules/App/App'
-import LoginContainer from './modules/Auth/LoginContainer'
-import ModaListPage from './modules/Moda/pages/ModaListPage/ModaListPage'
-import ModaDetailPage from './modules/Moda/pages/ModaDetailPage/ModaDetailPage'
+import App from './App/App'
+import LoginContainer from './Auth/LoginContainer'
+import ModaListPage from './Moda/pages/ModaListPage'
+import ModaDetailPage from './Moda/pages/ModaDetailPage'
 
 
 export const createRoutes = (store) => {
