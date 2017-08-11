@@ -1,7 +1,8 @@
-import Moda from './models';
-import cuid from 'cuid';
-//import slug from 'limax';
-import validator from 'validator';
+import uuidv1 from 'uuid/v1'
+import validator from 'validator'
+
+import Moda from './models'
+
 
 export function getModas(req, res) {
   var query = {}
@@ -29,7 +30,7 @@ export function addModa(req, res) {
   newModa.creationDate = Date();
   newModa.version = "6";
   newModa.slug = 'slug' //slug(newModa.userCase.toLowerCase(), { lowercase: true });
-  newModa.cuid = cuid();
+  newModa.cuid = uuidv1();
   newModa.save((err, saved) => {
     if (err) {
       console.log(err);
