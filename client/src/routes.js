@@ -22,11 +22,10 @@ export const createRoutes = (store) => {
   }
 
   return(
-  <Route path="/" component={App}>
-    <IndexRoute component={ModaListPage} />
-    <Route path="/modas/:slug-:cuid" component={ModaDetailPage} />
+  <Route path="/" component={App} >
+    <IndexRoute component={ModaListPage} onEnter={requireAuth} />
+    <Route path="/modas/:slug-:cuid" component={ModaDetailPage} onEnter={requireAuth} />
     <Route path="login" component={LoginContainer} />
-    <Route path="topsecret" component={LoginContainer} onEnter={requireAuth}/>
   </Route>
   )
 }
