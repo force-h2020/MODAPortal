@@ -1,50 +1,86 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import { Form, Button, FormControl, FormGroup, Col, Checkbox, ControlLabel, HelpBlock } from 'react-bootstrap'
 
-// ----------------------------------------------------
+
 const loginMessageStyle = {
-	color: "red"
+  color: "red"
 }
 
-// ----------------------------------------------------
 class Login extends React.Component {
-    state = {
-        loginMessage: ""
-    };
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.state = {
+      loginMessage: ""
+    }
+  }
 
-    _onLoginSubmit = (event) => {		
-		event.preventDefault()
-		const email = ReactDOM.findDOMNode(this.refs.email).value
-		const password = ReactDOM.findDOMNode(this.refs.password).value
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const email = this.email.value
+    const password = this.password.value
 
-		// Passed in via react-redux. Returns a promise.
-		this.props.manualLogin({ // this function is passed in via react-redux
-			email,
-			password			
-		}, this.props.nextPathname) // holds the path to redirect to after login (if any)
-		.then((loginMessage) => {
-			if (loginMessage) {
-				// report to the user is there was a problem during login
-				this.setState({
-					loginMessage
-				})			
-			}	
-		})
+    // Passed in via react-redux. Returns a promise.
+    this.props.manualLogin({ // this function is passed in via react-redux
+      email,
+      password      
+    }, this.props.nextPathname) // holds the path to redirect to after login (if any)
+    .then((loginMessage) => {
+      if (loginMessage) {
+        // report to the user is there was a problem during login
+        this.setState({
+          loginMessage
+        })      
+      } 
+    })
+  }
 
-	};
+  handleChange = value => {
+  }
 
-    render() {
-		return(
-			<div>
-				<h2>Log in</h2>		
-				<form onSubmit={this._onLoginSubmit}>
-					<input type="email" ref="email" placeholder="Email"/><br/>
-					<input ref="password" type="password" placeholder="Password" /><br/>
-					<input type="submit" value="Login" /> <span style={loginMessageStyle}>{ this.state.loginMessage }</span>
-				</form>	
-			</div>	
-		)
-	}
+  render() {
+    return(
+      <div>
+        <Form horizontal onSubmit={ (e)=> this.handleSubmit(e) } onChange={ this.handleChange }>
+          <FormGroup controlId="formHorizontalEmail">
+            <Col componentClass={ControlLabel} sm={2}>
+              Email
+            </Col>
+            <Col sm={10}>
+              <FormControl inputRef={ref => { this.email = ref; }} type="email" placeholder="Email" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword">
+            <Col componentClass={ControlLabel} sm={2}>
+              Password
+            </Col>
+            <Col sm={10}>
+              <FormControl inputRef={ref => { this.password = ref; }} type="password" placeholder="Password" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Checkbox>Remember me</Checkbox>
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Button type="submit">
+                Sign in
+              </Button>
+              <div style={loginMessageStyle}>{ this.state.loginMessage }</div>
+              <ControlLabel></ControlLabel>
+              <FormControl.Feedback />
+              <HelpBlock></HelpBlock>
+            </Col>
+          </FormGroup>
+        </Form>
+      </div>  
+    )
+  }
 }
 
 export default Login
