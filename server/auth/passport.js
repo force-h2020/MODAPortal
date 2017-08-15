@@ -1,6 +1,6 @@
 /* Initializing PassportJS */
 import User from "./models"
-import local from "./strategies/local"
+import custom from './strategies/custom'
 
 export default function (app, passport) {
   // Configure Passport authenticated session persistence.
@@ -21,6 +21,5 @@ export default function (app, passport) {
   })
 
   // use the following strategies
-  passport.use(local)
+  passport.use(custom)
 }
-
