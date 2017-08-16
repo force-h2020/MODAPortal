@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist/ && babel ./server --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "yarn build && supervisor -i client dist/index.js"
+    "start": "yarn build && dist/ && supervisor -i client -i node_modules dist/index.js",
+    "start:dev": "babel-watch server/index.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
+    "babel-watch": "^2.0.7",
     "rimraf": "^2.6.1",
     "supervisor": "^0.12.0"
   }

@@ -1,27 +1,35 @@
 import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
-import { PropTypes } from 'prop-types'
 
 import './App.css'
 import DevTools from './components/DevTools'
 import Header from './components/Header'
 import Footer from './components/Footer'
-
+import AlertDismissable from './alert'
 import * as appActions from "./AppActions"
 import * as authActions from '../Auth/AuthActions'
+
 
 export class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { isMounted: false }
+    this.state = { isMounted: false,
+                   showModal: false}
+    this.close = this.close.bind(this)
   }
 
   componentDidMount() {
-    this.setState({isMounted: true}); // eslint-disable-line
+    this.setState({isMounted: true})
+  }
+
+  close() {
+    this.setState({ showModal: false })
   }
 
   render() {
+
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
@@ -46,6 +54,7 @@ export class App extends Component {
             hideForms={this.props.hideForms}
           />
           <div className='container'>
+            { this.state.showModal && (<AlertDismissable />) }
             {this.props.children}
           </div>
           <Footer />

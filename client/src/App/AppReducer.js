@@ -1,4 +1,4 @@
-import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './AppActions'
+import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './constants'
 
 const initialState = {
   showAddModa: false,
@@ -28,6 +28,4 @@ const AppReducer = (state = initialState, action) => {
   }
 }
 
-export const getShowAddModa = state => state.app.showAddModa
-export const getShowEditModa = state => state.app.showEditModa
 export default AppReducer

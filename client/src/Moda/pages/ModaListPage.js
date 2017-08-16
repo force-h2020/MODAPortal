@@ -21,8 +21,8 @@ class ModaListPage extends Component {
   }
 
   handleAddModa = moda => {
-    this.props.dispatch(toggleAddModa())
     this.props.dispatch(addModaRequest({ moda }))
+    this.props.dispatch(toggleAddModa())
   }
 
   handleSearchModa = query => {
