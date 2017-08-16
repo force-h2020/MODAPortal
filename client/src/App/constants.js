@@ -1,0 +1,3 @@
+export const TOGGLE_ADD_MODA = 'TOGGLE_ADD_MODA'
+export const TOGGLE_EDIT_MODA = 'TOGGLE_EDIT_MODA'
+export const HIDE_FORMS = 'HIDE_FORMS'
