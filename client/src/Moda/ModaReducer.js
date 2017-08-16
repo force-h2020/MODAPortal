@@ -33,6 +33,4 @@ const ModaReducer = (state = initialState, action) => {
   }
 }
 
-export const getModa = (state, cuid) => state.modas.data.filter(moda => moda.cuid === cuid)[0]
-
 export default ModaReducer
