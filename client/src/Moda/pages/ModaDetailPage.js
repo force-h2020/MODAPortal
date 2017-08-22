@@ -17,7 +17,7 @@ class ModaDetailPage extends Component {
   render() {
     return (
       <div>
-        <Helmet title={this.props.moda.userCase} />
+        <Helmet title={this.props.moda.title} />
         <div>
           <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} />
         </div>
