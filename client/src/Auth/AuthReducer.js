@@ -1,51 +1,66 @@
+import {REHYDRATE} from 'redux-persist/constants'
 import { 
-	MANUAL_LOGIN_USER,
-	LOGIN_SUCCESS_USER,
-	LOGIN_ERROR_USER,
-	SIGNUP_USER,
-	SIGNUP_SUCCESS_USER,
-	SIGNUP_ERROR_USER,
-	LOGOUT_USER,
-	LOGOUT_SUCCESS_USER,
-	LOGOUT_ERROR_USER,
-	REGISTER_USER,
-	REGISTER_SUCCESS_USER,
-	REGISTER_ERROR_USER	
+  MANUAL_LOGIN_USER,
+  LOGIN_SUCCESS_USER,
+  LOGIN_ERROR_USER,
+  SIGNUP_USER,
+  SIGNUP_SUCCESS_USER,
+  SIGNUP_ERROR_USER,
+  LOGOUT_USER,
+  LOGOUT_SUCCESS_USER,
+  LOGOUT_ERROR_USER,
+  REGISTER_USER,
+  REGISTER_SUCCESS_USER,
+  REGISTER_ERROR_USER 
 } from "./constants"
 
 const user = (state = {
-	isWaiting: false,
-	authenticated: false,
-	email: ""
+  isWaiting: false,
+  authenticated: false,
+  email: "",
+  rememberMe: false
 }, action) => {
-	switch(action.type) {
-		case MANUAL_LOGIN_USER:
-			return Object.assign({}, state, { isWaiting: true })
-		case LOGIN_SUCCESS_USER:
-			return Object.assign({}, state, { isWaiting: false, authenticated: true, email: action.data.email })
-		case LOGIN_ERROR_USER:
-			return Object.assign({}, state, { isWaiting: false, authenticated: false })
-		case SIGNUP_USER:
-			return Object.assign({}, state, { isWaiting: true })
-		case SIGNUP_SUCCESS_USER:
-			return Object.assign({}, state, { isWaiting: false, authenticated: true })
-		case SIGNUP_ERROR_USER:
-			return Object.assign({}, state, { isWaiting: false, authenticated: false })
-		case LOGOUT_USER:
-			return Object.assign({}, state, { isWaiting: true })
-		case LOGOUT_SUCCESS_USER:
-			return Object.assign({}, state, { isWaiting: false, authenticated: false, email: "" })
-		case LOGOUT_ERROR_USER:
-			return Object.assign({}, state, { isWaiting: false, authenticated: true })
-		case REGISTER_USER:
-			return Object.assign({}, state, { isWaiting: true })
-		case REGISTER_SUCCESS_USER:
-			return Object.assign({}, state, { isWaiting: false })
-		case REGISTER_ERROR_USER:
-			return Object.assign({}, state, { isWaiting: false })
-		default:
-			return state
-	}
+  switch(action.type) {
+    case REHYDRATE:
+      let incoming = action.payload.auth
+      if (incoming !== undefined && incoming.rememberMe)
+      {
+        console.log('rememberMe', incoming)
+        return Object.assign({}, state, incoming)
+      }
+      else
+      {
+        console.log('no rememberMe', incoming)
+        return state
+      }
+    case MANUAL_LOGIN_USER:
+      return Object.assign({}, state, { isWaiting: true })
+    case LOGIN_SUCCESS_USER:
+      console.log(action)
+      return Object.assign({}, state, { isWaiting: false, authenticated: true, rememberMe: action.data.rememberMe })
+    case LOGIN_ERROR_USER:
+      return Object.assign({}, state, { isWaiting: false, authenticated: false })
+    case SIGNUP_USER:
+      return Object.assign({}, state, { isWaiting: true })
+    case SIGNUP_SUCCESS_USER:
+      return Object.assign({}, state, { isWaiting: false, authenticated: true })
+    case SIGNUP_ERROR_USER:
+      return Object.assign({}, state, { isWaiting: false, authenticated: false })
+    case LOGOUT_USER:
+      return Object.assign({}, state, { isWaiting: true })
+    case LOGOUT_SUCCESS_USER:
+      return Object.assign({}, state, { isWaiting: false, authenticated: false, email: "" })
+    case LOGOUT_ERROR_USER:
+      return Object.assign({}, state, { isWaiting: false, authenticated: true })
+    case REGISTER_USER:
+      return Object.assign({}, state, { isWaiting: true })
+    case REGISTER_SUCCESS_USER:
+      return Object.assign({}, state, { isWaiting: false })
+    case REGISTER_ERROR_USER:
+      return Object.assign({}, state, { isWaiting: false })
+    default:
+      return state
+  }
 }
 
 export default user

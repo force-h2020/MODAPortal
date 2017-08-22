@@ -1,13 +1,13 @@
 import React from 'react'
-import { Form, Button, FormControl, FormGroup, Col, Checkbox, ControlLabel, HelpBlock } from 'react-bootstrap'
+import { Col, Form, Button, FormControl, FormGroup, Checkbox, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 import AlertDismissable from '../App/alert'
-
 
 class Login extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.state = {
       loginMessage: '',
       loginFailed: false
@@ -18,10 +18,13 @@ class Login extends React.Component {
     event.preventDefault()
     const username = this.username.value
     const password = this.password.value
+    console.log(this.rememberMe)
+    const rememberMe = this.rememberMe.checked
     // Passed in via react-redux. Returns a promise.
     this.props.manualLogin({ // this function is passed in via react-redux
       username,
-      password
+      password,
+      rememberMe
     }, this.props.nextPathname) // holds the path to redirect to after login (if any)
     .then((loginMessage) => {
       if (loginMessage) {
@@ -34,7 +37,10 @@ class Login extends React.Component {
     })
   }
 
-  handleChange = value => {
+  handleChange = event => {
+    // const target = event.target
+    // const value = target.type === 'checkbox' ? target.checked : target.value
+    // const name = target.name
   }
 
   render() {
@@ -62,7 +68,7 @@ class Login extends React.Component {
 
           <FormGroup>
             <Col smOffset={2} sm={10}>
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox inputRef={ref => { this.rememberMe = ref }} > Remember me</Checkbox>
             </Col>
           </FormGroup>
 
