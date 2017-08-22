@@ -10,7 +10,7 @@ import Footer from './components/Footer'
 import AlertDismissable from './alert'
 import * as appActions from "./AppActions"
 import * as authActions from '../Auth/AuthActions'
-
+import { Grid, Row } from 'react-bootstrap'
 
 export class App extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export class App extends Component {
               },
               {
                 name: 'viewport',
-                content: 'width=device-width, initial-scale=1',
+                content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
               },
             ]}
           />
@@ -53,10 +53,12 @@ export class App extends Component {
             toggleAddModa={this.props.toggleAddModa}
             hideForms={this.props.hideForms}
           />
-          <div className='container'>
-            { this.state.showModal && (<AlertDismissable />) }
-            {this.props.children}
-          </div>
+          <Grid>
+            <Row>
+              { this.state.showModal && (<AlertDismissable />) }
+            </Row>
+              {this.props.children}
+          </Grid>
           <Footer />
         </div>
       </div>
