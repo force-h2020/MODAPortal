@@ -1,7 +1,7 @@
 import React from 'react'
-import { Col, Form, Button, FormControl, FormGroup, Checkbox, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 import AlertDismissable from '../App/alert'
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -14,11 +14,10 @@ class Login extends React.Component {
     }
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault()
     const username = this.username.value
     const password = this.password.value
-    console.log(this.rememberMe)
     const rememberMe = this.rememberMe.checked
     // Passed in via react-redux. Returns a promise.
     this.props.manualLogin({ // this function is passed in via react-redux
@@ -41,48 +40,31 @@ class Login extends React.Component {
     // const target = event.target
     // const value = target.type === 'checkbox' ? target.checked : target.value
     // const name = target.name
+    //console.log(target, value, name)
   }
 
   render() {
     return(
       <div>
-        { this.state.loginFailed && <AlertDismissable msg={this.state.loginMessage} title='Login failed' bsStyle='danger' visible={true}/>}
-        <Form horizontal onSubmit={ (e)=> this.handleSubmit(e) } onChange={ this.handleChange }>
-          <FormGroup controlId="formHorizontalEmail">
-            <Col componentClass={ControlLabel} sm={2}>
-              Email
-            </Col>
-            <Col sm={10}>
-              <FormControl inputRef={ref => { this.username = ref }} type="email" placeholder="Email" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup controlId="formHorizontalPassword">
-            <Col componentClass={ControlLabel} sm={2}>
-              Password
-            </Col>
-            <Col sm={10}>
-              <FormControl inputRef={ref => { this.password = ref }} type="password" placeholder="Password" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Checkbox inputRef={ref => { this.rememberMe = ref }} > Remember me</Checkbox>
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Button type="submit">
-                Sign in
-              </Button>
-              <ControlLabel></ControlLabel>
-              <FormControl.Feedback />
-              <HelpBlock></HelpBlock>
-            </Col>
-          </FormGroup>
-        </Form>
+        { this.state.loginFailed && <AlertDismissable msg={this.state.loginMessage} title='Login failed' alertStyle='alert-danger' visible={true}/>}
+        <form onSubmit={ this.handleSubmit } onChange={ this.handleChange }>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input ref={ref => { this.username = ref }} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <small id="emailHelp" className="form-text text-muted">{"We'll never share your email with anyone else."}</small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Password</label>
+            <input ref={ref => { this.password = ref }} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+          </div>
+          <div className="form-check">
+            <label className="form-check-label">
+              <input ref={ref => { this.rememberMe = ref }} type="checkbox" className="form-check-input" />
+              Remember me
+            </label>
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
       </div>  
     )
   }

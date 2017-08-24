@@ -1,17 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
-import { Button, Panel, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap'
-
-function FieldGroup({ id, label, help, ...props }) {
-  return (
-    <FormGroup controlId={id}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-      {help && <HelpBlock>{help}</HelpBlock>}
-    </FormGroup>
-  )
-}
 
 class ModaSearchWidget extends React.Component {
   constructor(props) {
@@ -35,19 +24,22 @@ class ModaSearchWidget extends React.Component {
 
   render() {
     return (
-      <Panel>
-        <FieldGroup
-          id="formControlsText"
-          type="text"
-          label=""
-          placeholder="Enter search terms"
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-        />
-        <Button bsStyle="primary" onClick={this.handleSearch}>
-          Search
-        </Button>
-      </Panel>
+      <div className='panel'>
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="input-group">
+              <input type="text" className="form-control" placeholder='Enter search terms' aria-label="Search for..." 
+                onChange={this.handleChange}
+                onKeyPress={this.handleKeyPress}
+
+              />
+              <span className="input-group-btn">
+                <button className="btn btn-secondary" type="button" onClick={this.handleSearch}>Search</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 

@@ -10,7 +10,13 @@ import Footer from './components/Footer'
 import AlertDismissable from './alert'
 import * as appActions from "./AppActions"
 import * as authActions from '../Auth/AuthActions'
-import { Grid, Row } from 'react-bootstrap'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import $ from 'jquery'
+// See: https://github.com/facebookincubator/create-react-app/issues/614
+window.jQuery = $
+require('bootstrap')
+
 
 export class App extends Component {
   constructor(props) {
@@ -33,34 +39,37 @@ export class App extends Component {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
-        <div>
-          <Helmet
-            title="MODA Portal"
-            titleTemplate="%s - FORCE"
-            meta={[
-              { charset: 'utf-8' },
-              {
-                'http-equiv': 'X-UA-Compatible',
-                content: 'IE=edge',
-              },
-              {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-              },
-            ]}
-          />
-          <Header
-            toggleAddModa={this.props.toggleAddModa}
-            hideForms={this.props.hideForms}
-          />
-          <Grid>
-            <Row>
+        <Helmet
+          title="MODA Portal"
+          titleTemplate="%s - FORCE"
+          meta={[
+            { charset: 'utf-8' },
+            {
+              'http-equiv': 'X-UA-Compatible',
+              content: 'IE=edge',
+            },
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+            },
+          ]}
+        >
+        </Helmet>
+        <Header
+          toggleAddModa={this.props.toggleAddModa}
+          hideForms={this.props.hideForms}
+          logout={this.props.manualLogout}
+          user={this.props.user}
+        />
+        <div className='container'>
+          <div className="row">
+            <div className="col">
               { this.state.showModal && (<AlertDismissable />) }
-            </Row>
-              {this.props.children}
-          </Grid>
-          <Footer />
+            </div>
+          </div>
+          {this.props.children}
         </div>
+        <Footer />
       </div>
     )
   }

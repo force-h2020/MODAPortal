@@ -9,20 +9,22 @@ import logo from './emmc-x250.png'
 export function Header(props, context) {
   return (
     <div className='header'>
-      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css' />
       <div className='content'>
         <h1 className='site-title'>
           <img src={logo} alt='logo' className='site-logo' />
-          <span>
-            <Link to="/" onClick={props.hideForms}>MODA Portal</Link>
-            <span className='site-subtitle'> (preview version)</span>
-          </span>
+          <Link to="/" onClick={props.hideForms}>MODA Portal</Link>
+          <span className='site-subtitle'> (preview version)</span>
         </h1>
-        {
-          context.router.isActive('/', true)
-            ? <button className='add-post-button' onClick={props.toggleAddModa}>Add MODA</button>
-            : null
-        }
+          {
+            context.router.isActive('/', true)
+              ? <button className='add-post-button' onClick={props.toggleAddModa}>Add MODA</button>
+              : null
+          }
+          {
+            context.router.isActive('/login', true)
+              ? null
+              : <button className='add-post-button' onClick={props.logout}>Logout</button>
+          }
       </div>
     </div>
   )
@@ -35,6 +37,8 @@ Header.contextTypes = {
 Header.propTypes = {
   toggleAddModa: PropTypes.func.isRequired,
   hideForms: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object
 }
 
 export default Header
