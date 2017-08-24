@@ -17,7 +17,6 @@ import {
 const user = (state = {
   isWaiting: false,
   authenticated: false,
-  email: "",
   rememberMe: false
 }, action) => {
   switch(action.type) {
@@ -34,7 +33,10 @@ const user = (state = {
     case MANUAL_LOGIN_USER:
       return Object.assign({}, state, { isWaiting: true })
     case LOGIN_SUCCESS_USER:
-      return Object.assign({}, state, { isWaiting: false, authenticated: true, rememberMe: action.data.rememberMe })
+      return Object.assign({}, state, { isWaiting: false,
+                                        authenticated: true,
+                                        rememberMe: action.data.rememberMe,
+                                        user: action.data.user})
     case LOGIN_ERROR_USER:
       return Object.assign({}, state, { isWaiting: false, authenticated: false })
     case SIGNUP_USER:
@@ -46,7 +48,8 @@ const user = (state = {
     case LOGOUT_USER:
       return Object.assign({}, state, { isWaiting: true })
     case LOGOUT_SUCCESS_USER:
-      return Object.assign({}, state, { isWaiting: false, authenticated: false, email: "" , msg: 'You are now logged out of MODA'})
+      delete state.user
+      return Object.assign({}, state, { isWaiting: false, authenticated: false })
     case LOGOUT_ERROR_USER:
       return Object.assign({}, state, { isWaiting: false, authenticated: true })
     case REGISTER_USER:

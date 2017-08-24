@@ -65,7 +65,8 @@ export function manualLogin(
     return makeUserRequest("post", data, "/auth/login") 
       .then(response => {
         if (response.data.success) {
-          dispatch(loginSuccess(data))
+          response.data.rememberMe = data.rememberMe
+          dispatch(loginSuccess(response.data))
           // use browserHistory singleton to control navigation. Will generate a 
           // state change for time-traveling as we are using the react-router-redux package
           browserHistory.push(successPath)
