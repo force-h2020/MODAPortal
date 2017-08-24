@@ -6,7 +6,7 @@ import './Header.css'
 import logo from './emmc-x250.png'
 
 
-export function Header(props, context) {
+export default function Header(props, context) {
   return (
     <div className='header'>
       <div className='content'>
@@ -24,6 +24,9 @@ export function Header(props, context) {
             context.router.isActive('/login', true)
               ? null
               : <button className='add-post-button' onClick={props.logout}>Logout</button>
+          }
+          {
+            props.authenticated ? <span className='user-info'> Logged in as {props.user.displayname}</span> : null
           }
       </div>
     </div>

@@ -59,6 +59,7 @@ export class App extends Component {
           toggleAddModa={this.props.toggleAddModa}
           hideForms={this.props.hideForms}
           logout={this.props.manualLogout}
+          authenticated={this.props.authenticated}
           user={this.props.user}
         />
         <div className='container'>

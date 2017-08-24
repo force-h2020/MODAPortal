@@ -62,3 +62,12 @@
 .brand-image {
   height: 75px;
 }
+
+.user-info {
+  display: inline-block;
+  color: #FFF;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 1000px;
+  float: right;
+}
