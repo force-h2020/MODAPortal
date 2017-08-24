@@ -78,12 +78,15 @@ export class App extends Component {
 App.propTypes = {
   children: PropTypes.object.isRequired,
   toggleAddModa: PropTypes.func.isRequired,
-  hideForms: PropTypes.func.isRequired
+  hideForms: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  displayName: PropTypes.string
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    authenticated: state.auth.authenticated,
+    user: state.auth.user
   }
 }
 

@@ -38,7 +38,6 @@ Header.propTypes = {
   toggleAddModa: PropTypes.func.isRequired,
   hideForms: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
   user: PropTypes.object
 }
-
-export default Header
