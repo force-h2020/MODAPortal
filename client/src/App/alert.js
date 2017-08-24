@@ -1,6 +1,5 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { Alert } from 'react-bootstrap'
 
 
 class AlertDismissable extends React.Component {
@@ -22,10 +21,12 @@ class AlertDismissable extends React.Component {
   render() {
     if (this.state.alertVisible) {
       return (
-        <Alert bsStyle={this.props.bsStyle || 'info'} onDismiss={this.handleAlertDismiss}>
-          <h4>{ this.props.title || 'Something went wrong'}</h4>
-          <p>{ this.props.msg || 'No message is provided for this error.'}</p>
-        </Alert>
+        <div className={"alert alert-dismissible show " + this.props.alertStyle} role="alert">
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>{ this.props.title || 'Holy guacamole!' }</strong> { this.props.msg || 'You should check in on some of those fields below.'}
+        </div>
       )
     }
     return null
@@ -42,10 +43,12 @@ class AlertDismissable extends React.Component {
 
 AlertDismissable.propTypes = {
   visible: PropTypes.bool,
+  alertStyle: PropTypes.string
 }
 
 AlertDismissable.defaultProps = {
-  visible: false
+  visible: false,
+  alertStyle: 'alert-info'
 }
 
 export default AlertDismissable

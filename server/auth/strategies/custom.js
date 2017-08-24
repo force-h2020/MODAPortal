@@ -12,12 +12,16 @@ export default new CustomStrategy((req, done) => {
     `${config.wordpress}/api/auth/generate_auth_cookie?username=${username}&password=${password}`,
     {},
     (error, response, body) => {
-      let parsedBody = JSON.parse(body)
+      const parsedBody = JSON.parse(body)
       // !error && response.statusCode == 200 
       if (!error && parsedBody.status === 'ok') {
-        let user = new User()
+        const user = new User()
         user.email = parsedBody.user.email
-        user.password = ''
+        user.password = parsedBody.user.password
+        user.displayname = parsedBody.user.displayname
+        user.firstname = parsedBody.user.firstname
+        user.lastname = parsedBody.user.lastname
+        Object.assign(user.capabilities, parsedBody.user.capabilities)
         return done(null, user, { message: "Success" })
       } else {
         return done(null, false, { message: "Invalid email or password" })

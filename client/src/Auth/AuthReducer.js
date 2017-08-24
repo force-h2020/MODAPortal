@@ -25,18 +25,15 @@ const user = (state = {
       let incoming = action.payload.auth
       if (incoming !== undefined && incoming.rememberMe)
       {
-        console.log('rememberMe', incoming)
         return Object.assign({}, state, incoming)
       }
       else
       {
-        console.log('no rememberMe', incoming)
         return state
       }
     case MANUAL_LOGIN_USER:
       return Object.assign({}, state, { isWaiting: true })
     case LOGIN_SUCCESS_USER:
-      console.log(action)
       return Object.assign({}, state, { isWaiting: false, authenticated: true, rememberMe: action.data.rememberMe })
     case LOGIN_ERROR_USER:
       return Object.assign({}, state, { isWaiting: false, authenticated: false })
@@ -49,7 +46,7 @@ const user = (state = {
     case LOGOUT_USER:
       return Object.assign({}, state, { isWaiting: true })
     case LOGOUT_SUCCESS_USER:
-      return Object.assign({}, state, { isWaiting: false, authenticated: false, email: "" })
+      return Object.assign({}, state, { isWaiting: false, authenticated: false, email: "" , msg: 'You are now logged out of MODA'})
     case LOGOUT_ERROR_USER:
       return Object.assign({}, state, { isWaiting: false, authenticated: true })
     case REGISTER_USER:
