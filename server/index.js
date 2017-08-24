@@ -9,16 +9,15 @@ import connectMongo from 'connect-mongo'
 import modas from './moda/routes'
 import auth from './auth/routes'
 import configurePassport from './auth/passport'
-import secrets from './auth/secrets'
 import config from './config'
 
 
 const app = express()
 const MongoStore = connectMongo(session)
-const sess = {
+const sessionConfig = {
   resave: true,
   saveUninitialized: true,
-  secret: secrets.sessionSecret,
+  secret: config.sessionSecret,
   proxy: false,
   name: "sessionId",
   cookie: {
@@ -26,7 +25,7 @@ const sess = {
     secure: false
   },
   store: new MongoStore({
-    url: secrets.db,
+    url: config.mongoURL,
     autoReconnect: true
   })
 }
@@ -41,7 +40,7 @@ mongoose.connect(config.mongoURL, {useMongoClient: true}, (error) => {
   }
 })
 
-app.use(session(sess))
+app.use(session(sessionConfig))
 app.use(passport.initialize())
 app.use(passport.session())
 
