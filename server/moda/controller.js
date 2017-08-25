@@ -37,7 +37,14 @@ export function addModa(req, res) {
       console.log(err)
       return res.status(500).send(err)
     }
-    return res.json({ moda: saved })
+    Moda.populate(newModa, {path: 'submittedBy'},
+      (err, mda) => {
+        if (err) {
+          console.log(err)
+          return res.status(500).send(err)
+        }
+        return res.json({ moda: mda })
+      })
   })
 }
 
