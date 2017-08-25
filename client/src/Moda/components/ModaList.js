@@ -10,7 +10,13 @@ function ModaList(props) {
     {
       Header: 'Title',
       id: 'title',
-      accessor: row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>{row.title}</Link>},
+      accessor: row => {
+        return <Link to={{
+          pathname: `/modas/${row.slug}-${row.cuid}`,
+          //query: { cuid: row.cuid },
+          //state: {modas: props.modas}
+        }}> {row.title} </Link>
+      },
       filterMethod: (filter, row) => {
         return row.title.props.children.startsWith(filter.value)
       }
