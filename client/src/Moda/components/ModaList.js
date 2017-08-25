@@ -28,6 +28,10 @@ function ModaList(props) {
       id: 'author',
       accessor: row => { return row.author.firstName + ' ' + row.author.familyName },
     }, {
+      Header: 'User',
+      id: 'submittedBy',
+      accessor: row => { return row.submittedBy.displayname },
+    }, {
       Header: 'Created On',
       id: 'createdOn',
       accessor:  row => { return row.creationDate ? new Date(row.creationDate).toLocaleString() : '' },

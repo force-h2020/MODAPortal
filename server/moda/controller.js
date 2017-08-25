@@ -15,7 +15,7 @@ export function getModas(req, res) {
       }
     }
   }
-  Moda.find(query).sort('-dateAdded').exec((err, modas) => {
+  Moda.find(query).populate('submittedBy').sort('-dateAdded').exec((err, modas) => {
     if (err) {
       res.status(500).send(err)
     } else {
@@ -53,7 +53,7 @@ export function putModa(req, res) {
 }
 
 export function getModa(req, res) {
-  Moda.findOne({ cuid: req.params.cuid }).exec((err, moda) => {
+  Moda.findOne({ cuid: req.params.cuid }).populate('submittedBy').exec((err, moda) => {
     if (err) {
       res.status(500).send(err)
     }
