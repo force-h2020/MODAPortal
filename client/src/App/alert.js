@@ -1,3 +1,4 @@
+import { connect } from "react-redux"
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
@@ -22,7 +23,7 @@ class AlertDismissable extends React.Component {
     if (this.state.alertVisible) {
       return (
         <div className={"alert alert-dismissible show " + this.props.alertStyle} role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+          <button type="button" className="close" data-hide="alert" aria-label="Close" onClick={this.handleAlertDismiss}>
             <span aria-hidden="true">&times;</span>
           </button>
           <strong>{ this.props.title || 'Holy guacamole!' }</strong> { this.props.msg || 'You should check in on some of those fields below.'}
@@ -51,4 +52,15 @@ AlertDismissable.defaultProps = {
   alertStyle: 'alert-info'
 }
 
-export default AlertDismissable
+// Function passed in to `connect` to subscribe to Redux store updates.
+// Any time it updates, mapStateToProps is called.
+// The second argument "ownProps" contains props passed to the component
+const mapStateToProps = (state, ownProps) => {
+  return {
+    auth: state.auth,
+  }
+
+}
+export default connect(
+  mapStateToProps
+)(AlertDismissable)
