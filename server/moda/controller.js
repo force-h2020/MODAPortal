@@ -26,12 +26,12 @@ export function getModas(req, res) {
 
 export function addModa(req, res) {
   const newModa = new Moda(req.body.moda)
-  //newModa.submittedBy = req.session.passport.user
+  newModa.submittedBy = req.session.passport.user
   newModa.userCase = validator.escape(newModa.userCase)
   newModa.creationDate = Date()
   newModa.version = "6"
   newModa.slug = slug(newModa.title.toLowerCase())
-  newModa.cuid = shortid.generate()
+  newModa.cuid = shortid.generate().replace('-', '_')
   newModa.save((err, saved) => {
     if (err) {
       console.log(err)
