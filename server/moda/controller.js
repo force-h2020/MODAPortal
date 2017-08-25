@@ -3,9 +3,10 @@ import shortid from 'shortid'
 import validator from 'validator'
 
 import Moda from './models'
+import User from '../auth/models'
 
 
-export function getModas(req, res) {
+export async function getModas(req, res) {
   var query = {}
   if ('query' in req.query) {
     query = {
@@ -15,6 +16,12 @@ export function getModas(req, res) {
       }
     }
   }
+
+  const currentUser = await User.findById(req.session.passport.user).exec()
+  if (!currentUser.capabilities.administrator) {
+    query['submittedBy'] = currentUser.id
+  }
+
   Moda.find(query).populate('submittedBy').sort('-dateAdded').exec((err, modas) => {
     if (err) {
       res.status(500).send(err)
