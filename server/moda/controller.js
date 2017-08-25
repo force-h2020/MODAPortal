@@ -26,7 +26,7 @@ export function getModas(req, res) {
 
 export function addModa(req, res) {
   const newModa = new Moda(req.body.moda)
-
+  //newModa.submittedBy = req.session.passport.user
   newModa.userCase = validator.escape(newModa.userCase)
   newModa.creationDate = Date()
   newModa.version = "6"

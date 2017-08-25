@@ -12,6 +12,7 @@ exports.login = function(req, res, next) {
     if(!user) {
       return res.json({ success: false, message: info.message })      
     }
+
     // ***********************************************************************
     // "Note that when using a custom callback, it becomes the application's
     // responsibility to establish a session (by calling req.login()) and send

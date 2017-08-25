@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 const modaSchema = new mongoose.Schema({
+  submittedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   title: { type: String, required: true },
   project: { type: String, required: true },
   fundingAgency: { type: String, required: true },
