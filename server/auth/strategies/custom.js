@@ -22,7 +22,7 @@ export default new CustomStrategy((req, done) => {
             return done(null, false, { message: "Database error: " + err })
           }
           if (!existingUser) {
-            user = createUser(parsedBody.user)
+            const user = createUser(parsedBody.user)
             user.save()
             return done(null, user, { message: "Success" })
           } else {
@@ -38,11 +38,11 @@ export default new CustomStrategy((req, done) => {
 
 const createUser = (userInfo) => {
   const user = new User()
-  user.email = parsedBody.user.email
-  user.password = parsedBody.user.password
-  user.displayname = parsedBody.user.displayname
-  user.firstname = parsedBody.user.firstname
-  user.lastname = parsedBody.user.lastname
-  Object.assign(user.capabilities, parsedBody.user.capabilities)
+  user.email = userInfo.email
+  user.password = userInfo.password
+  user.displayname = userInfo.displayname
+  user.firstname = userInfo.firstname
+  user.lastname = userInfo.lastname
+  Object.assign(user.capabilities, userInfo.capabilities)
   return user
 }
