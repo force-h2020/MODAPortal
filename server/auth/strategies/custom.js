@@ -9,6 +9,12 @@ import config from '../../config'
 export default new CustomStrategy((req, done) => {
   const username = req.body.username
   const password = req.body.password
+  /*
+    Wordpress authentication depends on two plugins:
+    - https://wordpress.org/plugins/json-api/
+    - https://wordpress.org/plugins/json-api-auth/
+    Without them the following code will fail.
+  */
   request.post(
     `${config.wordpress}/api/auth/generate_auth_cookie?username=${username}&password=${password}`,
     {},
