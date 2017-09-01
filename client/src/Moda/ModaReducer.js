@@ -20,9 +20,8 @@ const ModaReducer = (state = initialState, action) => {
       }
 
     case UPDATE_MODA : {
-      const d1 = state.data.filter(moda => moda.cuid !== action.moda.cuid)
-      state.data.pop(d1)
-      state.data.push(action.moda)
+      const index = state.data.findIndex(x => x.cuid === action.moda.cuid)
+      state.data[index] = action.moda
       return {
         data: state.data,
       }

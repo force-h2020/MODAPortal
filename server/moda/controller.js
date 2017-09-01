@@ -58,11 +58,17 @@ export function addModa(req, res) {
 export function putModa(req, res) {
   const moda = req.body
   moda.modificationDate = Date()
-  Moda.update({ cuid: moda.cuid }, moda, (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-    return res.json({ moda: moda })
+
+  Moda.findOne({ cuid: moda.cuid }, (err, currentModa) => {
+    if (err)
+      return res.status(500).send(err)
+
+    const updatedModa = Object.assign(currentModa, moda)
+    updatedModa.save((err, savedModa) => {
+      if (err)
+        return res.status(500).send(err)
+      return res.json({ moda: savedModa })
+    })
   })
 }
 

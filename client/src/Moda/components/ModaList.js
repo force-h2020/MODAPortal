@@ -57,6 +57,7 @@ function ModaList(props) {
 
   return (
     <ReactTable
+      className="-striped"
       data={props.modas}
       columns={columns}
       defaultPageSize={10}

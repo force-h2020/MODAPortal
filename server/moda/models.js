@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
+import version from 'mongoose-version'
+
 
 const modaSchema = new mongoose.Schema({
+  //_version: { type: String, required: true, default: 1 },
   submittedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   title: { type: String, required: true },
   project: { type: String, required: true },
@@ -9,7 +12,9 @@ const modaSchema = new mongoose.Schema({
   projectHomePage: { type: String, required: true },
   userCase: { type: String, required: true },
   creationDate: { type: Date },
+  //created: Date,
   modificationDate: { type: Date },
+  //lastModified : Date,
   version: { type: String, required: true },
   author: {
     firstName: { type: String, required: true },
@@ -112,8 +117,11 @@ const modaSchema = new mongoose.Schema({
   slug: { type: 'String', required: true },
   cuid: { type: 'String', required: true },
   dateAdded: { type: 'Date', default: Date.now, required: false },
+  tags : [String],
 })
 
 modaSchema.index({ "$**": "text" })
+
+modaSchema.plugin(version)
 
 export default mongoose.model('Moda', modaSchema)

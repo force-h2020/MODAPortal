@@ -13,8 +13,7 @@ class ModaDetailPage extends Component {
   }
 
   handleUpdateModa = moda => {
-    this.props.dispatch(updateModaRequest(moda))
-    this.context.router.push('/')
+    this.props.dispatch(updateModaRequest(moda)).then(() => this.context.router.push('/'))
   }
 
   render() {
