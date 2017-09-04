@@ -24,7 +24,7 @@ class ModaDetailPage extends Component {
       <div>
         <Helmet title={this.props.moda.title} />
         <div>
-          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda}/>
+          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} readonly={this.props.readonly}/>
         </div>
       </div>
     )
@@ -32,12 +32,13 @@ class ModaDetailPage extends Component {
 }
 
 function mapStateToProps(state, props) {
-  var moda = {userCase: '', slug:'', cuid:''}
+  var moda = {userCase: '', slug:'', cuid:'', readonly: false}
   if (state.modas.data.length > 0) {
     moda = state.modas.data.filter(moda => moda.cuid === props.params.cuid)[0]
   }
   return {
     moda: moda,
+    readonly: props.location && props.location.state && props.location.state.readonly
   }
 }
 
@@ -47,6 +48,7 @@ ModaDetailPage.propTypes = {
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   }).isRequired,
+  readonly: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 }
 

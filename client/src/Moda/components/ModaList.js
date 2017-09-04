@@ -15,6 +15,7 @@ function ModaList(props) {
           pathname: `/modas/${row.slug}-${row.cuid}`,
           //query: { cuid: row.cuid },
           //state: {modas: props.modas}
+          state: {readonly: true}
         }}> {row.title} </Link>
       },
       filterMethod: (filter, row) => {
