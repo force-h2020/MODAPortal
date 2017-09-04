@@ -122,6 +122,6 @@ const modaSchema = new mongoose.Schema({
 
 modaSchema.index({ "$**": "text" })
 
-modaSchema.plugin(version)
+modaSchema.plugin(version/*, {strategy: 'collection'}*/)
 
 export default mongoose.model('Moda', modaSchema)

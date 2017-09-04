@@ -77,6 +77,10 @@ export function getModa(req, res) {
     if (err) {
       res.status(500).send(err)
     }
+    if (!moda) {
+      return res.status(404).send()
+    }
+    //Moda.VersionedModel.findOne({ refId: moda._id }, (err, hist) => {console.log(hist); return res.json({ moda, hist })})
     res.json({ moda })
   })
 }
@@ -86,9 +90,25 @@ export function deleteModa(req, res) {
     if (err || !moda) {
       res.status(500).send(err)
     }
-
     moda.remove(() => {
       res.status(200).end()
+    })
+  })
+}
+
+export function getModaHistory(req, res) {
+  Moda.findOne({ cuid: req.params.cuid }).populate('submittedBy').exec((err, moda) => {
+    if (err) {
+      return res.status(500).send(err)
+    }
+    if (!moda) {
+      return res.status(404).send()
+    }
+    Moda.VersionedModel.findOne({ refId: moda._id }, (err, history) => {
+      if (err) {
+        return res.status(500).send(err)
+      }
+      return res.json({ moda, history })
     })
   })
 }

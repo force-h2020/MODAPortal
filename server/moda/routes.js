@@ -18,4 +18,6 @@ router.route('/modas').post(ModaController.addModa)
 // Delete a moda by cuid
 router.route('/modas/:cuid').delete(ModaController.deleteModa)
 
+router.route('/modas/:cuid/history').get(ModaController.getModaHistory)
+
 export default router
