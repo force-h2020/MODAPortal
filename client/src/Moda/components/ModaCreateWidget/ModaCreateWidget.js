@@ -64,9 +64,12 @@ const MathJaxWidget = (props) => {
     }
   };
 
+  const display = props.readonly? {'display': 'none'} : {}
+
   return (
     <div>
       <textarea
+        style={display}
         className='form-field'
         id={id}
         value={value}
