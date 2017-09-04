@@ -4,27 +4,23 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget'
-import { fetchModa, updateModaRequest } from '../ModaActions'
+import { fetchModa, fetchModaHistory } from '../ModaActions'
 
 
-class ModaDetailPage extends Component {
-  componentWillMount() {
-    this.props.dispatch(fetchModa(this.props.params.cuid))
-  }
-
-  handleUpdateModa = moda => {
-    this.props.dispatch(updateModaRequest(moda)).then(() => this.context.router.push('/'))
+class ModaHistoryDetailPage extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchModa(this.props.params.cuid)).then(() => this.props.dispatch(fetchModaHistory(this.props.params.cuid)))
   }
 
   render() {
-    if(!this.props.moda){
+    if( !this.props.moda /* || !this.props.moda.history */) {
       return <div>Loading...</div>
     }
     return (
       <div>
         <Helmet title={this.props.moda.title} />
         <div>
-          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda}/>
+          <ModaCreateWidget moda={this.props.moda} readonly/>
         </div>
       </div>
     )
@@ -32,16 +28,17 @@ class ModaDetailPage extends Component {
 }
 
 function mapStateToProps(state, props) {
-  var moda = {userCase: '', slug:'', cuid:''}
+  var moda = {userCase: '', slug: '', cuid: '', history: {versions: []}}
   if (state.modas.data.length > 0) {
     moda = state.modas.data.filter(moda => moda.cuid === props.params.cuid)[0]
+    if (moda && moda.history && moda.history.versions && moda.history.versions.length > 0) {
+      return { moda: moda.history.versions[props.params.hid]}
+    }
   }
-  return {
-    moda: moda,
-  }
+  return {moda: moda}
 }
 
-ModaDetailPage.propTypes = {
+ModaHistoryDetailPage.propTypes = {
   moda: PropTypes.shape({
     userCase: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
@@ -50,10 +47,10 @@ ModaDetailPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
-ModaDetailPage.contextTypes = {
+ModaHistoryDetailPage.contextTypes = {
   router: PropTypes.object,
 }
 
 export default connect(
   mapStateToProps
-)(ModaDetailPage)
+)(ModaHistoryDetailPage)

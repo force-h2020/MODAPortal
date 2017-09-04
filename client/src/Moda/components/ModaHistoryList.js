@@ -5,16 +5,14 @@ import { Link } from 'react-router'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
-function ModaList(props) {
+function ModaHistoryList(props) {
   const columns = [
     {
       Header: 'Title',
       id: 'title',
       accessor: row => {
         return <Link to={{
-          pathname: `/modas/${row.slug}-${row.cuid}`,
-          //query: { cuid: row.cuid },
-          //state: {modas: props.modas}
+          pathname: `/modas/${row.slug}-${row.cuid}/history/${row._index}`,
         }}> {row.title} </Link>
       },
       filterMethod: (filter, row) => {
@@ -28,10 +26,6 @@ function ModaList(props) {
       id: 'author',
       accessor: row => { return row.author.firstName + ' ' + row.author.familyName },
     }, {
-      Header: 'User',
-      id: 'submittedBy',
-      accessor: row => { return row.submittedBy.displayname },
-    }, {
       Header: 'Created On',
       id: 'createdOn',
       accessor:  row => { return row.creationDate ? new Date(row.creationDate).toLocaleString() : '' },
@@ -39,33 +33,15 @@ function ModaList(props) {
       Header: 'Modified On',
       id: 'modifiedOn',
       accessor: row => { return row.modificationDate ? new Date(row.modificationDate).toLocaleString() : '' },
-    }, {
-      Header: '',
-      id: 'edit',
-      width: 100,
-      filterable: false,
-      sortable: false,
-      accessor:  row => { return <Link to={`/modas/${row.slug}-${row.cuid}`}>Edit</Link> },
-    }, {
-      Header: '',
-      id: 'delete',
-      width: 100,
-      filterable: false,
-      sortable: false,
-      accessor: row => { return <Link onClick={() => props.handleDeleteModa(row.cuid)}>Delete</Link> },
-    }, {
-      Header: '',
-      id: 'history',
-      width: 100,
-      filterable: false,
-      sortable: false,
-      accessor: row => { return <Link to={`/modas/${row.slug}-${row.cuid}/history`}>History</Link> },
     }]
 
+  const data = props.history.versions.map((item, index) => {
+    return Object.assign({'_index': index}, item)
+  })
   return (
     <ReactTable
       className="-striped"
-      data={props.modas}
+      data={data}
       columns={columns}
       defaultPageSize={10}
       sorting={[{
@@ -77,12 +53,17 @@ function ModaList(props) {
   )
 }
 
-ModaList.propTypes = {
-  modas: PropTypes.arrayOf(PropTypes.shape({
+/*ModaHistoryList.propTypes = {
+  history: PropTypes.shape({
+    modified: PropTypes.Date.isRequired,
+    created: PropTypes.Date.isRequired,
+    refId: PropTypes.string.isRequired,
+  }).isRequired,
+  moda: PropTypes.shape({
+    userCase: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
-  })).isRequired,
-  handleDeleteModa: PropTypes.func.isRequired,
+  }).isRequired,
 }
-
-export default ModaList
+*/
+export default ModaHistoryList

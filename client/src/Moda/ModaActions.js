@@ -31,6 +31,14 @@ export function deleteModa(cuid) {
   }
 }
 
+export function addModaHistory(history) {
+  return {
+    type: types.ADD_MODA_HISTORY,
+    history,
+  }
+}
+
+
 // function makeUserRequest(method, data, api="/login") {
 //   // returns a Promise
 //   return axios({
@@ -86,5 +94,13 @@ export function fetchModa(cuid) {
 export function deleteModaRequest(cuid) {
   return (dispatch) => {
     return callApi(`modas/${cuid}`, 'delete').then(() => dispatch(deleteModa(cuid)))
+  }
+}
+
+export function fetchModaHistory(cuid) {
+  return (dispatch) => {
+    return callApi(`modas/${cuid}/history`).then(res => {
+      dispatch(addModaHistory(res.history))
+    })
   }
 }
