@@ -122,8 +122,10 @@ export class ModaCreateWidget extends Component {
       SchemaField: CustomSchemaField,
       autoFilledTitle: AutoFilledTitle,
     };
+
+    uiSchema.uiSchema['ui:readonly'] = this.props.readonly
+
     return (
-      <div className={`form ${(this.props.showAddModa ? 'appear' : '')}`}>
         <div className='form-content'>
           <Form
             ref={'modaForm'}
@@ -136,15 +138,14 @@ export class ModaCreateWidget extends Component {
             ArrayFieldTemplate={ArrayFieldTemplate}
           />
         </div>
-      </div>
     );
   }
 }
 
 ModaCreateWidget.propTypes = {
-  addModa: PropTypes.func.isRequired,
-  showAddModa: PropTypes.bool.isRequired,
+  addModa: PropTypes.func,
   moda: PropTypes.object,
+  readonly: PropTypes.bool
 };
 
 export default ModaCreateWidget

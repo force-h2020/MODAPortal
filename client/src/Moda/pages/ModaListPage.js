@@ -36,7 +36,9 @@ class ModaListPage extends Component {
   render() {
     return (
       <div>
-        <ModaCreateWidget addModa={this.handleAddModa} showAddModa={this.props.showAddModa} />
+        <div className={`form ${(this.props.showAddModa ? 'appear' : '')}`}>
+          <ModaCreateWidget addModa={this.handleAddModa} />
+        </div>
         <ModaSearchWidget searchModa={this.handleSearchModa} />
         <ModaList handleDeleteModa={this.handleDeleteModa} modas={this.props.modas} />
       </div>
