@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget'
 import { fetchModa, updateModaRequest } from '../ModaActions'
+import { WorkflowDiagram } from '../components/WorkflowDiagram'
 
 
 class ModaDetailPage extends Component {
@@ -26,6 +27,7 @@ class ModaDetailPage extends Component {
       <div>
         <Helmet title={this.props.moda.title} />
         <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} readonly={this.props.readonly}/>
+        <WorkflowDiagram moda={this.props.moda} />
       </div>
     )
   }
