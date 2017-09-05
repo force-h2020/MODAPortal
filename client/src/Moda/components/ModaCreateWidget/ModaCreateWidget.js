@@ -128,6 +128,8 @@ export class ModaCreateWidget extends Component {
 
     uiSchema.uiSchema['ui:readonly'] = this.props.readonly
 
+    const submitVisible = this.props.readonly? {display: 'none'} : {display: ''}
+
     return (
         <div className='form-content'>
           <Form
@@ -139,7 +141,11 @@ export class ModaCreateWidget extends Component {
             formData={this.props.moda}
             fields={fields}
             ArrayFieldTemplate={ArrayFieldTemplate}
-          />
+          >
+          <div>
+            <button type="submit" className="btn btn-info" style={submitVisible}>Submit</button>
+          </div>
+          </Form>
         </div>
     );
   }
