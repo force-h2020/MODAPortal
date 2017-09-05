@@ -49,14 +49,14 @@ textarea {
 }
 
 .userCaseAspects {
-  background-color: #F18A87;  
+  background-color: rgba(241, 138, 135, 0.7); /* #F18A87; */
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
 }
 
 .genericPhysics {
-  background-color: #4F81BD;
+  background-color: rgba(79, 129, 189, 0.7); /* #4F81BD; */
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
@@ -67,7 +67,7 @@ textarea {
 }
 
 .solverSpecs {
-  background-color: #339933;
+  background-color: rgba(51, 153, 51, 0.7); /* #339933; */
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
@@ -85,7 +85,7 @@ textarea {
 }
 
 .dbUserCase {
-  background-color: #FF8585;
+  background-color: rgba(241, 138, 135, 0.7); /* #FF8585; */
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
@@ -99,7 +99,7 @@ textarea {
 }
 
 .computationalDetails {
-  background-color: #38AA3B;
+  background-color: rgba(51, 153, 51, 0.7); /* #38AA3B; */
   padding: 10px;
   border-radius: .5em;
   margin-top: 5px;
