@@ -13,6 +13,7 @@ import {
   CustomEnum,
   CustomSchemaField,
   AutoFilledTitle,
+  MarkdownDescriptionField
 } from './FormControls'
 
 
@@ -31,6 +32,7 @@ export class ModaCreateWidget extends Component {
     const fields = {
       SchemaField: CustomSchemaField,
       autoFilledTitle: AutoFilledTitle,
+      DescriptionField: MarkdownDescriptionField
     };
 
     uiSchema.uiSchema['ui:readonly'] = this.props.readonly

@@ -2,11 +2,9 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 
 import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField"
-
 import cudsSchema from '../../CudsSelect'
-import './ModaCreateWidget.css'
 import MathJax from '../react-mathjax'
-
+import ReactMarkdown from 'react-markdown'
 import TreeSelect from 'antd/lib/tree-select'
 import 'antd/lib/tree-select/style/index.css'
 import 'antd/lib/select/style/index.css'
@@ -105,10 +103,20 @@ const CustomEnum = (props) => {
   )
 }
 
+const MarkdownDescriptionField = ({id, description}) => {
+  description = description || ''
+  return (
+    <ReactMarkdown
+      id={id}
+      source={description}
+    />)
+}
+
 export {
   CUDSTreeSelect,
   MathJaxWidget,
   CustomEnum,
   CustomSchemaField,
   AutoFilledTitle,
+  MarkdownDescriptionField
 }

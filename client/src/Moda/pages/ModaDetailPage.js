@@ -25,9 +25,7 @@ class ModaDetailPage extends Component {
     return (
       <div>
         <Helmet title={this.props.moda.title} />
-        <div>
-          <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} readonly={this.props.readonly}/>
-        </div>
+        <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} readonly={this.props.readonly}/>
       </div>
     )
   }

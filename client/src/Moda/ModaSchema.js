@@ -512,7 +512,7 @@ No information on the modelling should appear here. The idea is that this user-c
         "type": "object",
         "title": "Chain of Models",
         "description": `Each physics-based model used in this simulation is to be documented in four chapters:
-1. Aspect of the User Case or system simulated with this model 
+1. Aspect of the User Case or system simulated with this model
 2. Model: Please make sure the notions Physics Equation and Materials Relation are properly understood. 
 Tightly coupled models can be written up collectively in one set of four tables. To solve tightly coupled PE one matrix is set up and solved in one go.
 For continuum models the PE is often the conservation equations coded up in bought software packages. 

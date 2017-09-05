@@ -128,7 +128,7 @@ const ArrayFieldTemplate = (props) => {
         </div>}
 
       <div
-        className="row array-item-list"
+        className="array-item-list"
         key={`array-item-list-${props.idSchema.$id}`}
       >
         {props.items && props.items.map(DefaultArrayItem)}

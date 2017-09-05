@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet'
 
 import ModaList from '../components/ModaList';
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget';
@@ -34,9 +35,11 @@ class ModaListPage extends Component {
   }
 
   render() {
+    const display = this.props.showAddModa? {display: 'block'} : {display: 'none'}
     return (
       <div>
-        <div className={`form ${(this.props.showAddModa ? 'appear' : '')}`}>
+        <Helmet title='MODA' />
+        <div style={display}>
           <ModaCreateWidget addModa={this.handleAddModa} />
         </div>
         <ModaSearchWidget searchModa={this.handleSearchModa} />

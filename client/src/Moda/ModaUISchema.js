@@ -66,16 +66,16 @@ module.exports = {
       "classNames": "chain-of-models",
       "physicsBasedModels": {
         "classNames": "physics-based-models",
-        "ui:help": "Please identify the model. Note these are assumed to be\
-physics-based models unless it is specified differently.\
-Most modelling projects consist of a chain of models,\
-(workflow). Here only the Physics Equations should be given\
-and only names appearing in the content list of the Review of\
-Materials Modelling VI should be entered. This review is\
-available on\
-http://ec.europa.eu/research/industrial_technologies/e-\
-library.cfm).All models should be identified as electronic,\
-atomistic, mesoscopic or continuum.",
+        "ui:help": `Please identify the model. Note these are assumed to be
+physics-based models unless it is specified differently.
+Most modelling projects consist of a chain of models,
+(workflow). Here only the Physics Equations should be given
+and only names appearing in the content list of the Review of
+Materials Modelling VI should be entered. This review is
+available on
+http://ec.europa.eu/research/industrial_technologies/e-
+library.cfm).All models should be identified as electronic,
+atomistic, mesoscopic or continuum.`,
         "items": {
           "title": {
             "ui:field": "autoFilledTitle"
