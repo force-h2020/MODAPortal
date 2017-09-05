@@ -68,12 +68,8 @@ export class App extends Component {
             <div className="col">
               { this.state.showModal && (<AlertDismissable />) }
             </div>
-            <div className="row">
-              <div className="col">
-              {this.props.children}
-              </div>
-            </div>
           </div>
+          {this.props.children}
         </div>
         <Footer />
       </div>

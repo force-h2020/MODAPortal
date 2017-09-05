@@ -22,8 +22,8 @@ class ModaListPage extends Component {
   }
 
   handleAddModa = moda => {
-    this.props.dispatch(addModaRequest({ moda }))
-    this.props.dispatch(toggleAddModa())
+    this.props.dispatch(addModaRequest({ moda })).then(()=> {this.props.dispatch(toggleAddModa())})
+    
   }
 
   handleSearchModa = query => {
@@ -37,21 +37,22 @@ class ModaListPage extends Component {
   render() {
     const display = this.props.showAddModa? {display: 'block'} : {display: 'none'}
     return (
-      <div>
-        <Helmet title='MODA' />
-        <div style={display}>
-          <ModaCreateWidget addModa={this.handleAddModa} />
+      <div className='row'>
+        <div className='col'>
+          <Helmet title='MODA' />
+          <div style={display}>
+            <ModaCreateWidget addModa={this.handleAddModa} />
+          </div>
+          <br />
+          <ModaSearchWidget searchModa={this.handleSearchModa} />
+          <ModaList handleDeleteModa={this.handleDeleteModa} modas={this.props.modas} />
         </div>
-        <ModaSearchWidget searchModa={this.handleSearchModa} />
-        <ModaList handleDeleteModa={this.handleDeleteModa} modas={this.props.modas} />
       </div>
     );
   }
 }
 
-ModaListPage.need = [() => { return fetchModas(); }];
-
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
     showAddModa: state.app.showAddModa,
     modas: state.modas.data,

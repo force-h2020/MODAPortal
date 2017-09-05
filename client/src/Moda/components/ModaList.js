@@ -13,8 +13,6 @@ function ModaList(props) {
       accessor: row => {
         return <Link to={{
           pathname: `/modas/${row.slug}-${row.cuid}`,
-          //query: { cuid: row.cuid },
-          //state: {modas: props.modas}
           state: {readonly: true}
         }}> {row.title} </Link>
       },
