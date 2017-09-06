@@ -1,23 +1,30 @@
-import { Router } from 'express'
-import * as ModaController from './controller'
+/* More info on express routing: https://expressjs.com/en/guide/routing.html */
+import express from 'express'
+import * as handlers from './controller'
 
-const router = new Router()
 
-// Get all Modas
-router.route('/modas').get(ModaController.getModas)
+const router = express.Router()
 
-// Get one moda by cuid
-router.route('/modas/:cuid').get(ModaController.getModa)
+// An sample express middleware
+/*router.use((req, res, next) => {
+  console.log('Time: ', Date.now())
+  next()
+})
+*/
+router.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  // See: http://expressjs.com/en/api.html#res.status
+  res.sendStatus(403)
+})
 
-// Update one moda by cuid
-router.route('/modas/:cuid').put(ModaController.putModa)
+router.get('/', handlers.getModas)
+router.get('/:cuid', handlers.getModa)
+router.put('/:cuid', handlers.putModa)
+router.get('/:cuid/history', handlers.getModaHistory)
+router.post('/', handlers.addModa)
+router.delete('/:cuid', handlers.deleteModa)
 
-// Add a new moda
-router.route('/modas').post(ModaController.addModa)
-
-// Delete a moda by cuid
-router.route('/modas/:cuid').delete(ModaController.deleteModa)
-
-router.route('/modas/:cuid/history').get(ModaController.getModaHistory)
 
 export default router

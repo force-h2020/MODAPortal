@@ -17,9 +17,17 @@ export async function getModas(req, res) {
     }
   }
 
-  const currentUser = await User.findById(req.session.passport.user).exec()
-  if (!currentUser.capabilities.administrator) {
-    query['submittedBy'] = currentUser.id
+  if (req.session && req.session.passport && req.session.passport.user) {
+    User.findById(req.session.passport.user).exec((err, user) => {
+      if (err) {
+        return res.status(500).send(err)
+      }
+      if (!user.capabilities.administrator) {
+        query['submittedBy'] = user.id
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   Moda.find(query).populate('submittedBy').sort('-dateAdded').exec((err, modas) => {

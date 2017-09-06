@@ -6,8 +6,8 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import connectMongo from 'connect-mongo'
 
-import modas from './moda/routes'
-import auth from './auth/routes'
+import modaRouter from './moda/routes'
+import authRouter from './auth/routes'
 import configurePassport from './auth/passport'
 import config from './config'
 
@@ -47,8 +47,9 @@ app.use(passport.session())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.resolve(__dirname, '../dist')))
-app.use('/api', modas)
-app.use('/auth', auth)
+
+app.use('/api/modas', modaRouter)
+app.use('/api/auth', authRouter)
 
 app.listen(config.port, (error) => {
   if (!error) {

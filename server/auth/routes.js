@@ -1,10 +1,10 @@
-import { Router } from 'express'
+import express from 'express'
 import handlers from './controllers'
 
-const router = new Router()
+const router = express.Router()
 
-router.route('/login').post(handlers.login)
-router.route('/logout').get(handlers.logout)
-router.route('/register').post(handlers.register)
+router.get('/logout', handlers.logout)
+router.post('/login', handlers.login)
+router.post('/register', handlers.register)
 
-export default router;
+export default router
