@@ -1,6 +1,7 @@
-import axios from "axios"
 import { browserHistory } from "react-router"
 import * as types from "./constants"
+import callApi from '../api'
+
 
 // "Log In" action creators
 function beginLogin() {
@@ -44,13 +45,9 @@ function registerError() {
   return { type: types.REGISTER_ERROR_USER }
 }
 
-function makeUserRequest(method, data, api="/login") {
+function makeUserRequest(method, data, endpoint) {
   // returns a Promise
-  return axios({
-    method: method,
-    url: api,
-    data: data
-  })
+  return callApi(endpoint, method, data)
 }
 
 // Example of an Async Action Creator
@@ -62,7 +59,7 @@ export function manualLogin(
   return dispatch => {
     dispatch(beginLogin())
 
-    return makeUserRequest("post", data, "/api/auth/login") 
+    return makeUserRequest("post", data, "auth/login") 
       .then(response => {
         if (response.data.success) {
           response.data.rememberMe = data.rememberMe
@@ -91,7 +88,7 @@ export function manualLogout() {
   return dispatch => {
     dispatch(beginLogout())
 
-    return axios.get("/api/auth/logout")
+    return makeUserRequest('get', {}, "auth/logout")
       .then(response => {
         if (response.data.success) {
           dispatch(logoutSuccess())
@@ -116,7 +113,7 @@ export function manualRegister(data) {
   return dispatch => {
     dispatch(beginRegister())
 
-    return makeUserRequest("post", data, "/api/auth/register")  
+    return makeUserRequest("post", data, "auth/register")  
       .then(response => {
         if (response.data.success) {          
           dispatch(registerSuccess())

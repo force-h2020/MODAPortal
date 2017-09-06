@@ -39,14 +39,14 @@ export function addModaHistory(history) {
 
 export function addModaRequest(moda) {
   return (dispatch) => {
-    return callApi('modas', 'post', moda).then(res => dispatch(addModa(res.moda)))
+    return callApi('modas', 'post', moda).then(res => dispatch(addModa(res.data.moda)))
   }
 }
 
 export function updateModaRequest(moda) {
   return (dispatch) => {
     return callApi(`modas/${moda.cuid}`, 'put', moda)
-    .then(res => dispatch(updateModa(res.moda)))
+    .then(res => dispatch(updateModa(res.data.moda)))
   }
 }
 
@@ -57,14 +57,14 @@ export function fetchModas(query) {
   }
   return (dispatch) => {
     return callApi(endpoint).then(res => {
-      dispatch(addModas(res.modas))
+      dispatch(addModas(res.data.modas))
     })
   }
 }
 
 export function fetchModa(cuid) {
   return (dispatch) => {
-    return callApi(`modas/${cuid}`).then(res => dispatch(addModa(res.moda)))
+    return callApi(`modas/${cuid}`).then(res => dispatch(addModa(res.data.moda)))
   }
 }
 
@@ -77,7 +77,7 @@ export function deleteModaRequest(cuid) {
 export function fetchModaHistory(cuid) {
   return (dispatch) => {
     return callApi(`modas/${cuid}/history`).then(res => {
-      dispatch(addModaHistory(res.history))
+      dispatch(addModaHistory(res.data.history))
     })
   }
 }
