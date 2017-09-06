@@ -112,7 +112,19 @@ const MarkdownDescriptionField = ({id, description}) => {
     />)
 }
 
+
+const CustomTitleField = ({id, title, required, ...args}) => {
+  const legend = required ? title + '*' : title
+  return (
+    <div id="custom">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <legend id={id}>{legend}</legend>
+      </a>
+    </div>)
+}
+
 export {
+  CustomTitleField,
   CUDSTreeSelect,
   MathJaxWidget,
   CustomEnum,

@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+
 
 function AddButton({ onClick, disabled }) {
   return (
@@ -46,7 +47,9 @@ function DefaultArrayItem(props) {
     paddingLeft: 6,
     paddingRight: 6,
     fontWeight: "bold",
-  };
+  }
+  const rand = Math.floor(Math.random() * (100 - 1)) + 1
+  const collapseId = 'ArrayItem_' + rand
   return (
     <div key={props.index} className={props.className}>
       {props.hasToolbar &&
@@ -56,44 +59,58 @@ function DefaultArrayItem(props) {
             style={{ display: "flex", justifyContent: "space-around" }}
           >
 
-            {(props.hasMoveUp || props.hasMoveDown) &&
-              <IconBtn
-                icon="arrow-up"
-                className="array-item-move-up"
-                tabIndex="-1"
-                style={btnStyle}
-                disabled={props.disabled || props.readonly || !props.hasMoveUp}
-                onClick={props.onReorderClick(props.index, props.index - 1)}
-              />}
+          <IconBtn
+            icon="resize-vertical"
+            className="array-item-move-up"
+            tabIndex="-1"
+            style={btnStyle}
+            disabled={false}
+            data-toggle="collapse"
+            data-target={"#" + collapseId}
+          />
 
-            {(props.hasMoveUp || props.hasMoveDown) &&
-              <IconBtn
-                icon="arrow-down"
-                className="array-item-move-down"
-                tabIndex="-1"
-                style={btnStyle}
-                disabled={
-                  props.disabled || props.readonly || !props.hasMoveDown
-                }
-                onClick={props.onReorderClick(props.index, props.index + 1)}
-              />}
+          {(props.hasMoveUp || props.hasMoveDown) &&
+            <IconBtn
+              icon="arrow-up"
+              className="array-item-move-up"
+              tabIndex="-1"
+              style={btnStyle}
+              disabled={props.disabled || props.readonly || !props.hasMoveUp}
+              onClick={props.onReorderClick(props.index, props.index - 1)}
+            />}
 
-            {props.hasRemove &&
-              <IconBtn
-                type="danger"
-                icon="remove"
-                className="array-item-remove"
-                tabIndex="-1"
-                style={btnStyle}
-                disabled={props.disabled || props.readonly}
-                onClick={props.onDropIndexClick(props.index)}
-              />}
+          {(props.hasMoveUp || props.hasMoveDown) &&
+            <IconBtn
+              icon="arrow-down"
+              className="array-item-move-down"
+              tabIndex="-1"
+              style={btnStyle}
+              disabled={
+                props.disabled || props.readonly || !props.hasMoveDown
+              }
+              onClick={props.onReorderClick(props.index, props.index + 1)}
+            />}
+
+          {props.hasRemove &&
+            <IconBtn
+              type="danger"
+              icon="remove"
+              className="array-item-remove"
+              tabIndex="-1"
+              style={btnStyle}
+              disabled={props.disabled || props.readonly}
+              onClick={props.onDropIndexClick(props.index)}
+            />}
+
           </div>
         </div>}
+
+    <div id={collapseId} className='collapse in'>
       <div style={{paddingLeft: '10px', paddingRight: '10px'}}>
         {props.children}
       </div>
     </div>
+  </div>
   );
 }
 

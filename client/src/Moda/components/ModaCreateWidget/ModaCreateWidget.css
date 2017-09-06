@@ -108,3 +108,7 @@ textarea {
 .computationalDetails legend ,.computationalDetails label, .computationalDetails p, .computationalDetails div {
   color: white;
 }
+
+.array-item {
+  margin-bottom: 10px;
+}
