@@ -1,19 +1,41 @@
-web:
-  build: .
-  links:
-   - db
-  ports:
-   - "80:8000"
-  volumes:
-          #    - .:/usr/src/app/
-   - server:/usr/src/app/server
-   - client:/usr/src/app/client
-   - Intl:/usr/src/app/Intl
-  environment:
-   NODE_ENV: production
-   MONGO_URL: mongodb://db:27017/moda
-db:
-  image: mongo:latest
-  ports:
-   - "27017:27017"
+version: '3'
 
+services:
+
+  api-service:
+    container_name: moda-api-service
+    build: .
+    ports:
+      - 8000:8000 # expose ports - HOST:CONTAINER
+    links:
+      - db-service
+    depends_on:
+      - db-service
+    volumes:
+      - .:/usr/src/app
+      - ./package.json:/usr/src/app/package.json
+    environment:
+      - MONGO_URL=mongodb://db-service:27017/moda
+      - NODE_ENV=${NODE_ENV}
+      - SESSION_SECRET=changeme
+
+  web-service:
+    container_name: moda-web-service
+    build: ./client
+    ports:
+     - 5000:5000
+    links:
+      - api-service
+    depends_on:
+      - api-service
+    volumes:
+     - ./client:/usr/src/app/client
+     - ./client/package.json:/usr/src/app/client/package.json
+    environment:
+      - REACT_APP_API_URL=http://api-service:8000
+
+  db-service:
+    container_name: moda-db-service
+    image: mongo:latest
+    ports:
+     - 27017:27017

@@ -1,14 +1,15 @@
-FROM node
+FROM node:latest
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app
-RUN npm install
-COPY . /usr/src/app
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-ENV NODE_ENV production
+ADD package.json ./package.json
+RUN yarn install
+
+ADD server ./server
+
+CMD yarn start
 
 EXPOSE 8000
-CMD ["npm", "run", "bs"]
-
