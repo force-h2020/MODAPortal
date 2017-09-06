@@ -19,9 +19,9 @@ const CustomSchemaField = function(props) {
 }
 
 const CUDSTreeSelect = (props) => {
-  const onChange = props.onChange
   return (
     <TreeSelect
+      name='cudsTree'
       style={{width: '100%'}}
       dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
       treeData={cudsSchema.cudsSchema}
@@ -29,7 +29,7 @@ const CUDSTreeSelect = (props) => {
       treeDefaultExpandAll
       value={props.value}
       required={props.required}
-      onChange={(value) => onChange(value)}
+      onChange={(value) => props.onChange(value)}
     />
   )
 }
