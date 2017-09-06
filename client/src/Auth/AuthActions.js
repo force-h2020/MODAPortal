@@ -62,7 +62,7 @@ export function manualLogin(
   return dispatch => {
     dispatch(beginLogin())
 
-    return makeUserRequest("post", data, "/auth/login") 
+    return makeUserRequest("post", data, "/api/auth/login") 
       .then(response => {
         if (response.data.success) {
           response.data.rememberMe = data.rememberMe
@@ -91,7 +91,7 @@ export function manualLogout() {
   return dispatch => {
     dispatch(beginLogout())
 
-    return axios.get("/auth/logout")
+    return axios.get("/api/auth/logout")
       .then(response => {
         if (response.data.success) {
           dispatch(logoutSuccess())
@@ -116,7 +116,7 @@ export function manualRegister(data) {
   return dispatch => {
     dispatch(beginRegister())
 
-    return makeUserRequest("post", data, "/auth/register")  
+    return makeUserRequest("post", data, "/api/auth/register")  
       .then(response => {
         if (response.data.success) {          
           dispatch(registerSuccess())
