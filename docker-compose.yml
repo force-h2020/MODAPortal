@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
 
@@ -11,28 +11,22 @@ services:
       - db-service
     depends_on:
       - db-service
-    volumes:
-      - .:/usr/src/app
-      - ./package.json:/usr/src/app/package.json
     environment:
       - MONGO_URL=mongodb://db-service:27017/moda
-      - NODE_ENV=${NODE_ENV}
+      - NODE_ENV=production
       - SESSION_SECRET=changeme
 
-  web-service:
-    container_name: moda-web-service
-    build: ./client
-    ports:
-     - 5000:5000
-    links:
-      - api-service
-    depends_on:
-      - api-service
-    volumes:
-     - ./client:/usr/src/app/client
-     - ./client/package.json:/usr/src/app/client/package.json
-    environment:
-      - REACT_APP_API_URL=http://api-service:8000
+#  web-service:
+#    container_name: moda-web-service
+#    build: ./client
+#    ports:
+#     - 5000:5000
+#    links:
+#      - api-service
+#    depends_on:
+#      - api-service
+#    environment:
+#      - REACT_APP_API_URL=http://api-service:8000
 
   db-service:
     container_name: moda-db-service
