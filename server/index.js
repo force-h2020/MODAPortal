@@ -46,10 +46,12 @@ app.use(passport.session())
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.resolve(__dirname, '../dist')))
-
 app.use('/api/modas', modaRouter)
 app.use('/api/auth', authRouter)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 app.listen(config.port, (error) => {
   if (!error) {
