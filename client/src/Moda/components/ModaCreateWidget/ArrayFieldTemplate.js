@@ -119,7 +119,7 @@ const ArrayFieldTemplate = (props) => {
     var i = 0;
     var inputs = [""];
     for(i=0; i<props.items.length; i++) {
-      let title = "Model " + i;
+      let title = "Model " + (i + 1);
       props.items[i].children.props.formData.title = title;
       inputs.push(title);
     }

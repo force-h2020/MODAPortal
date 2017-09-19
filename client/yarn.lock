@@ -5784,8 +5784,8 @@ react-markdown@^2.5.0:
     prop-types "^15.5.1"
 
 react-mathjax-preview@^0.1.1:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/react-mathjax-preview/-/react-mathjax-preview-0.1.8.tgz#99f06db3e1f887029efedac340173ed8340f3183"
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/react-mathjax-preview/-/react-mathjax-preview-0.1.9.tgz#3e34d6959fcb2af04b229597a0ae9abe12250fef"
   dependencies:
     load-script "^1.0.0"
 
