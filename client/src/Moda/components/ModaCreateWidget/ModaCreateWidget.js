@@ -46,6 +46,7 @@ export class ModaCreateWidget extends Component {
             schema={schema.schema}
             uiSchema={uiSchema.uiSchema}
             onSubmit={this.handleSubmit}
+            onChange={this.props.onChange}
             widgets={widgets}
             formData={this.props.moda}
             fields={fields}

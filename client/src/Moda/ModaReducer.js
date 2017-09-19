@@ -1,6 +1,9 @@
 import * as types from './constants'
 
-const initialState = { data: [] }
+const initialState = {
+  data: [],
+  draft: null
+}
 
 const ModaReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -39,6 +42,14 @@ const ModaReducer = (state = initialState, action) => {
         data: state.data,
       }
     }
+
+    case types.UPDATE_NEW_MODA_DRAFT: {
+      return {
+        data: state.data,
+        draft: action.moda
+      }
+    }
+
 
     default:
       return state

@@ -6,13 +6,34 @@ import Helmet from 'react-helmet'
 import ModaList from '../components/ModaList';
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget';
 import ModaSearchWidget from '../components/ModaSearchWidget'
-import { addModaRequest, fetchModas, deleteModaRequest } from '../ModaActions';
+import { addModaRequest, fetchModas, deleteModaRequest, updateNewModaDraft } from '../ModaActions';
 import { toggleAddModa } from '../../App/AppActions';
 
 
 class ModaListPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showAddModa: null,
+      modas: null,
+      draft: null
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      showAddModa: nextProps.showAddModa,
+      modas: nextProps.modas,
+      draft: nextProps.draft
+    })
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchModas());
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.modas !== this.state.modas || nextProps.showAddModa !== this.state.showAddModa)
   }
 
   handleDeleteModa = cuid => {
@@ -34,6 +55,11 @@ class ModaListPage extends Component {
     }
   }
 
+  handleChange = rjsfData => {
+    let moda = rjsfData.formData
+    this.props.dispatch(updateNewModaDraft(moda))
+  }
+
   render() {
     const display = this.props.showAddModa? {display: 'block'} : {display: 'none'}
     return (
@@ -41,7 +67,7 @@ class ModaListPage extends Component {
         <div className='col'>
           <Helmet title='MODA' />
           <div style={display}>
-            <ModaCreateWidget addModa={this.handleAddModa} />
+            <ModaCreateWidget addModa={this.handleAddModa} onChange={this.handleChange} moda={this.props.draft} />
           </div>
           <br />
           <ModaSearchWidget searchModa={this.handleSearchModa} />
@@ -56,6 +82,7 @@ function mapStateToProps(state, props) {
   return {
     showAddModa: state.app.showAddModa,
     modas: state.modas.data,
+    draft: state.modas.draft
   };
 }
 
@@ -65,6 +92,7 @@ ModaListPage.propTypes = {
   })).isRequired,
   showAddModa: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
+  draft: PropTypes.object
 };
 
 ModaListPage.contextTypes = {

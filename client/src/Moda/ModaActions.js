@@ -37,6 +37,13 @@ export function addModaHistory(history) {
   }
 }
 
+export function updateNewModaDraft(moda) {
+  return {
+    type: types.UPDATE_NEW_MODA_DRAFT,
+    moda
+  }
+}
+
 export function addModaRequest(moda) {
   return (dispatch) => {
     return callApi('modas', 'post', moda).then(res => dispatch(addModa(res.data.moda)))
