@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 
 import SchemaField from "react-jsonschema-form/lib/components/fields/SchemaField"
 import cudsSchema from '../../CudsSelect'
-import MathJax from '../react-mathjax'
+import MathJax from 'react-mathjax-preview'
 import ReactMarkdown from 'react-markdown'
 import TreeSelect from 'antd/lib/tree-select'
 import 'antd/lib/tree-select/style/index.css'
@@ -73,16 +73,11 @@ const MathJaxWidget = (props) => {
       {children}
       {errors}
       {help}
-      <MathJax.Context
+      <MathJax
         className={'form-field'}
         options={options}
-      >
-        <p>
-          <MathJax.Node className={'form-field'}>
-            {value || "<math></math>"}
-          </MathJax.Node>
-        </p>
-      </MathJax.Context>
+        math={value || "<math></math>"}
+      />
     </div>
   )
 }
