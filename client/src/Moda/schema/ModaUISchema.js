@@ -2,6 +2,11 @@
 module.exports = {
   "uiSchema": {
     "classNames": "moda-overview",
+
+/*****************************
+Order Of Form Controls
+******************************/
+
     "ui:order": [
       "title",
       "project",
@@ -18,6 +23,7 @@ module.exports = {
       "modificationDate",
       "chainOfModels"
     ],
+
     "creationDate": {
       "ui:readonly": "true",
       "ui:widget": "hidden"
@@ -62,20 +68,21 @@ module.exports = {
       "classNames": "workflow-rationale",
       "ui:widget": "textarea",
     },
+
+/*****************************
+Chain of Models UI Config
+******************************/
+
     "chainOfModels": {
       "classNames": "chain-of-models",
+
+/*****************************
+physicsBasedModels UI Config
+******************************/
+
       "physicsBasedModels": {
         "classNames": "physics-based-models",
-        "ui:help": `Please identify the model. Note these are assumed to be
-physics-based models unless it is specified differently.
-Most modelling projects consist of a chain of models,
-(workflow). Here only the Physics Equations should be given
-and only names appearing in the content list of the Review of
-Materials Modelling VI should be entered. This review is
-available on
-http://ec.europa.eu/research/industrial_technologies/e-
-library.cfm).All models should be identified as electronic,
-atomistic, mesoscopic or continuum.`,
+        "ui:help": `You can define any number of physcis models, for databased models see below.`,
         "items": {
           "title": {
             "ui:field": "autoFilledTitle"
@@ -204,24 +211,78 @@ More information: https://publicwiki-01.fraunhofer.de/Matics/index.php/EMMC_MODA
           }
         }
       },
+
+/*****************************
+physicsBasedModels UI Config
+******************************/
+
       "databasedModels": {
         "classNames": "data-based-models",
         "ui:help": "If data-based models are used, please specify.",
         "items": {
+
           "dbUserCase": {
-            "classNames": "user-case",
-            "ui:widget": "textarea"
+            "dbUserCaseAspects": {
+              "classNames": "user-case",
+              "ui:widget": "textarea"
+            },
+            "material": {
+              "ui:widget": "textarea"
+            },
+            "geometry": {
+              "ui:widget": "textarea"
+            },
+            "timeLapse": {
+              "ui:widget": "textarea"
+            },
+            "manufacturingProcessOrConditions": {
+              "ui:widget": "textarea"
+            },
+            "publications": {
+              "ui:widget": "textarea"
+            },
+            "dbUserCase": {
+              "ui:widget": "textarea"
+            },
           },
           "theDatabasedModel": {
-            "classNames": "the-databased-model",
-            "ui:widget": "textarea"
+            "equationType": {
+              "classNames": "the-databased-model",
+              "ui:widget": "textarea"
+            },
+            "equationName": {
+              "ui:widget": "textarea"
+            },
+            "database": {
+              "ui:widget": "textarea"
+            },
+            "databaseType": {
+              "ui:widget": "textarea"
+            },
+            "equation": {
+              "hypothesis": {
+                "ui:widget": "textarea"
+              },
+              "physicalQuantities": {
+                "ui:widget": "textarea"
+              }
+            }
           },
+
           "computationalDetails": {
-            "classNames": "computational-details",
-            "ui:widget": "textarea"
+            "numericalOperations": {
+              "classNames": "computational-details",
+              "ui:widget": "textarea"
+            },
+            "softwareTool": {
+              "ui:widget": "textarea"
+            },
+            "errorMargin": {
+              "ui:widget": "textarea"
+            }
           }
         }
       }
     }
   }
-};
+}

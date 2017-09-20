@@ -3,8 +3,8 @@ import { PropTypes } from 'prop-types';
 
 import Form from 'react-jsonschema-form';
 
-import schema from '../../ModaSchema';
-import uiSchema from '../../ModaUISchema';
+import schema from '../../schema/ModaSchema';
+import uiSchema from '../../schema/ModaUISchema';
 import ArrayFieldTemplate from './ArrayFieldTemplate';
 import './ModaCreateWidget.css';
 import {
