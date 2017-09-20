@@ -13,9 +13,6 @@ export default {
     "required": [
       "title",
       "project",
-      "fundingAgency",
-      "grantNumberOrInformation",
-      "projectHomePage",
       "userCase",
       "version"
     ],
