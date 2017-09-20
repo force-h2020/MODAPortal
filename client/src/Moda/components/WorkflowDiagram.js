@@ -85,7 +85,7 @@ class WorkflowDiagram extends React.Component {
     }
 
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-default" style={{marginTop: '10px'}}>
         <div className="panel-heading">
           <h3 className="panel-title">Simulation Workflow</h3>
         </div>
