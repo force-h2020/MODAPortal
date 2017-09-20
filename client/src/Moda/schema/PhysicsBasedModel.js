@@ -129,7 +129,7 @@ In case of tightly coupled PEs set up as one matrix which is solved in one go, m
                   },
                   "symbol": {
                     "type": "string",
-                    "title": "Symbol"
+                    "title": "Equation"
                   },
                   "description": {
                     "type": "string",
@@ -158,7 +158,7 @@ In case of tightly coupled PEs set up as one matrix which is solved in one go, m
                   },
                   "symbol": {
                     "type": "string",
-                    "title": "Symbol"
+                    "title": "Equation"
                   },
                   "description": {
                     "type": "string",
@@ -180,7 +180,7 @@ In case of tightly coupled PEs set up as one matrix which is solved in one go, m
                   },
                   "symbol": {
                     "type": "string",
-                    "title": "Symbol"
+                    "title": "Equation"
                   },
                   "description": {
                     "type": "string",
