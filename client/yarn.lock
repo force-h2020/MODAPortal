@@ -3967,7 +3967,7 @@ jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
-jsonschema@^1.0.2:
+jsonschema@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/jsonschema/-/jsonschema-1.2.0.tgz#d6ebaf70798db7b3a20c544f6c9ef9319b077de2"
 
@@ -5756,11 +5756,11 @@ react-json-tree@^0.10.8:
     prop-types "^15.5.8"
     react-base16-styling "^0.5.1"
 
-react-jsonschema-form@^0.49.0:
-  version "0.49.0"
-  resolved "https://registry.yarnpkg.com/react-jsonschema-form/-/react-jsonschema-form-0.49.0.tgz#58bf691eae2d016d5c23cb59512f2e74f54ac324"
+react-jsonschema-form@^0.50.1:
+  version "0.50.1"
+  resolved "https://registry.yarnpkg.com/react-jsonschema-form/-/react-jsonschema-form-0.50.1.tgz#30652f701645f3af25435ec5f6c42260c426b881"
   dependencies:
-    jsonschema "^1.0.2"
+    jsonschema "^1.2.0"
     lodash.topath "^4.5.2"
     prop-types "^15.5.8"
     setimmediate "^1.0.5"

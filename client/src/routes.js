@@ -9,7 +9,7 @@ import ModaHistoryPage from './Moda/pages/ModaHistoryPage'
 import ModaHistoryDetailPage from './Moda/pages/ModaHistoryDetailPage'
 
 
-export const createRoutes = (store) => {
+export default function (store) {
   const requireAuth = (nextState, replace, callback) => {
     const { auth: { authenticated } } = store.getState()
     if (!authenticated) {
@@ -24,12 +24,12 @@ export const createRoutes = (store) => {
   }
 
   return(
-  <Route path="/" component={App} >
-    <IndexRoute component={ModaListPage} onEnter={requireAuth} />
-    <Route path="/modas/:slug-:cuid" component={ModaDetailPage} onEnter={requireAuth} />
-    <Route path="/modas/:slug-:cuid/history" component={ModaHistoryPage} onEnter={requireAuth} />
-    <Route path="/modas/:slug-:cuid/history/:hid" component={ModaHistoryDetailPage} onEnter={requireAuth} />
-    <Route path="login" component={LoginContainer} />
-  </Route>
+    <Route path="/" component={App} >
+      <IndexRoute component={ModaListPage} onEnter={requireAuth} />
+      <Route path="/modas/:slug-:cuid" component={ModaDetailPage} onEnter={requireAuth} />
+      <Route path="/modas/:slug-:cuid/history" component={ModaHistoryPage} onEnter={requireAuth} />
+      <Route path="/modas/:slug-:cuid/history/:hid" component={ModaHistoryDetailPage} onEnter={requireAuth} />
+      <Route path="login" component={LoginContainer} />
+    </Route>
   )
 }
