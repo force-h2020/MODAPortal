@@ -45,43 +45,48 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div>
-        { this.state.loginFailed && <AlertDismissable msg={this.state.loginMessage} title='Login failed' alertStyle='alert-danger' visible={true}/>}
-        
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">EMMC Login</h3>
-          </div>
-          <div className="panel-body">
-            Use your <a href="https://emmc.info">EMMC</a> account to login to MODA Portal or send us a <a href="https://emmc.info/join">join request</a>.
+      <div style={{margin: '1em auto', maxWidth: '450px'}}>
+
+        <div className="row" >
+          <div className="col">
+          { this.state.loginFailed && <AlertDismissable msg={this.state.loginMessage} title='Login failed' alertStyle='alert-danger' visible={true}/>}
           </div>
         </div>
 
-        <div className="panel panel-default">
-          <div className="panel-body">
+        <div className="row" style={{minHeight: '80vh', alignItems: 'center'}}>
+          <div className="col">
+            <div className="panel panel-default" style={{margin: '0 auto'}}>
 
+              <div className="panel-heading">
+                <h3 className="panel-title">MODA Portal</h3>
+              </div>
 
-            <form onSubmit={ this.handleSubmit } onChange={ this.handleChange }>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input ref={ref => { this.username = ref }} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                <small id="emailHelp" className="form-text text-muted">{"We'll never share your email with anyone else."}</small>
+              <div className="panel-body">
+                <p>Use your <a href="https://emmc.info">EMMC</a> account to login to MODA Portal or send us a <a href="https://emmc.info/join">join request</a>.</p>
+                <form onSubmit={ this.handleSubmit } onChange={ this.handleChange }>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <input ref={ref => { this.username = ref }} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">{"We'll never share your email with anyone else."}</small>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input ref={ref => { this.password = ref }} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                  </div>
+                  <div className="form-check">
+                    <label className="form-check-label">
+                      <input ref={ref => { this.rememberMe = ref }} type="checkbox" className="form-check-input" />
+                      Remember me
+                    </label>
+                  </div>
+                  <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
               </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input ref={ref => { this.password = ref }} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input ref={ref => { this.rememberMe = ref }} type="checkbox" className="form-check-input" />
-                  Remember me
-                </label>
-              </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
 
-          </div>  
-          <div className="panel-footer">European Materials Modelling Council </div>
+              <div className="panel-footer">European Materials Modelling Council </div>
+
+            </div>
+          </div>
         </div>
       </div>
     )
