@@ -8,6 +8,7 @@ import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget';
 import ModaSearchWidget from '../components/ModaSearchWidget'
 import { addModaRequest, fetchModas, deleteModaRequest, updateNewModaDraft } from '../ModaActions';
 import { toggleAddModa } from '../../App/AppActions';
+import * as types from '../../App/constants'
 
 
 class ModaListPage extends Component {
@@ -29,7 +30,21 @@ class ModaListPage extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchModas());
+    this.props.dispatch({
+      type: types.NAVBAR_ACTIONS,
+      payload: [{
+        key: 'new',
+        actionName: 'New',
+        actionHandler: () => { this.props.dispatch(toggleAddModa()) }
+      }],
+    })
+    this.props.dispatch(fetchModas())
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: types.RESET_NAVBAR,
+    })
   }
 
   shouldComponentUpdate(nextProps, nextState) {

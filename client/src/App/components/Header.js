@@ -16,23 +16,24 @@ export default class extends Component {
     hideForms: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     authenticated: PropTypes.bool.isRequired,
-    user: PropTypes.object
+    user: PropTypes.object,
+    navActions: PropTypes.array
   }
 
   render() {
-    // const actions = (
-    //   <li className="dropdown">
-    //     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions<span className="caret"></span></a>
-    //     <ul className="dropdown-menu">
-    //       <li><a onClick={this.props.toggleAddModa}>New MODA</a></li>
-          
-    //       {/*<li role="separator" className="divider"></li>
-    //     <li><a onClick={this.props.logout}>Logout</a></li>*/}
-    //     </ul>
-    //   </li>)
+    const actions = (
+      <li className="dropdown">
+        <a href="" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions<span className="caret"></span></a>
+        <ul className="dropdown-menu">
+          {/*this.context.router.isActive('/', true)? <li><a onClick={this.props.toggleAddModa}>New MODA</a></li>: null*/}
+          {(this.props.navActions && !this.props.navActions.empty)? this.props.navActions.map(action => {return <li key={action.key}><a onClick={action.actionHandler}>{action.actionName}</a></li>}): null}
 
+          {/*<li role="separator" className="divider"></li>
+        <li><a onClick={this.props.logout}>Logout</a></li>*/}
+        </ul>
+      </li>)
     return (
-      <nav className="navbar navbar-default" style={{background: 'aliceblue'}}>
+      <nav className="navbar navbar-default affix" style={{background: 'aliceblue', width: '100%', zIndex: '99'}}>
         <div className="container">
 
           <div className="navbar-header">
@@ -45,7 +46,8 @@ export default class extends Component {
 
             <ul className="nav navbar-nav">
               <li><Link to="/" onClick={this.props.hideForms}>(preview version)</Link></li>
-              { this.context.router.isActive('/', true)? <li><button type="button" className="btn btn-default navbar-btn" onClick={this.props.toggleAddModa}>New</button></li>: null }
+              { (this.props.navActions && this.props.navActions.length)? actions: null}
+              {/* this.context.router.isActive('/', true)? <li><button type="button" className="btn btn-default navbar-btn" onClick={this.props.toggleAddModa}>New</button></li>: null */}
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
@@ -59,41 +61,3 @@ export default class extends Component {
     )
   }
 }
-/*        <div className='content'>
-
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions<span className="caret"></span></a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" className="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" className="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-
-          <h1 className='site-title'>
-            <img src={logo} alt='logo' className='site-logo' />
-            <Link to="/" onClick={this.props.hideForms}>MODA Portal</Link>
-            <span className='site-subtitle'> (preview version)</span>
-          </h1>
-
-          {
-            this.context.router.isActive('/', true)
-              ? <button className='add-post-button' onClick={this.props.toggleAddModa}>Add MODA</button>
-              : null
-          }
-
-          {
-            this.context.router.isActive('/login', true)
-              ? null
-              : <button className='add-post-button' onClick={this.props.logout}>Logout</button>
-          }
-
-          {
-            this.props.authenticated ? <span className='user-info'> Logged in as {this.props.user.displayname}</span> : null
-          }
-
-        </div>*/

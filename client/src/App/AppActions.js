@@ -1,4 +1,4 @@
-import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS } from './constants'
+import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS, RESET_NAVBAR } from './constants'
 
 
 export function toggleAddModa() {
@@ -16,5 +16,11 @@ export function toggleEditModa() {
 export function hideForms() {
   return {
     type: HIDE_FORMS,
+  }
+}
+
+export function resetNavbar() {
+  return {
+    type: RESET_NAVBAR,
   }
 }

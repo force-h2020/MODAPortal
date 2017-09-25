@@ -6,10 +6,20 @@ import Helmet from 'react-helmet'
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget'
 import { fetchModa, updateModaRequest } from '../ModaActions'
 import { WorkflowDiagram } from '../components/WorkflowDiagram'
-
+import * as types from '../../App/constants'
 
 class ModaDetailPage extends Component {
   componentWillMount() {
+    if (!this.props.readonly) {
+      this.props.dispatch({
+        type: types.NAVBAR_ACTIONS,
+        payload: [{
+          key: 'save',
+          actionName: 'Save',
+          actionHandler: () => { console.log('save moda ' + this.props.moda.cuid) }
+        }],
+      })
+    }
     this.props.dispatch(fetchModa(this.props.params.cuid))
   }
 
