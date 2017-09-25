@@ -33,7 +33,8 @@ export function deleteModa(cuid) {
 export function addModaHistory(history) {
   return {
     type: types.ADD_MODA_HISTORY,
-    history,
+    history: history.history,
+    cuid: history.cuid
   }
 }
 
@@ -84,7 +85,7 @@ export function deleteModaRequest(cuid) {
 export function fetchModaHistory(cuid) {
   return (dispatch) => {
     return callApi(`modas/${cuid}/history`).then(res => {
-      dispatch(addModaHistory(res.data.history))
+      dispatch(addModaHistory({history: res.data.history, cuid: cuid}))
     })
   }
 }

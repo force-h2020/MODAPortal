@@ -16,8 +16,10 @@ class ModaHistoryPage extends Component {
       return <div>Loading...</div>
     }
     return (
-      <div>
-        <ModaHistoryList history={this.props.history} moda={this.props.moda} />
+      <div className="row">
+        <div className="col">
+          <ModaHistoryList history={this.props.history} moda={this.props.moda} />
+        </div>
       </div>
     )
   }

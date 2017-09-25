@@ -34,8 +34,8 @@ function ModaHistoryList(props) {
       id: 'modifiedOn',
       accessor: row => { return row.modificationDate ? new Date(row.modificationDate).toLocaleString() : '' },
     }]
-
-  const data = props.history.versions.map((item, index) => {
+console.log(props.history)
+  const data = props.history.versions && props.history.versions.map((item, index) => {
     return Object.assign({'_index': index}, item)
   })
   return (

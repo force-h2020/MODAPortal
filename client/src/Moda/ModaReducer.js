@@ -24,8 +24,13 @@ const ModaReducer = (state = initialState, action) => {
       }
 
     case types.ADD_MODA_HISTORY: {
-      const index = state.data.findIndex(x => action.history.refId === x._id)
-      state.data[index]['history'] = action.history
+      if (action.history) {
+        const index = state.data.findIndex(x => action.history.refId === x._id)
+        state.data[index]['history'] = action.history
+      } else {
+        const index = state.data.findIndex(x => action.cuid === x.cuid)
+        state.data[index]['history'] = []
+      }
       return {
         data: state.data,
       }
