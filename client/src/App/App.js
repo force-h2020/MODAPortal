@@ -56,13 +56,16 @@ export class App extends Component {
         >
           <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/spacelab/bootstrap.min.css" />
         </Helmet>
-        <Header
-          toggleAddModa={this.props.toggleAddModa}
-          hideForms={this.props.hideForms}
-          logout={this.props.manualLogout}
-          authenticated={this.props.authenticated}
-          user={this.props.user}
-        />
+        { this.props.authenticated?
+          <Header
+            toggleAddModa={this.props.toggleAddModa}
+            hideForms={this.props.hideForms}
+            logout={this.props.manualLogout}
+            authenticated={this.props.authenticated}
+            user={this.props.user}
+          />
+          :null
+        }
         <div className='container'>
           <div className="row">
             <div className="col">
@@ -71,7 +74,8 @@ export class App extends Component {
           </div>
           {this.props.children}
         </div>
-        <Footer />
+
+        { this.props.authenticated? <Footer />: null }
       </div>
     )
   }

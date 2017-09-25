@@ -2,6 +2,8 @@
   background: #eee url('./header-bk.png') center;
   background-size: cover;
   border-bottom: 1px solid #ccc;
+  position: fixed;
+  width: 100%;
 }
 
 .content {
@@ -29,6 +31,11 @@
   display: block;
   font-size: 21px;
   color: white;
+}
+
+.brand-logo {
+  height: 3em;
+  margin-top: 4px;
 }
 
 .site-logo {
