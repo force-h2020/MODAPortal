@@ -7,7 +7,7 @@ import './App.css'
 import DevTools from './components/DevTools'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import AlertDismissable from './alert'
+import AppAlert from './components/AppAlert'
 import * as appActions from "./AppActions"
 import * as authActions from '../Auth/AuthActions'
 
@@ -21,21 +21,14 @@ require('bootstrap')
 export class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { isMounted: false,
-                   showModal: false}
-    this.close = this.close.bind(this)
+    this.state = { isMounted: false}
   }
 
   componentDidMount() {
     this.setState({isMounted: true})
   }
 
-  close() {
-    this.setState({ showModal: false })
-  }
-
   render() {
-
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
@@ -56,6 +49,7 @@ export class App extends Component {
         >
           <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/spacelab/bootstrap.min.css" />
         </Helmet>
+
         { this.props.authenticated?
           <Header
             toggleAddModa={this.props.toggleAddModa}
@@ -67,12 +61,15 @@ export class App extends Component {
           />
           :null
         }
+
         <div className='container' style={{paddingTop: '52px'}}>
-          <div className="row">
-            <div className="col">
-              { this.state.showModal && (<AlertDismissable />) }
+          { this.props.message && 
+            <div className="row" style={{paddingTop: '1em'}}>
+              <div className="col">
+                <AppAlert alertStyle={this.props.message.style} alertTitle={this.props.message.title} alertText={this.props.message.text} />
+              </div>
             </div>
-          </div>
+          }
           {this.props.children}
         </div>
 
@@ -89,6 +86,10 @@ App.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   displayName: PropTypes.string,
   navActions: PropTypes.array,
+  message: PropTypes.shape({
+    style: PropTypes.string, // bootstrap types: alert-info, alert-success, alert-danger, etc.
+    text: PropTypes.string.isRequired,
+  })
 }
 
 function mapStateToProps(state) {
@@ -96,6 +97,7 @@ function mapStateToProps(state) {
     authenticated: state.auth.authenticated,
     user: state.auth.user,
     navActions: state.app.navActions,
+    message: state.app.message
   }
 }
 

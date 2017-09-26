@@ -34,7 +34,10 @@ class AlertDismissable extends React.Component {
   }
 
   handleAlertDismiss = () => {
-    this.setState({alertVisible: false})
+    if(this.props.onDismiss)
+      this.props.onDismiss()
+    else 
+      this.setState({alertVisible: false})
   }
 
   handleAlertShow = () => {
@@ -44,12 +47,13 @@ class AlertDismissable extends React.Component {
 
 AlertDismissable.propTypes = {
   visible: PropTypes.bool,
-  alertStyle: PropTypes.string
+  alertStyle: PropTypes.string,
+  onDismiss: PropTypes.func
 }
 
 AlertDismissable.defaultProps = {
   visible: false,
-  alertStyle: 'alert-info'
+  alertStyle: 'alert-info',
 }
 
 // Function passed in to `connect` to subscribe to Redux store updates.

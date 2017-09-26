@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget'
 import { fetchModa, updateModaRequest } from '../ModaActions'
+import { newMessage } from '../../App/AppActions'
 import { WorkflowDiagram } from '../components/WorkflowDiagram'
 import * as types from '../../App/constants'
 
@@ -27,6 +28,11 @@ class ModaDetailPage extends Component {
           actionName: 'Save',
           actionHandler: () => {
             this.handleSaveModa(this.state.draftModa)
+            this.props.dispatch(newMessage({
+              title: 'Saved',
+              text: `Changes to MODA number ${this.props.params.cuid} saved in database.`,
+              style: 'alert-success'
+            }))
           }
         }],
       })

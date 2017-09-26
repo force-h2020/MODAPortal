@@ -1,8 +1,9 @@
-import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS, NAVBAR_ACTIONS, RESET_NAVBAR } from './constants'
+import { TOGGLE_ADD_MODA, TOGGLE_EDIT_MODA, HIDE_FORMS, NAVBAR_ACTIONS, RESET_NAVBAR, NEW_MSG, RESET_MSG } from './constants'
 
 const initialState = {
   showAddModa: false,
   showEditModa: false,
+  message: null,
   navActions: []
 }
 
@@ -42,6 +43,23 @@ const AppReducer = (state = initialState, action) => {
         showEditModa: state.showEditModa,
         navActions: []
       }
+
+    case NEW_MSG:
+      return {
+        showAddModa: state.showAddModa,
+        showEditModa: state.showEditModa,
+        navActions: state.navActions,
+        message: action.message
+      }
+
+    case RESET_MSG:
+      return {
+        showAddModa: state.showAddModa,
+        showEditModa: state.showEditModa,
+        navActions: state.navActions,
+        message: null
+      }
+
     default:
       return state
   }
