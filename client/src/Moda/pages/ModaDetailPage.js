@@ -8,7 +8,16 @@ import { fetchModa, updateModaRequest } from '../ModaActions'
 import { WorkflowDiagram } from '../components/WorkflowDiagram'
 import * as types from '../../App/constants'
 
+
 class ModaDetailPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      draftModa: null
+    }
+  }
+
   componentWillMount() {
     if (!this.props.readonly) {
       this.props.dispatch({
@@ -16,17 +25,36 @@ class ModaDetailPage extends Component {
         payload: [{
           key: 'save',
           actionName: 'Save',
-          actionHandler: () => { console.log('save moda ' + this.props.moda.cuid) }
+          actionHandler: () => {
+            this.handleSaveModa(this.state.draftModa)
+          }
         }],
       })
     }
     this.props.dispatch(fetchModa(this.props.params.cuid))
   }
 
+  handleSaveModa = moda => {
+    if (moda)
+      this.props.dispatch(updateModaRequest(moda)).then(()=> {console.log('update dispatched')})
+  }
+
   handleUpdateModa = moda => {
     if (!this.props.readonly) {
       this.props.dispatch(updateModaRequest(moda)).then(() => this.context.router.push('/'))
     }
+  }
+
+  handleChange = data => {
+    this.setState({draftModa: data.formData})
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log('nextProps ', nextProps)
+    //console.log('currentState ', this.state)
+    //console.log('nextState ', nextState)
+    // If there is a moda being edited take it
+    return !(nextState && nextState.draftModa)
   }
 
   render() {
@@ -36,7 +64,13 @@ class ModaDetailPage extends Component {
     return (
       <div>
         <Helmet title={this.props.moda.title} />
-        <ModaCreateWidget addModa={this.handleUpdateModa} showAddModa moda={this.props.moda} readonly={this.props.readonly}/>
+        <ModaCreateWidget
+          addModa={this.handleUpdateModa}
+          onChange={this.handleChange}
+          moda={this.props.moda}
+          readonly={this.props.readonly}
+          showAddModa
+        />
         <WorkflowDiagram moda={this.props.moda} />
       </div>
     )
