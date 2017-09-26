@@ -17,10 +17,12 @@ class ModaHistoryDetailPage extends Component {
       return <div>Loading...</div>
     }
     return (
-      <div>
-        <Helmet title={this.props.moda.title} />
-        <div>
-          <ModaCreateWidget moda={this.props.moda} readonly/>
+      <div className='row'>
+        <div className='col'>
+          <Helmet title={this.props.moda.title} />
+          <div>
+            <ModaCreateWidget moda={this.props.moda} readonly/>
+          </div>
         </div>
       </div>
     )

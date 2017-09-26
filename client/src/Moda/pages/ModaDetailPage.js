@@ -62,16 +62,18 @@ class ModaDetailPage extends Component {
       return <div>Loading...</div>
     }
     return (
-      <div>
-        <Helmet title={this.props.moda.title} />
-        <ModaCreateWidget
-          addModa={this.handleUpdateModa}
-          onChange={this.handleChange}
-          moda={this.props.moda}
-          readonly={this.props.readonly}
-          showAddModa
-        />
-        <WorkflowDiagram moda={this.props.moda} />
+      <div className='row'>
+        <div className='col'>
+          <Helmet title={this.props.moda.title} />
+          <ModaCreateWidget
+            addModa={this.handleUpdateModa}
+            onChange={this.handleChange}
+            moda={this.props.moda}
+            readonly={this.props.readonly}
+            showAddModa
+          />
+          <WorkflowDiagram moda={this.props.moda} />
+        </div>
       </div>
     )
   }

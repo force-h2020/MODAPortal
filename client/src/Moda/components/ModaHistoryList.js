@@ -53,17 +53,4 @@ console.log(props.history)
   )
 }
 
-/*ModaHistoryList.propTypes = {
-  history: PropTypes.shape({
-    modified: PropTypes.Date.isRequired,
-    created: PropTypes.Date.isRequired,
-    refId: PropTypes.string.isRequired,
-  }).isRequired,
-  moda: PropTypes.shape({
-    userCase: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    cuid: PropTypes.string.isRequired,
-  }).isRequired,
-}
-*/
 export default ModaHistoryList
