@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet'
+import ReactMarkdown from 'react-markdown'
 
 import ModaList from '../components/ModaList';
 import ModaCreateWidget from '../components/ModaCreateWidget/ModaCreateWidget';
@@ -10,6 +11,25 @@ import { addModaRequest, fetchModas, deleteModaRequest, updateNewModaDraft } fro
 import { toggleAddModa } from '../../App/AppActions';
 import * as types from '../../App/constants'
 
+
+const mainDocs = `
+MODA Portal is a tool to collect MODA documents. In this portal one can currently carry on the followings:
+
+- Create a new MODA
+- See change history of a MODA
+- Delete a MODA
+
+MODA Portal uses [emmc.info](https://emmc.info) for user management. Administrator users will see other user's submissions.`
+
+const docsNode = (
+  <div className="panel panel-info">
+    <div className="panel-heading">
+     <h3 className="panel-title">Welcome to MODA Portal!</h3>
+    </div>
+    <div className="panel-body">
+      <ReactMarkdown id='mainDocs' source={mainDocs} />
+    </div>
+  </div>)
 
 class ModaListPage extends Component {
   constructor(props) {
@@ -85,6 +105,7 @@ class ModaListPage extends Component {
             <ModaCreateWidget addModa={this.handleAddModa} onChange={this.handleChange} moda={this.props.draft} />
           </div>
           <br />
+          {docsNode}
           <ModaSearchWidget searchModa={this.handleSearchModa} />
           <ModaList handleDeleteModa={this.handleDeleteModa} modas={this.props.modas} />
         </div>
