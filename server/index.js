@@ -53,9 +53,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.listen(config.port, (error) => {
+const listener = app.listen(config.port, (error) => {
   if (!error) {
-    console.log(`MODA Portal is running on port ${config.port}`)
+    console.log(`MODA Portal is listening on port ${listener.address().port}`)
   }
 })
 
