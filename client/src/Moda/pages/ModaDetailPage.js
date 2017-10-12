@@ -71,6 +71,7 @@ class ModaDetailPage extends Component {
       <div className='row'>
         <div className='col'>
           <Helmet title={this.props.moda.title} />
+          <WorkflowDiagram moda={this.props.moda} />
           <ModaCreateWidget
             addModa={this.handleUpdateModa}
             onChange={this.handleChange}
@@ -78,7 +79,6 @@ class ModaDetailPage extends Component {
             readonly={this.props.readonly}
             showAddModa
           />
-          <WorkflowDiagram moda={this.props.moda} />
         </div>
       </div>
     )

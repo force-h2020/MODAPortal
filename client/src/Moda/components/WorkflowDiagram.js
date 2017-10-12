@@ -49,39 +49,65 @@ class WorkflowDiagram extends React.Component {
   render() {
     const graph = {
       nodes: [
-        ],
+      ],
       edges: [
-        ]
-    };
+      ]
+    }
+
+    const options = {
+      layout: {
+        hierarchical: {
+          enabled: true,
+          levelSeparation: 250,
+          direction: 'LR',        // UD, DU, LR, RL
+          sortMethod: 'directed'   // hubsize, directed
+        }
+      },
+      edges: {
+        color: "#4475D5",
+        width: 3
+      },
+      nodes: {
+        mass: 1,
+        shadow:{
+          enabled: true,
+          color: 'rgba(0,0,0,0.5)',
+          size:10,
+          x:5,
+          y:5
+        },
+        shape: 'circle',
+        fixed: true
+      },
+      interaction: {
+        dragView: false,
+        zoomView: false
+      },
+      physics: false,
+    }
+
+    const events = {
+        select: function(event) {
+            //var { nodes, edges } = event;
+        }
+    }
 
     if (this.props.moda && this.props.moda.chainOfModels) {
       const models = this.props.moda.chainOfModels.physicsBasedModels
       const modelsMap = {}
       models.map(item => modelsMap[item.title] = item)
       models.forEach((currentValue, index, array) => {
+        if (index == 0) {
+          graph.nodes.push({id: -1, label: 'Input', color: '#F18A87'})
+          graph.edges.push({from: -1, to: 0})
+        }
         graph.nodes.push({id: index, label: currentValue.title})
-
         if (currentValue.genericPhysics && currentValue.genericPhysics.simulatedInput) {
           const input = currentValue.genericPhysics.simulatedInput
           const fromIndex = models.findIndex(item => item.title === modelsMap[input].title)
           graph.edges.push({from: fromIndex, to: index})
         }
       })
-    }
-
-    var options = {
-        layout: {
-            hierarchical: true
-        },
-        edges: {
-            color: "#000000"
-        }
-    };
-
-    var events = {
-        select: function(event) {
-            //var { nodes, edges } = event;
-        }
     }
 
     return (
