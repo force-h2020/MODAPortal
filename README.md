@@ -11,6 +11,7 @@ First thing is to clone the repo and start the API server:
   git clone https://github.com/force-h2020/MODAPortal
   cd MODAPortal
   yarn install
+  yarn build
   yarn start
 ```
 
